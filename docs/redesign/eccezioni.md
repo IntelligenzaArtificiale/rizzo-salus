@@ -16,3 +16,6 @@ Le nuove pagine compongono SettingsSection, Section, RowList, campi, dialoghi e 
 
 ## Calendar del 10 novembre, integrato l’11 novembre
 CalendarWeek è scomposto in geometria, canali e CalendarEvent. Sottocolonne e intervalli richiedono geometria calcolata (stili dinamici già ammessi dall’eccezione del calendario); superfici, campi e azioni continuano a usare il kit. Dettagli nativi per appunti e parametri, senza nuova libreria. Fullscreen nativo con ritorno alla settimana corrente e uscita; su mobile scorrimento interno, viste uno/due giorni. Le impostazioni Calendar espongono solo parametri effettivamente utilizzati (gruppi, palette, professionisti). Backend e schema della sola copia estesi come autorizzato. Il vecchio messaggio sugli incassi è fuori perimetro.
+
+## Assistente reale, 16 novembre 2026
+StreamingText resta il componente del kit per il testo animato. Il wrapper applicativo nasconde i suoi blocchi dimostrativi di azioni, fonti e follow-up: il componente non espone opzioni per rimuoverli e i pulsanti non sono collegati ad azioni reali. Nessun conteggio di fonti inventato e nessuna modifica al vendor.

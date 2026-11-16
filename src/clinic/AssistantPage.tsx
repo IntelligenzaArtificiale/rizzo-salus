@@ -39,7 +39,7 @@ export function AssistantPage() {
   const a = useAction();
   const [messages, setMessages] = useState<Message[]>([]);
   const send = (q: string) => {
-    if (!q.trim() || !load.data?.configurata) return;
+    if (a.busy || !q.trim() || !load.data?.configurata) return;
     a.act(async () => {
       const history = messages.slice(-6);
       setMessages((m) => [...m, { role: "user", text: q }]);
@@ -109,6 +109,7 @@ export function AssistantPage() {
                       data-menu-row
                       className="relative z-10 rounded-control px-3 py-3 text-left text-[14px] text-ink-2"
                       key={q}
+                      disabled={a.busy}
                       onClick={() => send(q)}
                     >
                       {q}
@@ -128,14 +129,16 @@ export function AssistantPage() {
                   {m.text}
                 </div>
               ) : (
-                <StreamingText
-                  key={i}
-                  fill
-                  loop={false}
-                  content={m.text.split(/\s+/).map((text) => ({ text }))}
-                  sources={[]}
-                  followUps={[]}
-                />
+                // Nasconde i controlli dimostrativi del componente, senza cambiare il vendor.
+                <div key={i} className="[&>div>div]:hidden">
+                  <StreamingText
+                    fill
+                    loop={false}
+                    content={m.text.split(/\s+/).map((text) => ({ text }))}
+                    sources={[]}
+                    followUps={[]}
+                  />
+                </div>
               ),
             )}
             {a.busy && (
@@ -160,8 +163,8 @@ export function AssistantPage() {
             />
           </fieldset>
           <p className="text-center text-[12px] text-ink-3">
-            Risposte limitate ai dati consentiti dal tuo ruolo. I dati personali
-            e clinici non vengono condivisi.
+            Risposte limitate ai dati consentiti dal tuo ruolo. I pazienti sono
+            indicati con codici nel contesto inviato. Evita dati clinici nel testo libero.
           </p>
         </>
       )}

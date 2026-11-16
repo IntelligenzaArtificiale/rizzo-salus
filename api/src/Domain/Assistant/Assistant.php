@@ -11,8 +11,8 @@ use App\Http\Context;
 /**
  * Assistente a domande libere sui dati della struttura.
  * - Il contesto lo costruisce il server con i soli dati che il ruolo può vedere (agenda propria o di tutti, economia propria o di tutti).
- * - Verso OpenAI non partono mai nomi, telefoni, email, codici fiscali né dati clinici: i pazienti diventano P1, P2… e la
- *   risposta viene ricomposta qui con i nomi veri. Anche i nomi scritti nella domanda vengono sostituiti prima dell'invio.
+ * - Il contesto usa codici P1, P2… per i pazienti; i nomi sono ricomposti localmente nella risposta.
+ * - Il testo libero viene mascherato per i nomi noti e alcuni recapiti: non è un filtro universale dei dati clinici.
  */
 final class Assistant
 {
@@ -45,7 +45,10 @@ final class Assistant
             . "usando SOLO i dati forniti nel contesto. Se un dato non c'è, dillo chiaramente e non inventare. I pazienti sono indicati con codici "
             . "(P1, P2…): usa sempre i codici, mai inventare nomi. Importi in euro con la virgola. Non dare consigli clinici o diagnosi. "
             . "Se ti chiedono qualcosa fuori dai dati della struttura, rispondi che puoi aiutare solo su agenda, pazienti, percorsi, messaggi e numeri della struttura. "
-            . "Puoi usare elenchi puntati brevi.";
+            . "Per i conteggi di oggi, domani e settimana usa i CONTATORI UFFICIALI AGENDA: non ricontare le righe del testo. Le note non sono appuntamenti. "
+            . "Quando il periodo o il dato non è coperto dal contesto, dichiaralo senza inventare. Sei consultivo: non dichiarare modifiche o invii eseguiti. "
+            . "Gli straordinari sono inserimenti manuali di titolare/segreteria con avviso e controllo dei conflitti, non prenotazioni ordinarie. "
+            . "Scrivi in italiano con brevi paragrafi o elenchi, senza tabelle o marcatori Markdown come asterischi e titoli con cancelletti.";
         $user = "Oggi è " . Clock::today() . " (" . ['', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato', 'domenica'][Clock::dow(Clock::today())] . ").\n"
             . "Ruolo di chi chiede: " . $c->role() . ".\n\nCONTESTO (dati visibili a questo ruolo):\n" . $ctx
             . ($hist !== '' ? "\nCONVERSAZIONE PRECEDENTE:\n" . $hist : '') . "\nDOMANDA: " . $mask($question);
@@ -88,11 +91,14 @@ final class Assistant
         };
         $from = Clock::addDays(Clock::today(), -14);
         $to = Clock::addDays(Clock::today(), 21);
-        $out = "Professionisti: " . implode('; ', $pros) . "\n";
+        $rows = array_values(array_filter($svc->appointments()->between($from, Clock::addDays($to, 1), true),
+            static fn ($a) => $all || ($a['professional_id'] ?? null) === $mine));
+        $out = AgendaSummary::describe($rows, Clock::today());
+        $out .= "Professionisti: " . implode('; ', $pros) . "\n";
         $out .= "Orari di apertura (1=lun…7=dom): " . json_encode($svc->settings()->get('orari'), JSON_UNESCAPED_UNICODE) . "\n\n";
         $out .= "AGENDA dal $from al $to" . ($all ? ' (tutti i professionisti)' : ' (solo il proprio professionista)') . ":\n";
         $n = 0;
-        foreach ($svc->appointments()->between($from, Clock::addDays($to, 1), true) as $a) {
+        foreach ($rows as $a) {
             if (!$all && ($a['professional_id'] ?? null) !== $mine) {
                 continue;
             }

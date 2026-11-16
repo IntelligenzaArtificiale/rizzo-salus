@@ -1,0 +1,38 @@
+{
+  "data": "2026-11-16",
+  "ambiente": "demo locale indipendente, porta 8081",
+  "modello": "gpt-4.1-mini",
+  "prove_reali_openai": true,
+  "browser": {
+    "checks": [
+      "Assistente configurato titolare",
+      "Risposta reale API titolare",
+      "Conteggio corretto 8 e non 10",
+      "Nessun controllo demo visibile titolare",
+      "Nessun messaggio di configurazione mancante titolare",
+      "Assistente configurato segreteria",
+      "Risposta reale API segreteria",
+      "Contesto riservato non esposto alla segreteria",
+      "Nessun controllo demo visibile segreteria",
+      "Nessun messaggio di configurazione mancante segreteria",
+      "Permessi fisioterapista conservati",
+      "Server rifiuta AI al ruolo non abilitato",
+      "Nessuna eccezione JavaScript"
+    ],
+    "errors": []
+  },
+  "test_contatori": 10,
+  "regressioni_dominio": 107,
+  "build": "superata",
+  "lint": {
+    "errori": 0,
+    "warning": 59
+  },
+  "regole_ui": "superate",
+  "segreti": {
+    "archivio_cifrato": true,
+    "occorrenze_chiave_sorgenti_e_build": 0,
+    "inclusi_nel_repository": false
+  },
+  "limiti": "Budget applicativi basati su una stima dei consumi, distinti dalla fatturazione del fornitore. Assistant consultivo; nessuna modifica o invio autonomo. SMS e servizi fiscali non attivati da queste prove."
+}

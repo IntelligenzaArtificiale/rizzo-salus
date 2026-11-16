@@ -39,6 +39,12 @@ Sono credenziali pubbliche per la sola demo locale, con dati sintetici creati da
 
 Chiara non viene pianificata finché non si confermano i giorni; il venerdì di Antonio resta chiuso e la pompa diamagnetica non assistita disattivata. Tutto è inseribile da **Impostazioni → Cataloghi / Calendar**. Il pianificatore a vincoli funziona senza chiavi AI esterne.
 
+## Assistente AI
+
+Accedere come titolare e aprire **Impostazioni → Integrazioni** per salvare la chiave OpenAI; nella sezione **Assistente** impostare il modello (verificato con `gpt-4.1-mini`), attivazione e tetti di spesa. La chiave resta cifrata sul server. Ogni clone richiede la propria configurazione: il repository non contiene credenziali API.
+
+L'[assistente](http://localhost:8081/#/assistente) risponde sui dati consentiti al ruolo e conserva la conversazione solo nella schermata corrente. Non esegue modifiche o invii. I limiti del gestionale si basano sui costi stimati: il consumo effettivo resta consultabile presso il fornitore. Evitare dati clinici nel testo libero.
+
 ## Preparazione manuale e Windows
 
 Per installare separatamente le dipendenze e verificare l'ambiente:
@@ -111,6 +117,7 @@ npm run lint
 python3 -I scripts/verify-ui-rules.py
 php scripts/test-calendar-domain.php
 php scripts/test-call-domain.php
+php scripts/test-assistant-summary.php
 ```
 
 Python 3 serve solo per gli strumenti di verifica, non per eseguire l'applicazione. Le due suite PHP creano dataset isolati sotto `.runtime/qa`; i test browser devono usare esclusivamente il server QA 8082 con dati separati, mai la demo in uso. Playwright/Chrome serve soltanto ai collaudi browser.

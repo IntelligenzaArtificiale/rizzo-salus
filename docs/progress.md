@@ -57,3 +57,11 @@ Dettagli e limiti in [verifica Calendar](specifiche-2026-11-11/verifica.md), [gu
 Repository richiesto: https://github.com/IntelligenzaArtificiale/rizzo-salus. Il README è la guida principale: prerequisiti, clone, avvio, credenziali dimostrative, porte, sviluppo e risoluzione problemi. `avvia.sh` controlla il runtime, installa dipendenze mancanti, rigenera la build e conserva l'archivio; `avvia.bat` prepara la stessa demo. Il generatore applica il profilo Calendar aggiornato alle sole nuove installazioni. Nessun reset dell'originale o dei dati locali esistenti.
 
 Verificata installazione separata dai soli file destinati a GitHub: Composer, npm, build e seed; accessi di tutti i quattro ruoli e calendario, conservazione delle chiavi e dei pazienti al riavvio; 50 controlli Calendar e 107 regressioni superati. Il controllo dei file destinati al repository non ha rilevato configurazioni private o segreti. Dati, backup, runtime, dipendenze, build e documenti commerciali riservati esclusi. [Report di avvio](avvio-locale-verificato.json).
+
+## Assistente operativo - 16 novembre 2026
+
+Attivato nella sola demo locale su richiesta dell'utente con chiamate reali a OpenAI e modello gpt-4.1-mini. La credenziale è conservata nell'archivio cifrato locale escluso da Git; nessuna chiave nei sorgenti o nel browser. Configurazione e sostituzione restano disponibili al titolare. I limiti di consumo esistenti sono conservati e si basano su stime applicative, non sul saldo effettivo del fornitore.
+
+Corretto il riepilogo dell'agenda: note, annullati e assenti sono distinti dagli appuntamenti attivi. Il modello riceve contatori deterministici per oggi, domani e settimana, calcolati sui dati consentiti al ruolo. Il prompt dichiara i dati mancanti e il carattere consultivo; la UI chiarisce il trattamento dei codici paziente e del testo libero. Nascosti i controlli dimostrativi senza funzione del componente StreamingText; vendor invariato.
+
+Verificati risposta reale per titolare e segreteria, conteggio di 8 appuntamenti senza i due appunti, conversazione su orari/apertura e rifiuto al ruolo non autorizzato. Superati 10 controlli dedicati, 107 regressioni, build e regole UI. Lint senza errori, 59 warning preesistenti. [Report della verifica](assistente-verifica-2026-11-16.json). Nessuna attivazione dei servizi SMS o fiscali.
