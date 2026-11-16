@@ -4,7 +4,7 @@ Frontend React/TypeScript e backend PHP del poliambulatorio. Include l'ultima ve
 
 ## Avvio rapido dopo il clone
 
-Servono **Git, Node.js 22.12+ con npm, PHP 8.3+ e Composer 2**. PHP deve avere le estensioni **sodium, mbstring, dom, gd e zip** abilitate nella versione CLI. Non serve configurare MySQL: l'applicazione usa un archivio cifrato su file.
+Servono **Git, Node.js 22.12+ con npm, PHP 8.2+ e Composer 2**. PHP deve avere le estensioni **calendar, sodium, mbstring, dom, gd e zip** abilitate nella versione CLI. Non serve configurare MySQL: l'applicazione usa un archivio cifrato su file.
 
 ```bash
 git clone https://github.com/IntelligenzaArtificiale/rizzo-salus.git
@@ -125,3 +125,7 @@ Python 3 serve solo per gli strumenti di verifica, non per eseguire l'applicazio
 [Guida Calendar](docs/specifiche-2026-11-11/guida.md), [conferme e attivazioni pendenti](docs/specifiche-2026-11-11/checklist-bloccanti.md), [verifiche Calendar](docs/specifiche-2026-11-11/verifica.md), [guida del titolare](docs/riunione-2026-11-09/guida-titolare.md). I report storici possono riferirsi a schermate, materiali o percorsi privati conservati solo sul computer di sviluppo.
 
 Il server PHP integrato è destinato all'avvio locale. Hosting, dominio, HTTPS, processo periodico e collegamenti SMS/Aruba/TS/AI si configurano separatamente per un rilascio effettivo. Listini, modelli e account dimostrativi non sono dati operativi della struttura.
+
+## Pubblicazione su hosting
+
+[Procedura di rilascio e ripristino](docs/deploy.md). Il pacchetto Apache/PHP separa asset pubblici, codice e runtime protetto e supporta root e sottocartelle. Le credenziali di trasferimento e gli archivi generati rimangono in `.deploy/`, escluso dal repository.

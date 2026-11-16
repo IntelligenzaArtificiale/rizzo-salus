@@ -91,7 +91,7 @@ final class CareCommunications
             $p=$this->svc->store->get('patients',$a['patient_id']);if(empty($p['telefono']))continue;
             $key='visit-confirm:'.$a['id'].':'.$a['version'];$exists=$this->svc->store->all('messages',fn($m)=>$m['idempotency_key']===$key);if($exists)continue;
             $token=$this->svc->tokens()->issue('conferma_visita',$a['id'],2880,['patient_id'=>$p['id'],'version'=>$a['version']],false);
-            $url=rtrim(Env::get('APP_URL'),'/').'/#/conferma-visita/'.$token;
+            $url=\App\Core\PublicUrl::root().'/#/conferma-visita/'.$token;
             $this->svc->gateway()->enqueueRaw('sms',$p['telefono'],'conferma_visita','Conferma la visita di domani alle '.substr($a['start'],11,5).': '.$url,'',$key,['patient_id'=>$p['id'],'tecnico'=>false]);$count++;
         }
         return ['accodati'=>$count];

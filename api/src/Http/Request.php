@@ -23,8 +23,8 @@ final class Request
     public static function capture(string $basePath = '/api'): self
     {
         $uri = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
-        $pos = strpos($uri, $basePath);
-        $path = $pos === false ? $uri : substr($uri, $pos + strlen($basePath));
+        $matches = $uri === $basePath || str_starts_with($uri, $basePath . '/');
+        $path = $matches ? substr($uri, strlen($basePath)) : $uri;
         $path = '/' . trim($path, '/');
         $path = preg_replace('#^/index\.php#', '', $path) ?: '/';
 

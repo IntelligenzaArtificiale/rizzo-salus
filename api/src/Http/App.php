@@ -5,7 +5,7 @@ namespace App\Http;
 
 use App\Auth\Permissions;
 use App\Core\ApiError;
-use App\Core\Env;
+use App\Core\PublicUrl;
 use App\Services\Services;
 
 /** Applicazione HTTP: instrada, autentica, controlla CSRF e permessi, traduce gli errori in risposte. */
@@ -22,9 +22,9 @@ final class App
         if ($session !== null) {
             $session->save();
             if ($session->isDestroyed()) {
-                $response->cookies[] = [Session::COOKIE, '', ['expires' => time() - 3600, 'path' => '/', 'httponly' => true, 'samesite' => 'Lax']];
+                $response->cookies[] = [Session::COOKIE, '', array_replace($session->cookieOptions(PublicUrl::secure(), 0), ['expires' => time() - 3600])];
             } elseif ($session->isNew && $session->get('user_id') !== null) {
-                $secure = str_starts_with(Env::get('APP_URL'), 'https');
+                $secure = PublicUrl::secure();
                 $response->cookies[] = [Session::COOKIE, $session->id(), $session->cookieOptions($secure, 0)];
             }
         }
@@ -97,7 +97,7 @@ final class App
             'Content-Security-Policy' => "default-src 'none'; $framing",
             'X-Frame-Options' => 'DENY',
         ];
-        if (str_starts_with(Env::get('APP_URL'), 'https')) {
+        if (PublicUrl::secure()) {
             $r->headers['Strict-Transport-Security'] = 'max-age=31536000; includeSubDomains';
         }
         return $r;

@@ -5,6 +5,7 @@ namespace App\Http;
 
 use App\Core\Clock;
 use App\Core\Crypto;
+use App\Core\PublicUrl;
 
 /**
  * Sessioni su file, con cookie opaco (solo l'hash del cookie è nel nome del file).
@@ -127,6 +128,6 @@ final class Session
 
     public function cookieOptions(bool $secure, int $lifetime): array
     {
-        return ['expires' => $lifetime > 0 ? time() + $lifetime : 0, 'path' => '/', 'secure' => $secure, 'httponly' => true, 'samesite' => 'Lax'];
+        return ['expires' => $lifetime > 0 ? time() + $lifetime : 0, 'path' => PublicUrl::cookiePath(), 'secure' => $secure, 'httponly' => true, 'samesite' => 'Lax'];
     }
 }

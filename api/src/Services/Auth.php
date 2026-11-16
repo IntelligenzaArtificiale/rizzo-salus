@@ -131,7 +131,7 @@ final class Auth
         $this->limiter->hit('reset', mb_strtolower($email), 3, 3600);
         $this->tokens->revokeFor('reset_password', $user['id']);
         $raw = $this->tokens->issue('reset_password', $user['id'], 60);
-        $link = rtrim(Env::get('APP_URL'), '/') . '/#/nuova-password/' . $raw;
+        $link = \App\Core\PublicUrl::root() . '/#/nuova-password/' . $raw;
         $this->outbox->queue('email', $user['email'], 'sistema', "Per scegliere una nuova password apri questo link entro un'ora:\n$link\n\nSe non l'hai chiesto tu, ignora questo messaggio.", 'Nuova password', ['recipient_user_id' => $user['id']]);
         $this->audit->log('reset_password_richiesto', 'users', $user['id']);
     }
@@ -141,7 +141,7 @@ final class Auth
     {
         $this->tokens->revokeFor('reset_password', $user['id']);
         $raw = $this->tokens->issue('reset_password', $user['id'], 60 * 24 * 3);
-        $link = rtrim(Env::get('APP_URL'), '/') . '/#/nuova-password/' . $raw;
+        $link = \App\Core\PublicUrl::root() . '/#/nuova-password/' . $raw;
         $this->outbox->queue('email', $user['email'], 'sistema', "Ti è stato creato un accesso al gestionale. Scegli la tua password da questo link, valido 3 giorni:\n$link", 'Il tuo accesso al gestionale', ['recipient_user_id' => $user['id']]);
     }
 
@@ -241,7 +241,7 @@ final class Auth
         }
         $this->tokens->revokeFor('primo_avvio', 'titolare');
         $raw = $this->tokens->issue('primo_avvio', 'titolare', 60 * 24, ['email' => $email]);
-        return rtrim(Env::get('APP_URL'), '/') . '/#/primo-avvio/' . $raw;
+        return \App\Core\PublicUrl::root() . '/#/primo-avvio/' . $raw;
     }
 
     public function peekFirstRun(string $raw): array

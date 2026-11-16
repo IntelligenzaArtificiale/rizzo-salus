@@ -2,8 +2,8 @@
 declare(strict_types=1);
 /** Controlli prima di installare o avviare la demo; non legge dati o credenziali. */
 $errors = [];
-if (PHP_VERSION_ID < 80300) $errors[] = 'Richiesto PHP 8.3 o successivo.';
-foreach (['sodium', 'mbstring', 'dom', 'gd', 'zip'] as $extension) {
+if (PHP_VERSION_ID < 80200) $errors[] = 'Richiesto PHP 8.2 o successivo.';
+foreach (['calendar', 'sodium', 'mbstring', 'dom', 'gd', 'zip'] as $extension) {
     if (!extension_loaded($extension)) $errors[] = 'Estensione PHP mancante: ' . $extension;
 }
 $port = getenv('PORT') ?: '8081';

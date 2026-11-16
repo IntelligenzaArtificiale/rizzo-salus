@@ -3,14 +3,22 @@
   "description": "Backend del gestionale del poliambulatorio",
   "type": "project",
   "require": {
-    "php": ">=8.3",
+    "php": ">=8.2",
     "ext-sodium": "*",
     "ext-mbstring": "*",
     "ext-zip": "*",
     "ext-dom": "*",
     "ext-gd": "*",
-    "dompdf/dompdf": "^3.0"
+    "dompdf/dompdf": "^3.0",
+    "ext-calendar": "*"
   },
-  "autoload": { "psr-4": { "App\\": "src/" } },
-  "config": { "optimize-autoloader": true, "sort-packages": true }
+  "autoload": {
+    "psr-4": {
+      "App\\": "src/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true,
+    "sort-packages": true
+  }
 }

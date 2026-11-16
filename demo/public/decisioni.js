@@ -39,7 +39,7 @@ const Q = [
     ['no', 'No, contano solo le sedute', '', 1], ['si', 'Sì, con minuti fissi per ogni seduta', 'Si imposta il numero di minuti', 0]]],
   ['dati_vecchi', 'Avvio', 'Avete già i pazienti in un altro programma o in Excel?', 'L’importatore prepara una anteprima prima di scrivere qualsiasi cosa.', [
     ['excel', 'Sì, in Excel/CSV', 'Li importiamo con controllo dei doppioni', 1], ['programma', 'Sì, in un altro gestionale', 'Chiediamo l’esportazione', 0], ['no', 'No, si parte da zero', '', 0]]],
-  ['hosting', 'Avvio', 'Dove viene messo online?', 'Serve PHP 8.3 e un dominio con HTTPS. I dati stanno fuori dalla cartella pubblica.', [
+  ['hosting', 'Avvio', 'Dove viene messo online?', 'Serve PHP 8.2 e un dominio con HTTPS. I dati stanno fuori dalla cartella pubblica.', [
     ['condiviso', 'Hosting condiviso già in uso', 'Ci serve l’accesso per l’installazione', 1], ['vps', 'Un server dedicato (VPS)', '', 0], ['da_scegliere', 'Da scegliere', 'Vi consigliamo noi', 0]]],
   ['tariffe', 'Avvio', 'Chi fornisce listino prezzi e tipi di terapia definitivi?', 'Oggi ci sono 15 terapie di esempio con tariffa 0.', [
     ['titolare', 'Il titolare entro questa settimana', '', 1], ['segreteria', 'La segreteria', '', 0], ['insieme', 'Li facciamo insieme in una sessione', '', 0]]],

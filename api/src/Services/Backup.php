@@ -26,6 +26,7 @@ final class Backup
     public function dir(): string
     {
         $d = $this->dir ?? (Env::get('BACKUP_DIR') ?: $this->store->dir() . '/../backup');
+        if (!str_starts_with($d, '/')) $d = dirname(__DIR__, 2) . '/' . $d;
         if (!is_dir($d)) {
             @mkdir($d, 0700, true);
         }

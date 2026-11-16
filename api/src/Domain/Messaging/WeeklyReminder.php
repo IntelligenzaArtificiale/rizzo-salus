@@ -104,7 +104,7 @@ final class WeeklyReminder
         $expires = Clock::addDays($week, 14) . 'T00:00:00';
         $minutes = max(60, Clock::diffMinutes(Clock::stamp(), $expires));
         $raw = $this->tokens->issue(self::SCOPE, $patientId, $minutes, ['dal' => $week, 'al' => Clock::addDays($week, 6), 'paziente_id' => $patientId], false);
-        return rtrim(Env::get('APP_URL'), '/') . '/s/' . $raw;
+        return \App\Core\PublicUrl::root() . '/s/' . $raw;
     }
 
     /** Pagina pubblica del paziente. @return array<string,mixed> */

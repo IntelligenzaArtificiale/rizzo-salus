@@ -19,7 +19,7 @@ else
     set --
 fi
 if ! command -v "$PHP_BIN" >/dev/null 2>&1; then
-    echo 'PHP non trovato. Installa PHP 8.3+ con le estensioni indicate nel README.' >&2
+    echo 'PHP non trovato. Installa PHP 8.2+ con le estensioni indicate nel README.' >&2
     exit 1
 fi
 "$PHP_BIN" "$@" demo/verifica-runtime.php
