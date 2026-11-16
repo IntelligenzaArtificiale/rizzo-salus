@@ -65,3 +65,9 @@ Attivato nella sola demo locale su richiesta dell'utente con chiamate reali a Op
 Corretto il riepilogo dell'agenda: note, annullati e assenti sono distinti dagli appuntamenti attivi. Il modello riceve contatori deterministici per oggi, domani e settimana, calcolati sui dati consentiti al ruolo. Il prompt dichiara i dati mancanti e il carattere consultivo; la UI chiarisce il trattamento dei codici paziente e del testo libero. Nascosti i controlli dimostrativi senza funzione del componente StreamingText; vendor invariato.
 
 Verificati risposta reale per titolare e segreteria, conteggio di 8 appuntamenti senza i due appunti, conversazione su orari/apertura e rifiuto al ruolo non autorizzato. Superati 10 controlli dedicati, 107 regressioni, build e regole UI. Lint senza errori, 59 warning preesistenti. [Report della verifica](assistente-verifica-2026-11-16.json). Nessuna attivazione dei servizi SMS o fiscali.
+
+## Demo pubblica - 16 novembre 2026
+
+Pubblicata su https://www.stop-paper.it/rizzo-salus/ nella sola cartella FTP confermata dall'utente. La destinazione era vuota; backup e prove preliminari eseguiti prima del runtime. Nuovi dati sintetici, archivio cifrato e chiave separati dalla demo locale; assistente configurato e interrogato realmente via HTTPS. Nessuna modifica a root, altri siti, DNS o configurazione PHP condivisa.
+
+Adeguato il minimo a PHP 8.2 con versioni delle dipendenze immutate, dopo 107 regressioni, 50 controlli Calendar, 10 assistente, 23 URL e 141 sintassi PHP superate. Centralizzati URL e cookie per sottocartelle, mantenendo compatibilità locale. Quattro destinazioni Apache/PHP 8.2 collaudate, poi 39 verifiche HTTPS online senza eccezioni JS. SMS/email in prova e connettori fiscali non attivati. [Procedura e ripristino](deploy.md), [verifica online](deploy-verificato-2026-11-16.json).

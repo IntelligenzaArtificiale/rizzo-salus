@@ -73,3 +73,9 @@ rifiuto HTTP di `.env`, codice e dati, download autorizzati e assistente con una
 Non dichiarare pubblicato il sito prima del collaudo HTTPS.
 
 Prima della pubblicazione sono passati 107 controlli di dominio, 50 Calendar, 10 assistente e 23 URL su PHP 8.2; sintassi di 141 file PHP senza errori. Verificati su Apache/PHP 8.2 login, ricaricamento, agenda, cookie e logout, negazione del privato e redirect del link pubblico in root, `/app`, `/altra` e `/app` su un secondo host, con dati QA separati.
+
+## Esito del 16 novembre 2026
+
+Pubblicata e verificata in HTTPS la revisione `7d49179`, esclusivamente nella cartella autorizzata. Superate 39 verifiche online: quattro accessi/ricaricamenti/logout, cookie sicuri con Path dedicato, API agenda, rifiuto del privato, CSRF, permessi, download CSV, risposta reale OpenAI coerente con i conteggi, agenda mobile senza overflow. Nessuna eccezione JavaScript rilevata. Ispezionate le schermate agenda desktop/mobile e assistente. [Report](deploy-verificato-2026-11-16.json).
+
+Il dataset è sintetico e indipendente da quello locale. La credenziale AI è ricifrata nel runtime remoto; la configurazione privata e i dati non sono nel repository. SMS/email e servizi fiscali non sono stati attivati. Il backup locale prima del caricamento è `.deploy/backup/20261116-191238`; il manifesto iniziale della cartella vuota resta nel dossier privato.
