@@ -1,0 +1,14 @@
+/*
+ * Colori dei grafici (docs/grafici.md). Una serie: il colore principale del marchio (--accent).
+ * Più serie: palette categoriale validata con lo script dataviz su superfici Beautiful UI
+ * (chiaro #ffffff, scuro #26272b), sempre nello stesso ordine, mai ciclata.
+ * Testi dei grafici con i token d'inchiostro, mai con il colore della serie.
+ */
+.viz-root {
+  --viz-1: #2a78d6; --viz-2: #eb6834; --viz-3: #1baf7a;
+  --viz-grid: var(--line); --viz-axis: var(--ink-3); --viz-surface: var(--surface);
+}
+.dark .viz-root, .dark.viz-root { --viz-1: #3987e5; --viz-2: #d95926; --viz-3: #199e70; }
+.viz-bar { transition: opacity var(--motion-fast) ease-out; }
+.viz-root:has(.viz-bar:hover) .viz-bar:not(:hover), .viz-root:has(.viz-bar:focus-visible) .viz-bar:not(:focus-visible) { opacity: 0.55; }
+.viz-bar:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }

@@ -1,0 +1,28 @@
+/*
+ * Varianti d'aspetto scelte in Impostazioni › Aspetto (attributi data-* su <html> o sull'anteprima).
+ * I raggi di Beautiful UI sono compilati come valori fissi (@theme inline): qui si sostituiscono
+ * le classi rounded-*. «standard» non cambia nulla rispetto al vendor.
+ */
+[data-angoli="netti"] .rounded-chip { border-radius: 3px; }
+[data-angoli="netti"] .rounded-control { border-radius: 4px; }
+[data-angoli="netti"] .rounded-card { border-radius: 6px; }
+[data-angoli="netti"] .rounded-window, [data-angoli="netti"].rounded-window { border-radius: 8px; }
+[data-angoli="morbidi"] .rounded-chip { border-radius: 9px; }
+[data-angoli="morbidi"] .rounded-control { border-radius: 12px; }
+[data-angoli="morbidi"] .rounded-card { border-radius: 16px; }
+[data-angoli="morbidi"] .rounded-window, [data-angoli="morbidi"].rounded-window { border-radius: 20px; }
+
+/* densità: spazio fra i blocchi della pagina e margini interni */
+.page-shell { gap: 2rem; padding-block: 1.75rem; }
+[data-densita="compatta"] .page-shell { gap: 1.25rem; padding-block: 1.25rem; }
+[data-densita="ariosa"] .page-shell { gap: 2.75rem; padding-block: 2.5rem; }
+[data-densita="compatta"] .density-row { padding-block: 0.5rem; }
+[data-densita="ariosa"] .density-row { padding-block: 1.1rem; }
+
+/* carattere di sistema al posto di Inter */
+[data-carattere="sistema"], [data-carattere="sistema"] :not(code, pre, kbd, .font-mono) { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+
+/* movimento ridotto per tutti, come prefers-reduced-motion */
+[data-movimento="ridotto"] *, [data-movimento="ridotto"] *::before, [data-movimento="ridotto"] *::after {
+  animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important;
+}

@@ -1,0 +1,660 @@
+{
+  "decisions": [
+    [
+      "wa_provider",
+      "Messaggi",
+      "Da quale numero WhatsApp partono i messaggi?",
+      "Serve un numero WhatsApp Business collegato a Meta e al servizio Composio. Senza, i promemoria possono partire solo per SMS o email.",
+      [
+        [
+          "esiste",
+          "Abbiamo già un numero WhatsApp Business",
+          "Lo colleghiamo subito",
+          0
+        ],
+        [
+          "nuovo",
+          "Lo attiviamo adesso con un numero nuovo",
+          "Serve il vostro account Meta Business",
+          1
+        ],
+        [
+          "solo_sms",
+          "Per ora solo SMS ed email",
+          "WhatsApp si aggiunge dopo",
+          0
+        ]
+      ]
+    ],
+    [
+      "promemoria_contenuto",
+      "Messaggi",
+      "Che cosa contiene il promemoria del venerdì?",
+      "Parte da solo ogni venerdì alle 13:00 per chi ha appuntamenti nella settimana dopo.",
+      [
+        [
+          "link_riassunto",
+          "Un riassunto breve e il link personale",
+          "Il link mostra sempre gli orari aggiornati",
+          1
+        ],
+        [
+          "link",
+          "Solo il link",
+          "Messaggio più corto",
+          0
+        ],
+        [
+          "testo",
+          "Tutto l’elenco scritto nel messaggio",
+          "Non si aggiorna se qualcosa cambia",
+          0
+        ]
+      ]
+    ],
+    [
+      "promemoria_giorno",
+      "Messaggi",
+      "Giorno e ora del promemoria",
+      "Si può cambiare in qualsiasi momento dalle impostazioni.",
+      [
+        [
+          "ven13",
+          "Venerdì alle 13:00",
+          "Come da richiesta iniziale",
+          1
+        ],
+        [
+          "gio18",
+          "Giovedì alle 18:00",
+          "Più tempo per chi deve spostare",
+          0
+        ],
+        [
+          "sab10",
+          "Sabato alle 10:00",
+          "Più vicino alla settimana",
+          0
+        ]
+      ]
+    ],
+    [
+      "variazioni",
+      "Messaggi",
+      "Se cambiate un appuntamento, il paziente viene avvisato…",
+      "Più modifiche ravvicinate diventano un solo messaggio (attesa 10 minuti). Non si avvisa se il cambio riporta allo stato già comunicato.",
+      [
+        [
+          "controllo",
+          "Dopo che la segreteria ha riletto il messaggio",
+          "Coda «Da inviare», approvazione anche multipla",
+          1
+        ],
+        [
+          "automatica",
+          "Subito, in automatico",
+          "Più veloce, meno controllo",
+          0
+        ],
+        [
+          "manuale",
+          "Mai: la segreteria telefona e spunta",
+          "Il sistema ricorda chi va chiamato",
+          0
+        ]
+      ]
+    ],
+    [
+      "silenzio",
+      "Messaggi",
+      "Orari in cui non si inviano messaggi ai pazienti",
+      "I codici di verifica partono sempre.",
+      [
+        [
+          "21_8",
+          "Dalle 21:00 alle 08:00",
+          "",
+          1
+        ],
+        [
+          "20_9",
+          "Dalle 20:00 alle 09:00",
+          "",
+          0
+        ],
+        [
+          "22_7",
+          "Dalle 22:00 alle 07:00",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "followup",
+      "Messaggi",
+      "Quando chiedere «come sta?» dopo la fine del ciclo",
+      "Poi, dopo qualche giorno, parte la richiesta di recensione Google (una l’anno a paziente).",
+      [
+        [
+          "15_40",
+          "15 giorni per le terapie brevi, 40 per le lunghe",
+          "Si imposta per ogni tipo di terapia",
+          1
+        ],
+        [
+          "15",
+          "Sempre 15 giorni",
+          "",
+          0
+        ],
+        [
+          "30",
+          "Sempre 30 giorni",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "campagne",
+      "Messaggi",
+      "Le campagne promozionali…",
+      "Per legge servono il consenso marketing registrato e la possibilità di disiscriversi.",
+      [
+        [
+          "si_consenso",
+          "Si fanno, solo a chi ha dato il consenso",
+          "Invio a gruppi per non saturare i limiti",
+          1
+        ],
+        [
+          "dopo",
+          "Le rimandiamo alla seconda versione",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "agenda_chi",
+      "Agenda e pianificazione",
+      "Chi può creare e spostare appuntamenti?",
+      "Medici e fisioterapisti segnano le proprie sedute ma non toccano l’agenda.",
+      [
+        [
+          "segreteria",
+          "Solo titolare e segreteria",
+          "Come da brief",
+          1
+        ],
+        [
+          "fisio_propri",
+          "Anche i fisioterapisti per i propri pazienti",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "planner_sposta",
+      "Agenda e pianificazione",
+      "Il pianificatore può spostare i pazienti già fissati per far posto a un altro?",
+      "Solo dentro le fasce che i pazienti hanno indicato, e solo dopo la vostra approvazione.",
+      [
+        [
+          "si2",
+          "Sì, fino a due spostamenti a catena",
+          "Più sedute piazzate",
+          1
+        ],
+        [
+          "si1",
+          "Sì, uno solo",
+          "",
+          0
+        ],
+        [
+          "no",
+          "No: mai toccare quello che è fissato",
+          "Più sedute da piazzare a mano",
+          0
+        ]
+      ]
+    ],
+    [
+      "ai_chiave",
+      "Agenda e pianificazione",
+      "Usiamo OpenAI per capire le disponibilità scritte a parole e per il riepilogo del mattino?",
+      "Il calcolo degli orari non usa mai l’AI. All’AI non vanno nomi, telefoni o dati clinici. C’è un tetto di spesa giornaliero.",
+      [
+        [
+          "si",
+          "Sì, con un tetto di 5 € al giorno",
+          "Serve la vostra chiave OpenAI",
+          1
+        ],
+        [
+          "no",
+          "No, solo regole fisse",
+          "Le disponibilità si compilano a mano o con le frasi più semplici",
+          0
+        ]
+      ]
+    ],
+    [
+      "liste_attesa",
+      "Prenotazioni",
+      "Quando si libera un posto, la lista d’attesa…",
+      "",
+      [
+        [
+          "semi",
+          "Propone alla segreteria chi chiamare",
+          "La segreteria conferma",
+          1
+        ],
+        [
+          "auto",
+          "Scrive da sola al primo in lista",
+          "Il paziente ha 12 ore per rispondere",
+          0
+        ],
+        [
+          "manuale",
+          "Resta un elenco da consultare",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "prenota_online",
+      "Prenotazioni",
+      "Le visite prenotate online…",
+      "La pagina pubblica chiede un codice ricevuto sul telefono per evitare prenotazioni false.",
+      [
+        [
+          "approvazione",
+          "Aspettano l’approvazione della segreteria",
+          "Nessuna sorpresa in agenda",
+          1
+        ],
+        [
+          "automatica",
+          "Si confermano da sole",
+          "",
+          0
+        ],
+        [
+          "no_v1",
+          "Non le attiviamo ora",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "fatture_sdi",
+      "Fatturazione",
+      "Come arrivano le fatture elettroniche al Sistema di Interscambio?",
+      "",
+      [
+        [
+          "commercialista",
+          "Le XML vanno ogni settimana alla commercialista",
+          "Come da brief",
+          1
+        ],
+        [
+          "diretto",
+          "Le trasmettiamo noi direttamente",
+          "Serve un canale accreditato: lo valutiamo",
+          0
+        ],
+        [
+          "entrambi",
+          "Prima alla commercialista, poi valutiamo",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "bollo",
+      "Fatturazione",
+      "Marca da bollo da 2 € sopra 77,47 €: a carico di…",
+      "Si può cambiare per singola fattura.",
+      [
+        [
+          "paziente",
+          "Paziente",
+          "",
+          1
+        ],
+        [
+          "struttura",
+          "Struttura",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "sts",
+      "Fatturazione",
+      "Invio delle spese sanitarie al Sistema Tessera Sanitaria",
+      "Per i pazienti che si oppongono, la spesa non va inviata.",
+      [
+        [
+          "export",
+          "Prepariamo il file e lo carica la commercialista",
+          "",
+          1
+        ],
+        [
+          "diretto",
+          "Invio diretto dal gestionale",
+          "Richiede credenziali e accreditamento",
+          0
+        ],
+        [
+          "dopo",
+          "Dopo la prima versione",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "pacchetti",
+      "Fatturazione",
+      "Si vendono pacchetti di sedute prepagati?",
+      "",
+      [
+        [
+          "si",
+          "Sì",
+          "Il sistema scala le sedute man mano",
+          1
+        ],
+        [
+          "no",
+          "No, si paga seduta per seduta",
+          "",
+          0
+        ],
+        [
+          "entrambi",
+          "Entrambi",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "firma",
+      "Documenti",
+      "Come si firmano consensi e moduli?",
+      "",
+      [
+        [
+          "otp",
+          "Con un codice ricevuto sul telefono",
+          "Più semplice, lascia prova con data e impronta del documento",
+          1
+        ],
+        [
+          "grafica",
+          "Con firma disegnata su tablet",
+          "",
+          0
+        ],
+        [
+          "carta",
+          "Su carta, poi si carica la scansione",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "ore",
+      "Personale",
+      "Il tempo di preparazione conta come ora lavorata?",
+      "",
+      [
+        [
+          "no",
+          "No, contano solo le sedute",
+          "",
+          1
+        ],
+        [
+          "si",
+          "Sì, con minuti fissi per ogni seduta",
+          "Si imposta il numero di minuti",
+          0
+        ]
+      ]
+    ],
+    [
+      "dati_vecchi",
+      "Avvio",
+      "Avete già i pazienti in un altro programma o in Excel?",
+      "L’importatore prepara una anteprima prima di scrivere qualsiasi cosa.",
+      [
+        [
+          "excel",
+          "Sì, in Excel/CSV",
+          "Li importiamo con controllo dei doppioni",
+          1
+        ],
+        [
+          "programma",
+          "Sì, in un altro gestionale",
+          "Chiediamo l’esportazione",
+          0
+        ],
+        [
+          "no",
+          "No, si parte da zero",
+          "",
+          0
+        ]
+      ]
+    ],
+    [
+      "hosting",
+      "Avvio",
+      "Dove viene messo online?",
+      "Serve PHP 8.3 e un dominio con HTTPS. I dati stanno fuori dalla cartella pubblica.",
+      [
+        [
+          "condiviso",
+          "Hosting condiviso già in uso",
+          "Ci serve l’accesso per l’installazione",
+          1
+        ],
+        [
+          "vps",
+          "Un server dedicato (VPS)",
+          "",
+          0
+        ],
+        [
+          "da_scegliere",
+          "Da scegliere",
+          "Vi consigliamo noi",
+          0
+        ]
+      ]
+    ],
+    [
+      "tariffe",
+      "Avvio",
+      "Chi fornisce listino prezzi e tipi di terapia definitivi?",
+      "Oggi ci sono 15 terapie di esempio con tariffa 0.",
+      [
+        [
+          "titolare",
+          "Il titolare entro questa settimana",
+          "",
+          1
+        ],
+        [
+          "segreteria",
+          "La segreteria",
+          "",
+          0
+        ],
+        [
+          "insieme",
+          "Li facciamo insieme in una sessione",
+          "",
+          0
+        ]
+      ]
+    ]
+  ],
+  "modules": [
+    [
+      "1",
+      "Fondamenta",
+      "ok",
+      "Accessi per ruolo, permessi, cifratura, audit e copie di sicurezza.",
+      "Titolare e segreteria gestiscono l’agenda; i clinici consultano la propria. I fisioterapisti annotano il diario dei propri percorsi."
+    ],
+    [
+      "2",
+      "Pazienti e percorsi",
+      "ok",
+      "Anagrafica condivisa, disponibilità, curante e specialista, assicurazione, avvertenze, percorsi e diario terapeutico.",
+      "I conteggi distinguono eseguite, assenze, sedute da eseguire e da pianificare. Documenti e informazioni cliniche rispettano i permessi."
+    ],
+    [
+      "3",
+      "Agenda",
+      "ok",
+      "Viste giorno, due giorni, settimana ed elenco; aree fisioterapia e poliambulatorio, filtri, gruppi e copia selettiva.",
+      "Creazione e spostamento verificano conflitti e vincoli del ciclo. Il trascinamento apre una revisione prima del salvataggio; gli esiti dei gruppi sono individuali."
+    ],
+    [
+      "4",
+      "Pianificazione intelligente",
+      "ok",
+      "Proposte per sedute individuali e gruppi entro disponibilità, frequenze, intervalli e risorse.",
+      "La proposta non cambia l’agenda: la segreteria seleziona, modifica e approva. Gli spostamenti richiedono conferma esplicita. La lettura AI delle fasce richiede chiave e limiti configurati."
+    ],
+    [
+      "5",
+      "Comunicazioni",
+      "config",
+      "SMS settimanali, variazioni dopo telefonata, conferma visite e riepilogo medico; ricontatti e recensioni manuali, campagne con consenso.",
+      "Flussi disponibili in modalità prova. Per invii reali configurare account e mappature del fornitore, recapiti e modelli. WhatsApp dei ricontatti si apre come messaggio da inviare manualmente."
+    ],
+    [
+      "6",
+      "Fatturazione",
+      "config",
+      "Fatture sulle prestazioni eseguite, incassi, note di credito, IVA e bollo, compensi al netto dei materiali, contabili e documenti per i consulenti.",
+      "Aruba e Sistema TS sono configurabili e richiedono collaudo con gli accessi reali. Le fatture sanitarie a persone fisiche sono escluse da SdI. Ogni trasmissione richiede revisione; protocollo e risultato finale restano distinti."
+    ],
+    [
+      "7",
+      "Prenotazioni online e liste d’attesa",
+      "config",
+      "Prenotazioni pubbliche delle sole visite mediche con OTP; finestre pubblicate, lista d’attesa per servizio e professionista.",
+      "La conferma OTP verifica nuovamente il posto e crea una sola visita. Le disponibilità liberate producono suggerimenti interni, da gestire telefonicamente. Attivazione e informativa sono nelle impostazioni."
+    ],
+    [
+      "8",
+      "Documenti e firme",
+      "config",
+      "Archivio cifrato, modelli versionati e precompilati, PDF, referti locali, caricamento del cartaceo firmato e accettazione con OTP.",
+      "Inserire i modelli approvati dalla struttura. La lettura e l’accettazione sono registrate con hash e audit; nessuna firma qualificata è dichiarata. Senza consensi documentati non si rilascia il calendario."
+    ],
+    [
+      "9",
+      "Personale e ore",
+      "ok",
+      "Contratti, presenze, assenze e giustificativi; confronto tra ore programmate, effettive e contrattuali.",
+      "La preparazione non conta nelle ore lavorate. Riepiloghi mensili esportabili e pacchetti per consulente da approvare prima dell’invio."
+    ],
+    [
+      "10",
+      "Magazzino",
+      "ok",
+      "Articoli, fornitori, giacenze e soglie; consumi per terapia e carichi manuali.",
+      "Import delle fatture di acquisto con associazioni da rivedere prima del carico. I PDF richiedono verifica manuale delle quantità; nessun doppio movimento per lo stesso invio."
+    ],
+    [
+      "11",
+      "Importazione, stato del sistema, extra",
+      "ok",
+      "Migrazione anagrafica e fatture storiche da CSV o primo foglio XLSX, con mappatura e anteprima.",
+      "Controllo di righe non valide e doppioni, selezione prima dell’importazione, nessun reinvio fiscale dei documenti storici. Stato dei servizi e attività automatiche dal pannello impostazioni."
+    ],
+    [
+      "★",
+      "Interfaccia del gestionale",
+      "ok",
+      "Interfaccia Beautiful UI con temi chiaro e scuro su telefono e computer.",
+      "Nuovi flussi composti con i componenti del boilerplate, con dati e API della copia indipendente. Il gestionale originale rimane separato."
+    ]
+  ],
+  "agreed_decisions": [
+    [
+      "Agenda e pianificazione",
+      "Titolare e segreteria creano e spostano. Il pianificatore propone; l’approvazione può essere parziale."
+    ],
+    [
+      "Terapie e gruppi",
+      "Contano soltanto le sedute eseguite; le assenze non consumano il ciclo. Specifiche Calendar del 10 novembre: palestra e piscina da 60 minuti, massimo 5 pazienti standard, 4 con un caso complesso e mai più di un neurologico. Le nuove regole prevalgono sulla call."
+    ],
+    [
+      "Promemoria e variazioni",
+      "SMS del venerdì alle 13 con riassunto e link; silenzio dalle 21 alle 8. Le variazioni richiedono il contatto telefonico prima dell’avviso."
+    ],
+    [
+      "Ricontatti",
+      "15 giorni dalla conclusione effettiva, con eccezioni configurabili come 40 giorni. Recensione 3 giorni dopo il contatto registrato, WhatsApp con invio manuale. Campagne solo con consenso."
+    ],
+    [
+      "Prenotazioni",
+      "Solo visite mediche, inclusa la prima visita Antonio se inserita nel catalogo; conferma automatica dopo OTP e controllo disponibilità. Disdette come richieste alla segreteria."
+    ],
+    [
+      "Consensi",
+      "Documento letto e accettato con OTP oppure cartaceo firmato caricato. Calendario non rilasciato senza documentazione obbligatoria."
+    ],
+    [
+      "Amministrazione",
+      "Fatturazione settimanale delle eseguite, senza pacchetti prepagati. Materiali dedotti prima della percentuale del professionista; liquidazione manuale con contabile."
+    ],
+    [
+      "Personale",
+      "Preparazione esclusa dalle ore effettive. Ore mensili da rivedere e inviare al consulente previa approvazione."
+    ],
+    [
+      "Parametri da inserire",
+      "Listino, orari, modelli e accessi dei servizi saranno inseriti dal titolare nelle impostazioni. Per ora i connettori restano in prova o disattivati."
+    ],
+    [
+      "Pubblicazione",
+      "La copia è locale su 8081. Hosting, dominio e attivazione dei fornitori saranno definiti con i dati reali della struttura."
+    ],
+    [
+      "Calendar del 10 novembre",
+      "Settimana lunedì–venerdì, asse 08:00–20:30, note indipendenti dagli slot, viste per categorie, prestazioni e professionisti. Il trascinamento e le proposte richiedono sempre revisione e conferma."
+    ],
+    [
+      "Disponibilità da confermare",
+      "Inserire i giorni mattutini di Chiara e chiarire 12:30–12:45; il venerdì di Antonio resta chiuso finché confermato. Confermare la pompa diamagnetica non assistita e i protocolli delle terapie fisse. Tutti questi dati si configurano nelle impostazioni."
+    ],
+    [
+      "Ore e prestazioni",
+      "Pazienti trattati e prestazioni eseguite sono separati dalle ore dell’operatore. Un gruppo di cinque persone per un’ora vale un’ora. Le ore delle sedute e le presenze effettivamente registrate sono rendicontate separatamente."
+    ]
+  ]
+}

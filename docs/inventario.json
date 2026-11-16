@@ -1,0 +1,2250 @@
+{
+  "components": [
+    {
+      "path": "src/components/app/ActionMenu.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "MenuAction",
+        "ActionMenu"
+      ],
+      "used_by": [
+        "src/clinic/AppointmentList.tsx",
+        "src/pages/assistant/useChatHistory.tsx",
+        "src/pages/dev/components/sections/cards.tsx",
+        "src/pages/dev/components/sections/assistant.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/AutomationsTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/ConfirmDialog.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "ConfirmDialog"
+      ],
+      "used_by": [
+        "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/AppointmentForm.tsx",
+        "src/clinic/InvoiceFiscalActions.tsx",
+        "src/clinic/AgendaPages.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/lib/forms/useUnsavedChanges.tsx",
+        "src/pages/profile/ProfileSettings.tsx",
+        "src/pages/requests/RequestDetailPage.tsx",
+        "src/pages/assistant/useChatHistory.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UserDetailPage.tsx",
+        "src/pages/dev/components/sections/feedback.tsx",
+        "src/pages/dev/components/sections/assistant.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/EntityCard.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "EntityCardProps",
+        "EntityCard",
+        "CardGrid"
+      ],
+      "used_by": [
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/MaterialsPages.tsx",
+        "src/pages/dev/components/sections/cards.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/ExportExcelButton.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "ExcelValue",
+        "ExportExcelButton"
+      ],
+      "used_by": [
+        "src/components/app/ExportableTable.tsx",
+        "src/pages/admin/AuditPage.tsx",
+        "src/pages/assistant/ReplyExtra.tsx",
+        "src/pages/blog/BlogAdminPage.tsx",
+        "src/pages/users/UsersPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/ExportableTable.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "ExportSpec",
+        "ExportableTable"
+      ],
+      "used_by": [
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/dashboard/UserDashboardPage.tsx",
+        "src/pages/requests/RequestsPage.tsx",
+        "src/pages/dev/components/sections/tables.tsx",
+        "src/pages/dev/components/sections/tableDemos.tsx",
+        "src/pages/requests/requestTable.ts"
+      ]
+    },
+    {
+      "path": "src/components/app/GlobalSearch.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "SearchTarget",
+        "GlobalSearch"
+      ],
+      "used_by": []
+    },
+    {
+      "path": "src/components/app/HomeRedirect.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "HomeRedirect"
+      ],
+      "used_by": []
+    },
+    {
+      "path": "src/components/app/IconButton.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "IconButton",
+        "PrimaryAction"
+      ],
+      "used_by": [
+        "src/clinic/PatientDetail.tsx",
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/clinic/MaterialsPages.tsx",
+        "src/clinic/PatientCare.tsx",
+        "src/clinic/PatientsPage.tsx",
+        "src/pages/dashboard/UserDashboardPage.tsx",
+        "src/pages/notifications/NotificationsPage.tsx",
+        "src/pages/requests/RequestsPage.tsx",
+        "src/pages/requests/RequestDetailPage.tsx",
+        "src/pages/blog/BlogAdminPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UsersPage.tsx",
+        "src/pages/users/UserDetailPage.tsx",
+        "src/pages/dev/components/sections/pages.tsx",
+        "src/pages/dev/components/sections/states.tsx",
+        "src/pages/dev/components/sections/tableDemos.tsx",
+        "src/pages/dev/components/sections/cards.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/InlineRename.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "InlineRename"
+      ],
+      "used_by": [
+        "src/pages/assistant/useChatHistory.tsx",
+        "src/pages/dev/components/sections/assistant.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/PageHeader.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "PageHeader"
+      ],
+      "used_by": [
+        "src/clinic/SettingsPage.tsx",
+        "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/PatientDetail.tsx",
+        "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/AppointmentForm.tsx",
+        "src/clinic/StaffPage.tsx",
+        "src/clinic/StockPage.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/clinic/AgendaPages.tsx",
+        "src/clinic/AssistantPage.tsx",
+        "src/clinic/PlanningPage.tsx",
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/MaterialsPages.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/clinic/PatientsPage.tsx",
+        "src/pages/profile/ProfilePage.tsx",
+        "src/pages/admin/SettingsPage.tsx",
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/admin/AuditPage.tsx",
+        "src/pages/admin/AuditDetailPage.tsx",
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/dashboard/UserDashboardPage.tsx",
+        "src/pages/notifications/NotificationsPage.tsx",
+        "src/pages/requests/RequestsPage.tsx",
+        "src/pages/requests/RequestDetailPage.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogAdminPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UsersPage.tsx",
+        "src/pages/users/UserFormPage.tsx",
+        "src/pages/users/UserDetailPage.tsx",
+        "src/pages/dev/components/sections/pages.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/PageState.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "PageLoading",
+        "PageError",
+        "EmptyState"
+      ],
+      "used_by": [
+        "src/App.tsx",
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/SettingsPeople.tsx",
+        "src/clinic/AgendaPages.tsx",
+        "src/clinic/AssistantPage.tsx",
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/AuthPages.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/common.tsx",
+        "src/clinic/MaterialsPages.tsx",
+        "src/clinic/PatientCare.tsx",
+        "src/clinic/PatientsPage.tsx",
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/admin/AuditPage.tsx",
+        "src/pages/admin/AuditDetailPage.tsx",
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/dashboard/UserDashboardPage.tsx",
+        "src/pages/notifications/NotificationsPage.tsx",
+        "src/pages/requests/RequestsPage.tsx",
+        "src/pages/requests/RequestDetailPage.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogAdminPage.tsx",
+        "src/pages/blog/BlogPublicPages.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UsersPage.tsx",
+        "src/pages/users/UserFormPage.tsx",
+        "src/pages/users/UserDetailPage.tsx",
+        "src/pages/dev/components/sections/states.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/AutomationsTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/PageTabs.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "PageTabs"
+      ],
+      "used_by": [
+        "src/clinic/SettingsPage.tsx",
+        "src/clinic/PatientDetail.tsx",
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/PatientCare.tsx",
+        "src/pages/profile/ProfilePage.tsx",
+        "src/pages/admin/SettingsPage.tsx",
+        "src/pages/admin/AuditPage.tsx",
+        "src/pages/notifications/NotificationsPage.tsx",
+        "src/pages/blog/BlogAdminPage.tsx",
+        "src/pages/dev/components/DocEntry.tsx",
+        "src/pages/dev/email/EmailPreviewPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/Pagination.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "PAGE_SIZE",
+        "usePagination",
+        "serverPage",
+        "Pagination"
+      ],
+      "used_by": [
+        "src/components/app/RowList.tsx",
+        "src/pages/blog/BlogPublicPages.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/RequireAuth.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "RequireAuth",
+        "Feature",
+        "RequireFeature"
+      ],
+      "used_by": [
+        "src/routes/site.tsx",
+        "src/routes/app.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/admin/settings/BrandTab.tsx",
+        "src/pages/admin/settings/SeoTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/RowList.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "RowItem",
+        "RowList"
+      ],
+      "used_by": [
+        "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/PublicPortal.tsx",
+        "src/clinic/StaffPage.tsx",
+        "src/clinic/StockPage.tsx",
+        "src/clinic/GroupParticipants.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/AppointmentList.tsx",
+        "src/clinic/AgendaPages.tsx",
+        "src/clinic/AutomationSettings.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/clinic/PatientsPage.tsx",
+        "src/clinic/AgendaNotes.tsx",
+        "src/pages/admin/AuditPage.tsx",
+        "src/pages/notifications/NotificationsPage.tsx",
+        "src/pages/blog/BlogAdminPage.tsx",
+        "src/pages/dev/components/sections/lists.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/Section.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "Section",
+        "DetailList"
+      ],
+      "used_by": [
+        "src/clinic/PatientDetail.tsx",
+        "src/clinic/PatientAvailability.tsx",
+        "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/AppointmentForm.tsx",
+        "src/clinic/PublicPortal.tsx",
+        "src/clinic/StaffPage.tsx",
+        "src/clinic/StockPage.tsx",
+        "src/clinic/GroupParticipants.tsx",
+        "src/clinic/PublicSignature.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/WaitlistForm.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/clinic/CopySelection.tsx",
+        "src/clinic/SettingsPeople.tsx",
+        "src/clinic/InvoiceFiscalActions.tsx",
+        "src/clinic/AgendaPages.tsx",
+        "src/clinic/PlanningPage.tsx",
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/PurchaseImport.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/ProposalSelection.tsx",
+        "src/clinic/MaterialsPages.tsx",
+        "src/clinic/PatientCare.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/clinic/AgendaNotes.tsx",
+        "src/pages/admin/AuditDetailPage.tsx",
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/dashboard/UserDashboardPage.tsx",
+        "src/pages/requests/RequestDetailPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UserDetailPage.tsx",
+        "src/pages/dev/components/sections/pages.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/SettingsSection.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "SettingsSection",
+        "SaveBar"
+      ],
+      "used_by": [
+        "src/clinic/SettingsPage.tsx",
+        "src/clinic/DocumentTemplates.tsx",
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/CatalogSettings.tsx",
+        "src/clinic/AdvancedSettings.tsx",
+        "src/clinic/SettingsPeople.tsx",
+        "src/clinic/AutomationSettings.tsx",
+        "src/clinic/CalendarSettings.tsx",
+        "src/clinic/IntegrationStatus.tsx",
+        "src/pages/dev/components/sections/settings.tsx",
+        "src/pages/admin/settings/ExtraTabs.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/BrandTab.tsx",
+        "src/pages/admin/settings/SeoTab.tsx",
+        "src/pages/admin/settings/AutomationsTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx",
+        "src/pages/admin/settings/RolesTab.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx",
+        "src/pages/admin/settings/ModulesTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/TableToolbar.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "TableToolbar",
+        "matches"
+      ],
+      "used_by": [
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/PatientsPage.tsx",
+        "src/pages/dev/components/sections/tables.tsx",
+        "src/pages/dev/components/sections/tableDemos.tsx"
+      ]
+    },
+    {
+      "path": "src/components/app/Timeline.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "TimelineEvent",
+        "Timeline"
+      ],
+      "used_by": [
+        "src/pages/dev/components/sections/pages.tsx",
+        "src/pages/dev/components/sections/lists.tsx",
+        "src/pages/admin/settings/AutomationsTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/Button.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "buttonVariants",
+        "ButtonVariant",
+        "Button"
+      ],
+      "used_by": [
+        "src/layouts/SiteLayout.tsx",
+        "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/DocumentTemplates.tsx",
+        "src/clinic/PatientAvailability.tsx",
+        "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/AppointmentForm.tsx",
+        "src/clinic/PublicPortal.tsx",
+        "src/clinic/StaffPage.tsx",
+        "src/clinic/StockPage.tsx",
+        "src/clinic/GroupParticipants.tsx",
+        "src/clinic/EpisodeDiary.tsx",
+        "src/clinic/CalendarWeek.tsx",
+        "src/clinic/CatalogSettings.tsx",
+        "src/clinic/PublicSignature.tsx",
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/AdvancedSettings.tsx",
+        "src/clinic/ParameterFields.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/WaitlistForm.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/CopySelection.tsx",
+        "src/clinic/InvoiceFiscalActions.tsx",
+        "src/clinic/AgendaPages.tsx",
+        "src/clinic/AssistantPage.tsx",
+        "src/clinic/PublicVisitConfirmation.tsx",
+        "src/clinic/PlanningPage.tsx",
+        "src/clinic/AutomationSettings.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/PurchaseImport.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/AuthPages.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/TherapyConsumption.tsx",
+        "src/clinic/ProposalSelection.tsx",
+        "src/clinic/CalendarSettings.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/clinic/IntegrationStatus.tsx",
+        "src/clinic/AgendaNotes.tsx",
+        "src/components/form/FormActions.tsx",
+        "src/components/form/PrimaryButton.tsx",
+        "src/components/primitives/AgentScreen.tsx",
+        "src/components/primitives/SelectionActions.tsx",
+        "src/components/primitives/RecommendationCard.tsx",
+        "src/components/primitives/DiffTable.tsx",
+        "src/components/primitives/ApprovalCard.tsx",
+        "src/components/content/EmbedField.tsx",
+        "src/components/app/IconButton.tsx",
+        "src/components/app/ConfirmDialog.tsx",
+        "src/components/app/SettingsSection.tsx",
+        "src/components/app/PageState.tsx",
+        "src/pages/profile/ProfileForms.tsx",
+        "src/pages/profile/ProfileSettings.tsx",
+        "src/pages/auth/LoginPage.tsx",
+        "src/pages/dev/components/sections/feedback.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/Chip.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "Chip"
+      ],
+      "used_by": []
+    },
+    {
+      "path": "src/components/atoms/EntityChip.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "Monogram",
+        "EntityChip"
+      ],
+      "used_by": [
+        "src/components/primitives/RecommendationCard.tsx",
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/assistant/ReplyExtra.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/ProgressRing.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "ProgressRing"
+      ],
+      "used_by": [
+        "src/clinic/PatientCare.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/SegmentedControl.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "SegmentedControl"
+      ],
+      "used_by": [
+        "src/components/app/PageTabs.tsx",
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/users/UserFormPage.tsx",
+        "src/pages/users/UserDetailPage.tsx",
+        "src/pages/dev/components/DecisionPath.tsx",
+        "src/pages/dev/email/EmailPreviewPage.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/Shimmer.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "Shimmer"
+      ],
+      "used_by": [
+        "src/components/primitives/SelectionActions.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/StatusPill.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "StatusPill"
+      ],
+      "used_by": [
+        "src/clinic/PatientDetail.tsx",
+        "src/clinic/PublicPortal.tsx",
+        "src/clinic/StockPage.tsx",
+        "src/clinic/GroupParticipants.tsx",
+        "src/clinic/PublicSignature.tsx",
+        "src/clinic/AdvancedSettings.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/InvoiceFiscalActions.tsx",
+        "src/clinic/PublicVisitConfirmation.tsx",
+        "src/clinic/AutomationSettings.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/common.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/clinic/IntegrationStatus.tsx",
+        "src/components/app/RowList.tsx",
+        "src/components/app/EntityCard.tsx",
+        "src/components/app/Timeline.tsx",
+        "src/pages/dev/components/sections/feedback.tsx",
+        "src/pages/dev/components/sections/pages.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/AutomationsTab.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/StreamText.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "StreamText"
+      ],
+      "used_by": [
+        "src/components/primitives/SelectionActions.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/Switch.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "Switch"
+      ],
+      "used_by": [
+        "src/components/form/SwitchRow.tsx",
+        "src/pages/admin/settings/AutomationsTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/atoms/TextRow.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "TextRow"
+      ],
+      "used_by": []
+    },
+    {
+      "path": "src/components/atoms/ValuePill.tsx",
+      "layer": "atoms",
+      "vendor": true,
+      "symbols": [
+        "ValuePill"
+      ],
+      "used_by": [
+        "src/components/primitives/RecommendationCard.tsx",
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/assistant/ReplyExtra.tsx"
+      ]
+    },
+    {
+      "path": "src/components/brand/BrandMark.tsx",
+      "layer": "brand",
+      "vendor": false,
+      "symbols": [
+        "BrandLogo",
+        "BrandMark"
+      ],
+      "used_by": [
+        "src/layouts/SiteLayout.tsx",
+        "src/layouts/AppLayout.tsx",
+        "src/layouts/AuthLayout.tsx"
+      ]
+    },
+    {
+      "path": "src/components/charts/BarList.tsx",
+      "layer": "charts",
+      "vendor": false,
+      "symbols": [
+        "BarRow",
+        "BarList"
+      ],
+      "used_by": [
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/dev/components/sections/charts.tsx"
+      ]
+    },
+    {
+      "path": "src/components/charts/ChartCard.tsx",
+      "layer": "charts",
+      "vendor": false,
+      "symbols": [
+        "ChartRow",
+        "ChartCard"
+      ],
+      "used_by": [
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/components/charts/BarList.tsx",
+        "src/components/charts/ColumnChart.tsx",
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/dev/components/sections/charts.tsx"
+      ]
+    },
+    {
+      "path": "src/components/charts/ColumnChart.tsx",
+      "layer": "charts",
+      "vendor": false,
+      "symbols": [
+        "ColumnChart"
+      ],
+      "used_by": [
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/dev/components/sections/charts.tsx"
+      ]
+    },
+    {
+      "path": "src/components/charts/SegmentedBar.tsx",
+      "layer": "charts",
+      "vendor": false,
+      "symbols": [
+        "SegmentedBar"
+      ],
+      "used_by": [
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/dev/components/sections/charts.tsx"
+      ]
+    },
+    {
+      "path": "src/components/charts/StatTile.tsx",
+      "layer": "charts",
+      "vendor": false,
+      "symbols": [
+        "StatTile"
+      ],
+      "used_by": [
+        "src/clinic/OverviewPage.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/dev/components/sections/charts.tsx"
+      ]
+    },
+    {
+      "path": "src/components/content/ArticleBody.tsx",
+      "layer": "content",
+      "vendor": false,
+      "symbols": [
+        "ArticleBody"
+      ],
+      "used_by": [
+        "src/pages/blog/BlogPublicPages.tsx"
+      ]
+    },
+    {
+      "path": "src/components/content/EmbedField.tsx",
+      "layer": "content",
+      "vendor": false,
+      "symbols": [
+        "EmbedField"
+      ],
+      "used_by": [
+        "src/pages/blog/BlogEditorPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/content/EmbedView.tsx",
+      "layer": "content",
+      "vendor": false,
+      "symbols": [
+        "EmbedView"
+      ],
+      "used_by": [
+        "src/components/content/EmbedField.tsx",
+        "src/components/content/ArticleBody.tsx"
+      ]
+    },
+    {
+      "path": "src/components/feedback/EmailLinkRequest.tsx",
+      "layer": "feedback",
+      "vendor": false,
+      "symbols": [
+        "EmailLinkRequest"
+      ],
+      "used_by": [
+        "src/pages/auth/ForgotPasswordPage.tsx",
+        "src/pages/auth/ConfirmEmailRequestPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/feedback/EmailSentPanel.tsx",
+      "layer": "feedback",
+      "vendor": false,
+      "symbols": [
+        "EmailSentPanel"
+      ],
+      "used_by": [
+        "src/components/feedback/EmailLinkRequest.tsx",
+        "src/pages/auth/RegisterPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/feedback/LoadingPanel.tsx",
+      "layer": "feedback",
+      "vendor": false,
+      "symbols": [
+        "LoadingPanel"
+      ],
+      "used_by": [
+        "src/pages/auth/ResetPasswordPage.tsx",
+        "src/pages/auth/VerifyEmailPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/feedback/PreviewLink.tsx",
+      "layer": "feedback",
+      "vendor": false,
+      "symbols": [
+        "PreviewLink"
+      ],
+      "used_by": [
+        "src/pages/auth/RegisterPage.tsx",
+        "src/pages/auth/ForgotPasswordPage.tsx",
+        "src/pages/auth/ConfirmEmailRequestPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/feedback/StatusPanel.tsx",
+      "layer": "feedback",
+      "vendor": false,
+      "symbols": [
+        "StatusPanel"
+      ],
+      "used_by": [
+        "src/components/feedback/EmailSentPanel.tsx",
+        "src/pages/auth/ResetPasswordPage.tsx",
+        "src/pages/auth/VerifyEmailPage.tsx",
+        "src/pages/errors/ErrorPages.tsx",
+        "src/pages/dev/components/sections/feedback.tsx",
+        "src/pages/dev/components/sections/states.tsx"
+      ]
+    },
+    {
+      "path": "src/components/feedback/ToastProvider.tsx",
+      "layer": "feedback",
+      "vendor": false,
+      "symbols": [
+        "ToastProvider"
+      ],
+      "used_by": [
+        "src/App.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/Checkbox.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "Checkbox"
+      ],
+      "used_by": [
+        "src/clinic/DocumentTemplates.tsx",
+        "src/clinic/PublicSignature.tsx",
+        "src/clinic/ParameterFields.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/CopySelection.tsx",
+        "src/clinic/SettingsPeople.tsx",
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/AuthPages.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/ProposalSelection.tsx",
+        "src/clinic/CalendarSettings.tsx",
+        "src/clinic/TherapyResources.tsx",
+        "src/components/wizard/ConsentStep.tsx",
+        "src/pages/auth/LoginPage.tsx",
+        "src/pages/dev/components/sections/forms.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/FileUpload.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "FileUpload"
+      ],
+      "used_by": [
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/dev/components/sections/forms.tsx",
+        "src/pages/admin/settings/SeoTab.tsx",
+        "src/pages/admin/settings/BrandAssetsFields.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/FormActions.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "FormActions"
+      ],
+      "used_by": [
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UserFormPage.tsx",
+        "src/pages/dev/components/sections/forms.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/PasswordChecklist.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "PasswordChecklist"
+      ],
+      "used_by": [
+        "src/components/wizard/FieldsStep.tsx",
+        "src/pages/profile/ProfileForms.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/PasswordField.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "PasswordField"
+      ],
+      "used_by": [
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/AuthPages.tsx",
+        "src/components/wizard/FieldsStep.tsx",
+        "src/pages/profile/ProfileForms.tsx",
+        "src/pages/auth/LoginPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/PhoneField.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "PhoneField"
+      ],
+      "used_by": [
+        "src/components/wizard/FieldsStep.tsx",
+        "src/pages/profile/ProfileForms.tsx",
+        "src/pages/users/UserFormPage.tsx",
+        "src/pages/dev/components/sections/forms.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/PrimaryButton.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "PrimaryButton",
+        "PrimaryLink"
+      ],
+      "used_by": [
+        "src/components/feedback/EmailLinkRequest.tsx",
+        "src/components/feedback/EmailSentPanel.tsx",
+        "src/components/wizard/ChoiceStep.tsx",
+        "src/components/wizard/FieldsStep.tsx",
+        "src/components/wizard/ConsentStep.tsx",
+        "src/pages/auth/ResetPasswordPage.tsx",
+        "src/pages/auth/VerifyEmailPage.tsx",
+        "src/pages/errors/ErrorPages.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/SelectField.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "SelectField"
+      ],
+      "used_by": [
+        "src/clinic/SettingsPage.tsx",
+        "src/clinic/DocumentTemplates.tsx",
+        "src/clinic/PatientAvailability.tsx",
+        "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/AppointmentForm.tsx",
+        "src/clinic/StaffPage.tsx",
+        "src/clinic/StockPage.tsx",
+        "src/clinic/GroupParticipants.tsx",
+        "src/clinic/CatalogSettings.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/ParameterFields.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/WaitlistForm.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/SettingsPeople.tsx",
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/PurchaseImport.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/ImportPage.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/TherapyConsumption.tsx",
+        "src/clinic/ProposalSelection.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/components/app/PageTabs.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/dev/components/ComponentsPage.tsx",
+        "src/pages/dev/components/sections/forms.tsx",
+        "src/pages/dev/components/sections/tableDemos.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/SwitchRow.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "SwitchRow"
+      ],
+      "used_by": [
+        "src/pages/profile/ProfileSettings.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/dev/components/sections/settings.tsx",
+        "src/pages/dev/components/sections/forms.tsx",
+        "src/pages/admin/settings/BackupTab.tsx",
+        "src/pages/admin/settings/SeoTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx",
+        "src/pages/admin/settings/ModulesTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/TextAreaField.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "TextAreaField"
+      ],
+      "used_by": [
+        "src/clinic/DocumentTemplates.tsx",
+        "src/clinic/PatientAvailability.tsx",
+        "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/EpisodeDiary.tsx",
+        "src/clinic/ParameterFields.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/InvoiceForms.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/PurchaseImport.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/AgendaNotes.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/admin/settings/SeoTab.tsx",
+        "src/pages/admin/settings/SecurityTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/form/TextField.tsx",
+      "layer": "form",
+      "vendor": false,
+      "symbols": [
+        "TextFieldProps",
+        "TextField"
+      ],
+      "used_by": [
+        "src/clinic/SettingsPage.tsx",
+        "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/DocumentTemplates.tsx",
+        "src/clinic/PatientAvailability.tsx",
+        "src/clinic/ProfilePage.tsx",
+        "src/clinic/AppointmentForm.tsx",
+        "src/clinic/PublicPortal.tsx",
+        "src/clinic/StaffPage.tsx",
+        "src/clinic/GroupParticipants.tsx",
+        "src/clinic/CatalogSettings.tsx",
+        "src/clinic/PublicSignature.tsx",
+        "src/clinic/AdvancedSettings.tsx",
+        "src/clinic/ParameterFields.tsx",
+        "src/clinic/EpisodeForm.tsx",
+        "src/clinic/WaitlistForm.tsx",
+        "src/clinic/PatientDocuments.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/clinic/StatsPage.tsx",
+        "src/clinic/PlanningPage.tsx",
+        "src/clinic/PatientForm.tsx",
+        "src/clinic/ExpensesPage.tsx",
+        "src/clinic/PurchaseImport.tsx",
+        "src/clinic/BookingManagement.tsx",
+        "src/clinic/AuthPages.tsx",
+        "src/clinic/PublicBooking.tsx",
+        "src/clinic/CompensationsPage.tsx",
+        "src/clinic/TherapyConsumption.tsx",
+        "src/clinic/ProposalSelection.tsx",
+        "src/clinic/ReviewExportsPage.tsx",
+        "src/clinic/AgendaNotes.tsx",
+        "src/components/form/PasswordField.tsx",
+        "src/components/content/EmbedField.tsx",
+        "src/components/app/ConfirmDialog.tsx",
+        "src/components/feedback/EmailLinkRequest.tsx",
+        "src/components/wizard/FieldsStep.tsx",
+        "src/pages/profile/ProfileForms.tsx",
+        "src/pages/auth/LoginPage.tsx",
+        "src/pages/requests/RequestFormPage.tsx",
+        "src/pages/blog/BlogEditorPage.tsx",
+        "src/pages/users/UserFormPage.tsx",
+        "src/pages/dev/components/sections/settings.tsx",
+        "src/pages/dev/components/sections/forms.tsx",
+        "src/pages/admin/settings/BrandTab.tsx",
+        "src/pages/admin/settings/SeoTab.tsx",
+        "src/pages/admin/settings/AppearanceTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/icons/central.tsx",
+      "layer": "icons",
+      "vendor": false,
+      "symbols": [
+        "IconArrowBoxLeft",
+        "IconCheckmark1Small",
+        "IconChevronDownSmall",
+        "IconCrossSmall",
+        "IconEditBig",
+        "IconHome",
+        "IconMagnifyingGlass",
+        "IconPlusMedium",
+        "IconPopsicle2",
+        "IconSettingsGear1",
+        "IconSidebarLeftArrow",
+        "IconUserAdd"
+      ],
+      "used_by": [
+        "src/components/primitives/SidebarNav.tsx"
+      ]
+    },
+    {
+      "path": "src/components/navigation/SiteFooter.tsx",
+      "layer": "navigation",
+      "vendor": false,
+      "symbols": [
+        "SiteFooter"
+      ],
+      "used_by": [
+        "src/layouts/SiteLayout.tsx",
+        "src/layouts/AuthLayout.tsx"
+      ]
+    },
+    {
+      "path": "src/components/navigation/SmartLink.tsx",
+      "layer": "navigation",
+      "vendor": false,
+      "symbols": [
+        "SmartLink"
+      ],
+      "used_by": [
+        "src/components/feedback/ToastProvider.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/AgentScreen.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "AgentScreen"
+      ],
+      "used_by": [
+        "src/pages/assistant/ReplyExtra.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/ApprovalCard.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "ApprovalQuestion",
+        "ApprovalLabels",
+        "ApprovalCard"
+      ],
+      "used_by": [
+        "src/pages/assistant/AssistantReply.tsx",
+        "src/pages/assistant/scenarios.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/ChatComposer.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "ChatMessage",
+        "ChatComposerLabels",
+        "ChatComposer"
+      ],
+      "used_by": [
+        "src/pages/requests/RequestDetailPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/CodeBlock.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "CodePiece",
+        "DiffRow",
+        "CodeBlockLabels",
+        "CodeBlockProps",
+        "CodeBlock"
+      ],
+      "used_by": [
+        "src/pages/admin/AuditDetailPage.tsx",
+        "src/pages/dev/components/DocEntry.tsx",
+        "src/pages/admin/settings/ExtraTabs.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/ContextCards.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "ContextChunk",
+        "ContextCardsLabels",
+        "ContextCards"
+      ],
+      "used_by": [
+        "src/pages/requests/RequestDetailPage.tsx",
+        "src/pages/assistant/ReplyExtra.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/DiffTable.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "DiffRow",
+        "DiffAddedRow",
+        "DiffTableLabels",
+        "DiffTable"
+      ],
+      "used_by": [
+        "src/pages/assistant/ReplyExtra.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/FilterTable.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "TableRow",
+        "FilterStatus",
+        "FilterTableLabels",
+        "FilterTable"
+      ],
+      "used_by": [
+        "src/clinic/CommunicationsPages.tsx",
+        "src/clinic/BillingPages.tsx",
+        "src/components/app/ExportableTable.tsx",
+        "src/pages/dev/components/sections/tableDemos.tsx",
+        "src/pages/requests/requestTable.ts"
+      ]
+    },
+    {
+      "path": "src/components/primitives/FineTuneCard.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "FineTuneField",
+        "FineTuneCardLabels",
+        "FineTuneState",
+        "FineTuneCardProps",
+        "FineTuneCard"
+      ],
+      "used_by": [
+        "src/pages/dev/components/sections/settings.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/Flowchart.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "StepNode",
+        "FlowCondition",
+        "Flowchart"
+      ],
+      "used_by": [
+        "src/pages/admin/settings/AutomationsTab.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/GlideMenu.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "GlideMenu"
+      ],
+      "used_by": [
+        "src/clinic/AssistantPage.tsx",
+        "src/components/primitives/SearchList.tsx",
+        "src/components/primitives/SidebarNav.tsx",
+        "src/components/primitives/RecordsTable.tsx",
+        "src/components/primitives/ApprovalCard.tsx",
+        "src/components/primitives/FineTuneCard.tsx",
+        "src/components/app/RowList.tsx",
+        "src/components/app/ActionMenu.tsx",
+        "src/components/wizard/ChoiceStep.tsx",
+        "src/pages/dev/PreviewIndexPage.tsx",
+        "src/pages/assistant/AssistantPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/InsightCards.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "Entity",
+        "Mono",
+        "CompareSeries",
+        "CompareCard",
+        "AnomalyData",
+        "AnomalyLabels",
+        "AnomalyCard",
+        "AllocationSegment",
+        "AllocationCard",
+        "InsightPage",
+        "InsightCardsLabels",
+        "InsightCards"
+      ],
+      "used_by": [
+        "src/pages/admin/StatsPage.tsx",
+        "src/pages/dashboard/insights.tsx",
+        "src/pages/dashboard/AdminDashboardPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/LoadingState.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "LoadingState"
+      ],
+      "used_by": [
+        "src/clinic/AssistantPage.tsx",
+        "src/components/app/PageState.tsx",
+        "src/pages/assistant/AssistantReply.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/PromptBar.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "Source",
+        "PromptCommand",
+        "PromptBarLabels",
+        "PromptBar"
+      ],
+      "used_by": [
+        "src/clinic/AssistantPage.tsx",
+        "src/pages/assistant/AssistantPage.tsx",
+        "src/pages/dev/components/sections/assistant.tsx",
+        "src/pages/assistant/composer.ts"
+      ]
+    },
+    {
+      "path": "src/components/primitives/RecommendationCard.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "RecommendationOption",
+        "RecommendationLabels",
+        "RecommendationCard"
+      ],
+      "used_by": [
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/assistant/ReplyExtra.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/RecordsTable.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "RecordRow",
+        "RecordsLabels",
+        "RecordsTable"
+      ],
+      "used_by": [
+        "src/clinic/SettingsPeople.tsx",
+        "src/pages/users/UsersPage.tsx",
+        "src/pages/dev/components/sections/tables.tsx",
+        "src/pages/dev/components/sections/tableDemos.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/SearchList.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "SearchItem",
+        "SearchListLabels",
+        "SearchList"
+      ],
+      "used_by": [
+        "src/components/app/GlobalSearch.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/SelectionActions.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "SelectionText",
+        "SelectionAction",
+        "SelectionActionSet",
+        "SelectionActionsLabels",
+        "SelectionActionsProps",
+        "SelectionActions"
+      ],
+      "used_by": [
+        "src/pages/requests/requestAi.tsx",
+        "src/pages/requests/RequestDetailPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/SidebarNav.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "SidebarNavItem",
+        "SidebarWorkspace",
+        "SidebarMenuAction",
+        "SidebarLabels",
+        "SidebarRecent",
+        "SidebarNav"
+      ],
+      "used_by": [
+        "src/layouts/AppLayout.tsx",
+        "src/clinic/navigation.tsx",
+        "src/config/navigation.ts"
+      ]
+    },
+    {
+      "path": "src/components/primitives/StreamingText.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "StreamingToken",
+        "StreamingSource",
+        "StreamingLabels",
+        "StreamingText"
+      ],
+      "used_by": [
+        "src/clinic/AssistantPage.tsx",
+        "src/pages/assistant/AssistantReply.tsx",
+        "src/pages/assistant/scenarios.tsx",
+        "src/pages/dev/components/sections/assistant.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/TaskRows.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "TaskDetail",
+        "TaskRow",
+        "TaskRowsLabels",
+        "TaskRows"
+      ],
+      "used_by": [
+        "src/pages/dashboard/AdminDashboardPage.tsx",
+        "src/pages/dashboard/UserDashboardPage.tsx",
+        "src/pages/dev/components/sections/lists.tsx",
+        "src/pages/dashboard/tasks.ts"
+      ]
+    },
+    {
+      "path": "src/components/primitives/ThinkingState.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "ThinkingState"
+      ],
+      "used_by": [
+        "src/pages/assistant/AssistantReply.tsx",
+        "src/pages/dev/components/sections/assistant.tsx"
+      ]
+    },
+    {
+      "path": "src/components/primitives/ToolChips.tsx",
+      "layer": "primitives",
+      "vendor": true,
+      "symbols": [
+        "ToolDetailLine",
+        "ToolStep",
+        "ToolDiff",
+        "ToolDiffLine",
+        "ToolChipsLabels",
+        "hero",
+        "hero",
+        "ToolChips"
+      ],
+      "used_by": [
+        "src/pages/assistant/AssistantReply.tsx",
+        "src/pages/assistant/scenarios.tsx"
+      ]
+    },
+    {
+      "path": "src/components/site/ThemeToggle.tsx",
+      "layer": "site",
+      "vendor": true,
+      "symbols": [
+        "ThemeToggle"
+      ],
+      "used_by": [
+        "src/layouts/AppLayout.tsx",
+        "src/components/navigation/SiteFooter.tsx",
+        "src/pages/profile/ProfileSettings.tsx",
+        "src/pages/dev/DevLayout.tsx"
+      ]
+    },
+    {
+      "path": "src/components/wizard/ChoiceStep.tsx",
+      "layer": "wizard",
+      "vendor": false,
+      "symbols": [
+        "ChoiceStep"
+      ],
+      "used_by": [
+        "src/components/wizard/RegisterWizard.tsx"
+      ]
+    },
+    {
+      "path": "src/components/wizard/ConsentStep.tsx",
+      "layer": "wizard",
+      "vendor": false,
+      "symbols": [
+        "ConsentStep"
+      ],
+      "used_by": [
+        "src/components/wizard/RegisterWizard.tsx"
+      ]
+    },
+    {
+      "path": "src/components/wizard/FieldsStep.tsx",
+      "layer": "wizard",
+      "vendor": false,
+      "symbols": [
+        "FieldsStep"
+      ],
+      "used_by": [
+        "src/components/wizard/RegisterWizard.tsx",
+        "src/pages/auth/ResetPasswordPage.tsx"
+      ]
+    },
+    {
+      "path": "src/components/wizard/RegisterWizard.tsx",
+      "layer": "wizard",
+      "vendor": false,
+      "symbols": [
+        "RegisterWizard"
+      ],
+      "used_by": [
+        "src/pages/auth/RegisterPage.tsx",
+        "src/pages/auth/VerifyEmailPage.tsx"
+      ]
+    }
+  ],
+  "routes": [
+    "/privacy",
+    "/",
+    "/accedi",
+    "/password-dimenticata",
+    "/nuova-password/:token",
+    "/conferma-visita/:token",
+    "/prenota",
+    "/portale",
+    "/firma/:token",
+    "/settimana/:token",
+    "/pacchetti",
+    "/relazioni",
+    "/importazione",
+    "/compensi",
+    "/magazzino",
+    "/personale",
+    "/spese",
+    "/prenotazioni",
+    "/panoramica",
+    "/agenda",
+    "/agenda/copia",
+    "/agenda/nuovo",
+    "/agenda/:id/modifica",
+    "/agenda/:id/proposte-spostamento",
+    "/agenda/:id",
+    "/pazienti",
+    "/pazienti/nuovo",
+    "/pazienti/:id/modifica",
+    "/percorsi/:id",
+    "/pazienti/:id",
+    "/pianificazione/:id",
+    "/comunicazioni",
+    "/comunicazioni/variazione/:id",
+    "/comunicazioni/:id",
+    "/statistiche",
+    "/fatture",
+    "/fatture/nuova",
+    "/fatture/:id/storno",
+    "/fatture/:id",
+    "/impostazioni",
+    "/profilo",
+    "/assistente",
+    "/mappa",
+    "/mappa/:id",
+    "/decisioni",
+    "*"
+  ],
+  "api_calls": [
+    {
+      "endpoint": "/impostazioni/salva",
+      "file": "src/clinic/AdvancedSettings.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/segreti-salva",
+      "file": "src/clinic/AdvancedSettings.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/segreti-stato",
+      "file": "src/clinic/AdvancedSettings.tsx"
+    },
+    {
+      "endpoint": "/agenda/avvisi-ciclo",
+      "file": "src/clinic/AgendaNotes.tsx"
+    },
+    {
+      "endpoint": "/agenda/nota-salva",
+      "file": "src/clinic/AgendaNotes.tsx"
+    },
+    {
+      "endpoint": "/agenda/note",
+      "file": "src/clinic/AgendaNotes.tsx"
+    },
+    {
+      "endpoint": "/agenda/vista",
+      "file": "src/clinic/AgendaPage.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/leggi",
+      "file": "src/clinic/AgendaPage.tsx"
+    },
+    {
+      "endpoint": "/agenda/annulla",
+      "file": "src/clinic/AgendaPages.tsx"
+    },
+    {
+      "endpoint": "/agenda/copia-anteprima",
+      "file": "src/clinic/AgendaPages.tsx"
+    },
+    {
+      "endpoint": "/agenda/stato",
+      "file": "src/clinic/AgendaPages.tsx"
+    },
+    {
+      "endpoint": "/agenda/vista",
+      "file": "src/clinic/AgendaPages.tsx"
+    },
+    {
+      "endpoint": "/agenda/vista",
+      "file": "src/clinic/AppointmentForm.tsx"
+    },
+    {
+      "endpoint": "/pazienti/cerca",
+      "file": "src/clinic/AppointmentForm.tsx"
+    },
+    {
+      "endpoint": "/pazienti/dettaglio",
+      "file": "src/clinic/AppointmentForm.tsx"
+    },
+    {
+      "endpoint": "/agenda/stato",
+      "file": "src/clinic/AppointmentList.tsx"
+    },
+    {
+      "endpoint": "/assistente/chiedi",
+      "file": "src/clinic/AssistantPage.tsx"
+    },
+    {
+      "endpoint": "/assistente/stato",
+      "file": "src/clinic/AssistantPage.tsx"
+    },
+    {
+      "endpoint": "/auth/nuova-password",
+      "file": "src/clinic/AuthPages.tsx"
+    },
+    {
+      "endpoint": "/auth/nuova-password/verifica",
+      "file": "src/clinic/AuthPages.tsx"
+    },
+    {
+      "endpoint": "/auth/password-dimenticata",
+      "file": "src/clinic/AuthPages.tsx"
+    },
+    {
+      "endpoint": "/attivita/attiva",
+      "file": "src/clinic/AutomationSettings.tsx"
+    },
+    {
+      "endpoint": "/attivita/elenco",
+      "file": "src/clinic/AutomationSettings.tsx"
+    },
+    {
+      "endpoint": "/attivita/esegui",
+      "file": "src/clinic/AutomationSettings.tsx"
+    },
+    {
+      "endpoint": "/fatture/archivio",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/dettaglio",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/elenco",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/emetti",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/paga",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/scarica-pdf",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/scarica-xml",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/fatture/sts-csv",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/pazienti/cerca",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/statistiche/economiche",
+      "file": "src/clinic/BillingPages.tsx"
+    },
+    {
+      "endpoint": "/prenotazioni/finestra-salva",
+      "file": "src/clinic/BookingManagement.tsx"
+    },
+    {
+      "endpoint": "/prenotazioni/finestre",
+      "file": "src/clinic/BookingManagement.tsx"
+    },
+    {
+      "endpoint": "/prenotazioni/gestione",
+      "file": "src/clinic/BookingManagement.tsx"
+    },
+    {
+      "endpoint": "/prenotazioni/gestisci",
+      "file": "src/clinic/BookingManagement.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/profilo-calendar",
+      "file": "src/clinic/CalendarSettings.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/salva",
+      "file": "src/clinic/CalendarSettings.tsx"
+    },
+    {
+      "endpoint": "/relazioni/campagna",
+      "file": "src/clinic/CareCommunicationsPage.tsx"
+    },
+    {
+      "endpoint": "/relazioni/completato",
+      "file": "src/clinic/CareCommunicationsPage.tsx"
+    },
+    {
+      "endpoint": "/relazioni/ricontatti",
+      "file": "src/clinic/CareCommunicationsPage.tsx"
+    },
+    {
+      "endpoint": "/catalogo/",
+      "file": "src/clinic/CatalogSettings.tsx"
+    },
+    {
+      "endpoint": "/auth/login",
+      "file": "src/clinic/ClinicContext.tsx"
+    },
+    {
+      "endpoint": "/auth/logout",
+      "file": "src/clinic/ClinicContext.tsx"
+    },
+    {
+      "endpoint": "/auth/sessione",
+      "file": "src/clinic/ClinicContext.tsx"
+    },
+    {
+      "endpoint": "/catalogo/elenco",
+      "file": "src/clinic/ClinicContext.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/elabora",
+      "file": "src/clinic/CommunicationsPages.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/messaggi",
+      "file": "src/clinic/CommunicationsPages.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/promemoria-esegui",
+      "file": "src/clinic/CommunicationsPages.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/riprova",
+      "file": "src/clinic/CommunicationsPages.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/variazione-spunta",
+      "file": "src/clinic/CommunicationsPages.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/variazioni",
+      "file": "src/clinic/CommunicationsPages.tsx"
+    },
+    {
+      "endpoint": "/compensi/calcola",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/comunicazione",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/dettaglio",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/eccezione",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/elenco",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/prospetto",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/ricevuta",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/scarica",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/compensi/stato",
+      "file": "src/clinic/CompensationsPage.tsx"
+    },
+    {
+      "endpoint": "/agenda/copia-applica",
+      "file": "src/clinic/CopySelection.tsx"
+    },
+    {
+      "endpoint": "/documenti/modelli",
+      "file": "src/clinic/DocumentTemplates.tsx"
+    },
+    {
+      "endpoint": "/documenti/modello-salva",
+      "file": "src/clinic/DocumentTemplates.tsx"
+    },
+    {
+      "endpoint": "/percorsi/nota-salva",
+      "file": "src/clinic/EpisodeDiary.tsx"
+    },
+    {
+      "endpoint": "/percorsi/dettaglio",
+      "file": "src/clinic/EpisodeForm.tsx"
+    },
+    {
+      "endpoint": "/percorsi/salva",
+      "file": "src/clinic/EpisodeForm.tsx"
+    },
+    {
+      "endpoint": "/gestione/allegato",
+      "file": "src/clinic/ExpensesPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/spesa",
+      "file": "src/clinic/ExpensesPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/spese",
+      "file": "src/clinic/ExpensesPage.tsx"
+    },
+    {
+      "endpoint": "/agenda/annulla",
+      "file": "src/clinic/GroupParticipants.tsx"
+    },
+    {
+      "endpoint": "/agenda/gruppo-aggiungi",
+      "file": "src/clinic/GroupParticipants.tsx"
+    },
+    {
+      "endpoint": "/agenda/stato",
+      "file": "src/clinic/GroupParticipants.tsx"
+    },
+    {
+      "endpoint": "/pazienti/cerca",
+      "file": "src/clinic/GroupParticipants.tsx"
+    },
+    {
+      "endpoint": "/pazienti/dettaglio",
+      "file": "src/clinic/GroupParticipants.tsx"
+    },
+    {
+      "endpoint": "/importazione/anteprima",
+      "file": "src/clinic/ImportPage.tsx"
+    },
+    {
+      "endpoint": "/importazione/applica",
+      "file": "src/clinic/ImportPage.tsx"
+    },
+    {
+      "endpoint": "/importazione/valida",
+      "file": "src/clinic/ImportPage.tsx"
+    },
+    {
+      "endpoint": "/fiscale/stato",
+      "file": "src/clinic/IntegrationStatus.tsx"
+    },
+    {
+      "endpoint": "/fiscale/verifica-aruba",
+      "file": "src/clinic/IntegrationStatus.tsx"
+    },
+    {
+      "endpoint": "/fiscale/aruba",
+      "file": "src/clinic/InvoiceFiscalActions.tsx"
+    },
+    {
+      "endpoint": "/fatture/bozza-salva",
+      "file": "src/clinic/InvoiceForms.tsx"
+    },
+    {
+      "endpoint": "/fatture/nota-credito",
+      "file": "src/clinic/InvoiceForms.tsx"
+    },
+    {
+      "endpoint": "/fatture/proponi",
+      "file": "src/clinic/InvoiceForms.tsx"
+    },
+    {
+      "endpoint": "/pazienti/cerca",
+      "file": "src/clinic/InvoiceForms.tsx"
+    },
+    {
+      "endpoint": "/pubblico/settimana",
+      "file": "src/clinic/MaterialsPages.tsx"
+    },
+    {
+      "endpoint": "/agenda/proposte-spostamento",
+      "file": "src/clinic/MoveSuggestions.tsx"
+    },
+    {
+      "endpoint": "/agenda/sposta",
+      "file": "src/clinic/MoveSuggestions.tsx"
+    },
+    {
+      "endpoint": "/agenda/vista",
+      "file": "src/clinic/OverviewPage.tsx"
+    },
+    {
+      "endpoint": "/comunicazioni/messaggi",
+      "file": "src/clinic/OverviewPage.tsx"
+    },
+    {
+      "endpoint": "/fatture/elenco",
+      "file": "src/clinic/OverviewPage.tsx"
+    },
+    {
+      "endpoint": "/pazienti/salva",
+      "file": "src/clinic/PatientAvailability.tsx"
+    },
+    {
+      "endpoint": "/pazienti/appuntamenti",
+      "file": "src/clinic/PatientCare.tsx"
+    },
+    {
+      "endpoint": "/pazienti/dettaglio",
+      "file": "src/clinic/PatientDetail.tsx"
+    },
+    {
+      "endpoint": "/documenti/bozza",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
+      "endpoint": "/documenti/elenco",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
+      "endpoint": "/documenti/link",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
+      "endpoint": "/documenti/modelli",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
+      "endpoint": "/documenti/salva",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
+      "endpoint": "/documenti/scarica",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
+      "endpoint": "/pazienti/dettaglio",
+      "file": "src/clinic/PatientForm.tsx"
+    },
+    {
+      "endpoint": "/pazienti/salva",
+      "file": "src/clinic/PatientForm.tsx"
+    },
+    {
+      "endpoint": "/pazienti/cerca",
+      "file": "src/clinic/PatientsPage.tsx"
+    },
+    {
+      "endpoint": "/pianificazione/proponi",
+      "file": "src/clinic/PlanningPage.tsx"
+    },
+    {
+      "endpoint": "/pianificazione/proposta",
+      "file": "src/clinic/PlanningPage.tsx"
+    },
+    {
+      "endpoint": "/pianificazione/scarta",
+      "file": "src/clinic/PlanningPage.tsx"
+    },
+    {
+      "endpoint": "/account/due-passi/avvia",
+      "file": "src/clinic/ProfilePage.tsx"
+    },
+    {
+      "endpoint": "/account/due-passi/conferma",
+      "file": "src/clinic/ProfilePage.tsx"
+    },
+    {
+      "endpoint": "/account/due-passi/disattiva",
+      "file": "src/clinic/ProfilePage.tsx"
+    },
+    {
+      "endpoint": "/account/password",
+      "file": "src/clinic/ProfilePage.tsx"
+    },
+    {
+      "endpoint": "/account/salva",
+      "file": "src/clinic/ProfilePage.tsx"
+    },
+    {
+      "endpoint": "/pianificazione/approva",
+      "file": "src/clinic/ProposalSelection.tsx"
+    },
+    {
+      "endpoint": "/prenota/catalogo",
+      "file": "src/clinic/PublicBooking.tsx"
+    },
+    {
+      "endpoint": "/prenota/conferma",
+      "file": "src/clinic/PublicBooking.tsx"
+    },
+    {
+      "endpoint": "/prenota/richiedi",
+      "file": "src/clinic/PublicBooking.tsx"
+    },
+    {
+      "endpoint": "/prenota/slot",
+      "file": "src/clinic/PublicBooking.tsx"
+    },
+    {
+      "endpoint": "/prenota/disdetta",
+      "file": "src/clinic/PublicPortal.tsx"
+    },
+    {
+      "endpoint": "/prenota/portale",
+      "file": "src/clinic/PublicPortal.tsx"
+    },
+    {
+      "endpoint": "/prenota/portale-documento",
+      "file": "src/clinic/PublicPortal.tsx"
+    },
+    {
+      "endpoint": "/prenota/portale-login",
+      "file": "src/clinic/PublicPortal.tsx"
+    },
+    {
+      "endpoint": "/prenota/portale-otp",
+      "file": "src/clinic/PublicPortal.tsx"
+    },
+    {
+      "endpoint": "/firma/accetta",
+      "file": "src/clinic/PublicSignature.tsx"
+    },
+    {
+      "endpoint": "/firma/otp",
+      "file": "src/clinic/PublicSignature.tsx"
+    },
+    {
+      "endpoint": "/firma/pubblico",
+      "file": "src/clinic/PublicSignature.tsx"
+    },
+    {
+      "endpoint": "/pubblico/conferma-visita",
+      "file": "src/clinic/PublicVisitConfirmation.tsx"
+    },
+    {
+      "endpoint": "/importazione/acquisto-anteprima",
+      "file": "src/clinic/PurchaseImport.tsx"
+    },
+    {
+      "endpoint": "/importazione/acquisto-applica",
+      "file": "src/clinic/PurchaseImport.tsx"
+    },
+    {
+      "endpoint": "/pacchetti/approva",
+      "file": "src/clinic/ReviewExportsPage.tsx"
+    },
+    {
+      "endpoint": "/pacchetti/elenco",
+      "file": "src/clinic/ReviewExportsPage.tsx"
+    },
+    {
+      "endpoint": "/pacchetti/esitoSts",
+      "file": "src/clinic/ReviewExportsPage.tsx"
+    },
+    {
+      "endpoint": "/pacchetti/prepara",
+      "file": "src/clinic/ReviewExportsPage.tsx"
+    },
+    {
+      "endpoint": "/pacchetti/scarica",
+      "file": "src/clinic/ReviewExportsPage.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/leggi",
+      "file": "src/clinic/SettingsPage.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/salva",
+      "file": "src/clinic/SettingsPage.tsx"
+    },
+    {
+      "endpoint": "/impostazioni/salva",
+      "file": "src/clinic/SettingsPeople.tsx"
+    },
+    {
+      "endpoint": "/utenti/elenco",
+      "file": "src/clinic/SettingsPeople.tsx"
+    },
+    {
+      "endpoint": "/gestione/allegato",
+      "file": "src/clinic/StaffPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/contratto",
+      "file": "src/clinic/StaffPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/personale",
+      "file": "src/clinic/StaffPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/personale-csv",
+      "file": "src/clinic/StaffPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/presenza",
+      "file": "src/clinic/StaffPage.tsx"
+    },
+    {
+      "endpoint": "/agenda/statistiche",
+      "file": "src/clinic/StatsPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/articolo",
+      "file": "src/clinic/StockPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/fornitore",
+      "file": "src/clinic/StockPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/movimento",
+      "file": "src/clinic/StockPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/stock",
+      "file": "src/clinic/StockPage.tsx"
+    },
+    {
+      "endpoint": "/gestione/stock",
+      "file": "src/clinic/TherapyConsumption.tsx"
+    },
+    {
+      "endpoint": "/pazienti/cerca",
+      "file": "src/clinic/WaitlistForm.tsx"
+    },
+    {
+      "endpoint": "/prenotazioni/attesa-salva",
+      "file": "src/clinic/WaitlistForm.tsx"
+    }
+  ]
+}

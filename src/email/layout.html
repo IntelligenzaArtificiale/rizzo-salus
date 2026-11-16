@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="it" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<meta name="supported-color-schemes" content="light dark">
+<title>{{oggetto}}</title>
+<!-- Stili in linea: i client email ignorano i fogli esterni. Eccezione documentata in docs/email.md. -->
+<style>
+  body { margin: 0; padding: 0; background: #f4f4f5; -webkit-text-size-adjust: 100%; }
+  a { color: {{colore}}; }
+  .card { background: #ffffff; }
+  .ink { color: #18181b; } .ink2 { color: #52525b; } .ink3 { color: #71717a; }
+  .line { border-color: #e4e4e7; }
+  @media (max-width: 620px) { .wrap { width: 100% !important; } .pad { padding: 24px 20px !important; } }
+  @media (prefers-color-scheme: dark) {
+    body:not(.light), body:not(.light) .page { background: #0f0f11 !important; } body:not(.light) .card { background: #1c1c1f !important; }
+    body:not(.light) .ink { color: #f4f4f5 !important; } body:not(.light) .ink2 { color: #c4c4c9 !important; } body:not(.light) .ink3 { color: #9a9aa2 !important; }
+    body:not(.light) .logo-light { display: none !important; } body:not(.light) .logo-dark { display: inline-block !important; }
+  }
+  body.dark, body.dark .page { background: #0f0f11 !important; } body.dark .card { background: #1c1c1f !important; }
+  body.dark .ink { color: #f4f4f5 !important; } body.dark .ink2 { color: #c4c4c9 !important; } body.dark .ink3 { color: #9a9aa2 !important; }
+  body.dark .logo-light { display: none !important; } body.dark .logo-dark { display: inline-block !important; }
+</style>
+</head>
+<body class="{{tema}}">
+<div style="display:none;max-height:0;overflow:hidden;opacity:0;">{{anteprima_testo}}</div>
+<table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" class="page" style="background:#f4f4f5;">
+  <tr><td align="center" style="padding:32px 12px;">
+    <table role="presentation" width="560" cellpadding="0" cellspacing="0" border="0" class="wrap" style="width:560px;max-width:560px;">
+      <tr><td style="padding:0 4px 20px 4px;">{{logo}}</td></tr>
+      <tr><td class="card pad" style="background:#ffffff;border-radius:14px;padding:32px 36px;font-family:-apple-system,'Segoe UI',Inter,Roboto,Helvetica,Arial,sans-serif;">
+        {{contenuto}}
+      </td></tr>
+      <tr><td class="ink3" style="padding:20px 8px 0 8px;font-family:-apple-system,'Segoe UI',Inter,Roboto,Helvetica,Arial,sans-serif;font-size:12px;line-height:18px;color:#71717a;">
+        {{marchio_nome}} · {{indirizzo}}<br>
+        Hai ricevuto questa email perché hai un account su {{marchio_nome}}. Per assistenza scrivi a <a href="mailto:{{email_contatto}}" style="color:#71717a;">{{email_contatto}}</a>.
+      </td></tr>
+    </table>
+  </td></tr>
+</table>
+</body>
+</html>

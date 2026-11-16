@@ -1,0 +1,7 @@
+Benvenuto su {{marchio_nome}}
+
+Ciao {{nome}}, il tuo account è attivo. Da qui puoi seguire le tue richieste, ricevere aggiornamenti e chiedere supporto.
+
+Inizia dalla tua area: trovi già i primi passi consigliati.
+
+{{azione_testo}}: {{azione_url}}

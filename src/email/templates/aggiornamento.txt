@@ -1,0 +1,8 @@
+{{oggetto_riferimento}}
+{{titolo}}
+
+{{messaggio}}
+
+{{righe_testo}}
+
+{{azione_testo}}: {{azione_url}}

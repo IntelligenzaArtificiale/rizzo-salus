@@ -1,0 +1,29 @@
+/* Adattamenti dei wrapper applicativi; il vendor resta condiviso e invariato. */
+.page-tabs [role="tab"] { white-space: nowrap; min-width: 0; }
+@media (max-width: 639px) {
+  .page-tabs [role="tab"] { padding-inline: 0.25rem; font-size: 12px; }
+  .page-tabs [role="tablist"] { height: 2.5rem; }
+}
+
+/* La scelta segue lo spazio del contenuto, anche su tablet con sidebar aperta. */
+.page-tabs { container-type: inline-size; }
+.page-tabs-segments { display: none; }
+@container (min-width: 700px) {
+  .page-tabs-select { display: none; }
+  .page-tabs-segments { display: block; }
+}
+
+/* Iniziale del marchio quando manca il simbolo: dimensione del testo proporzionale al quadrato. */
+.brand-monogram { font-size: 0.8rem; line-height: 1; }
+.brand-monogram[data-size="16"], .brand-monogram[data-size="20"] { font-size: 0.6rem; }
+.brand-monogram[data-size="32"], .brand-monogram[data-size="40"] { font-size: 1rem; }
+
+/* Azioni di riga (ActionMenu): nascoste a riposo su desktop, mai irraggiungibili.
+   Compaiono con hover sulla riga, focus da tastiera, menu aperto o riga attiva; sempre su touch. */
+.row-action { opacity: 0; }
+[data-row]:hover .row-action, .row-action:focus-visible, .row-action[aria-expanded="true"], .row-action-visible { opacity: 1; }
+@media (hover: none) { .row-action { opacity: 1; } }
+
+/* SidebarNav: le righe (208 px fissi nel vendor) si restringono se una barra di scorrimento
+   classica toglie spazio, così il testo si tronca invece di uscire in orizzontale. */
+.sidebar-row { max-width: calc(100% - 1rem); }

@@ -1,0 +1,44 @@
+/*
+ * Movimento dell'app in un unico punto. Durate brevi, solo opacità e trasformazioni.
+ * Le keyframe (fade-in, fade-up, pop-in, spin) arrivano dalla fondazione Beautiful UI.
+ * Regole: docs/movimento.md. Con «riduci movimento» le animazioni si spengono
+ * (regola globale della fondazione) e qui restano solo i cambi di opacità istantanei.
+ */
+:root {
+  --motion-fast: 140ms;
+  --motion-base: 200ms;
+  --motion-slow: 280ms;
+  --motion-ease: cubic-bezier(0.23, 1, 0.32, 1);
+  --motion-exit: cubic-bezier(0.4, 0, 1, 1);
+}
+
+/* contenuto che cambia nello stesso posto: schede, pannelli di una pagina */
+.anim-swap { animation: fade-in var(--motion-base) ease-out both; }
+/* contenuto che entra: passo di un wizard, pannello di esito */
+.anim-rise { animation: fade-up var(--motion-slow) var(--motion-ease) both; }
+/* elemento che compare sopra la pagina: menu, toast, popover */
+.anim-pop { animation: pop-in var(--motion-base) var(--motion-ease) both; transform-origin: var(--anim-origin, top center); }
+/* pannello laterale su mobile */
+.anim-drawer { animation: drawer-in var(--motion-base) var(--motion-ease) both; }
+/* indicatore di attesa: accompagnato sempre da un testo */
+.anim-spin { animation: spin 700ms linear infinite; }
+
+@keyframes drawer-in {
+  from { transform: translateX(-12px); opacity: 0; }
+  to { transform: none; opacity: 1; }
+}
+
+/* elementi che cambiano stato: colori e opacità, mai la geometria */
+.motion-state { transition: background-color var(--motion-fast) ease-out, color var(--motion-fast) ease-out, opacity var(--motion-fast) ease-out, box-shadow var(--motion-fast) ease-out; }
+
+/* riga salvata o aggiornata: un lampo sul fondo, poi niente */
+.anim-flash { animation: row-flash 900ms ease-out both; }
+@keyframes row-flash {
+  from { background-color: var(--accent-tint); }
+  to { background-color: transparent; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .anim-spin { animation: none; }
+  .anim-flash { animation: none; }
+}

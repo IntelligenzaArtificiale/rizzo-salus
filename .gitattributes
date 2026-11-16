@@ -1,0 +1,3 @@
+# Launcher eseguibili con terminatori corretti anche dopo un clone su Windows.
+*.sh text eol=lf
+*.bat text eol=crlf

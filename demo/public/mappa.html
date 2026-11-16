@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="it"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Mappa dell’applicativo</title>
+<link rel="stylesheet" href="console.css"><link rel="stylesheet" href="pagine.css"></head>
+<body><div class="wrap">
+<h1>Gestionale Poliambulatorio — mappa</h1>
+<p class="lead">Come è fatto, che cosa fa ogni modulo e a che punto siamo davvero. «Pronto» vuol dire scritto e provato con test automatici sul motore; le schermate definitive si vedono solo in parte.</p>
+<div class="sum" id="sum"></div>
+
+<h2>Come sta insieme</h2>
+<div class="flow">
+ <div class="node"><h3>1 · Le persone</h3><ul><li>Titolare</li><li>Segreteria</li><li>Fisioterapisti</li><li>Medici</li><li>Amministrazione</li><li>Pazienti (solo pagine pubbliche)</li></ul></div>
+ <div class="node"><h3>2 · L’applicazione</h3><ul><li>Agenda settimanale e giornaliera</li><li>Schede paziente e percorsi</li><li>Messaggi e promemoria</li><li>Fatture, documenti, personale, magazzino</li><li>Pagine pubbliche: prenota, promemoria, firma</li></ul></div>
+ <div class="node"><h3>3 · Il motore</h3><ul><li>Regole di agenda e conflitti</li><li>Pianificatore (senza AI)</li><li>Coda messaggi con nuovi tentativi</li><li>Permessi per ruolo, registro attività</li><li>Attività automatiche (cron)</li></ul></div>
+ <div class="node"><h3>4 · Servizi esterni</h3><ul><li>Composio → WhatsApp, SMS, email</li><li>OpenAI: solo testo libero e riepilogo, mai dati dei pazienti</li><li>Sistema di Interscambio (fatture) tramite commercialista</li></ul></div>
+ <div class="node"><h3>5 · I dati</h3><ul><li>File JSON sul vostro spazio web</li><li>Dati clinici cifrati</li><li>Copie di sicurezza cifrate ogni notte</li><li>Esportazione completa in ZIP</li></ul></div>
+</div>
+
+<h2>Moduli</h2>
+<div id="mods"></div>
+
+<h2>Chi vede e fa cosa</h2>
+<table class="m" id="perm"></table>
+<p class="muted">Ogni voce si può cambiare dal titolare, anche per singola persona.</p>
+
+<h2>Una settimana tipo</h2>
+<div class="flow">
+ <div class="node"><h3>Lunedì–giovedì</h3><ul><li>La segreteria carica i cicli e il pianificatore propone gli orari</li><li>Un cambio in agenda avvisa il paziente (una sola volta)</li></ul></div>
+ <div class="node"><h3>Venerdì 13:00</h3><ul><li>Parte da solo il promemoria con il link personale</li><li>Il link mostra sempre gli orari aggiornati</li></ul></div>
+ <div class="node"><h3>A fine ciclo</h3><ul><li>Dopo 15 o 40 giorni: «come sta?»</li><li>Poi la richiesta di recensione (una l’anno)</li></ul></div>
+ <div class="node"><h3>Ogni notte</h3><ul><li>Copia di sicurezza cifrata</li><li>Pulizia tecnica</li></ul></div>
+</div>
+</div><script src="mappa.js"></script></body></html>

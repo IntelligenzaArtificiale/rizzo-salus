@@ -1,0 +1,11 @@
+{
+  "url": "http://localhost:8081",
+  "verifiche": [
+    "Accesso e permessi titolare",
+    "Messaggi in prova e connettori fiscali disattivati",
+    "Cataloghi parametrizzabili nella copia in esecuzione",
+    "Accesso e permessi segreteria",
+    "Accesso e permessi fisioterapista",
+    "Accesso e permessi medico"
+  ]
+}

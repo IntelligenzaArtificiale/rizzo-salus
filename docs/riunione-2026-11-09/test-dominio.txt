@@ -1,0 +1,108 @@
+PASS disponibilità anagrafica
+PASS consensi obbligatori non sostituiti da spunte
+PASS precompilazione privacy
+PASS rifiuto lettura_richiesta (lettura_richiesta)
+PASS rifiuto otp_non_valido (otp_non_valido)
+PASS tentativi OTP persistono
+PASS rifiuto link_scaduto (link_scaduto)
+PASS evidenza immutabile privacy
+PASS precompilazione trattamento
+PASS rifiuto lettura_richiesta (lettura_richiesta)
+PASS rifiuto otp_non_valido (otp_non_valido)
+PASS tentativi OTP persistono
+PASS rifiuto link_scaduto (link_scaduto)
+PASS evidenza immutabile trattamento
+PASS rilascio dopo entrambi i consensi
+PASS slot medici pubblicati
+PASS prenotazione automatica dopo OTP
+PASS rifiuto slot_non_disponibile (slot_non_disponibile)
+PASS concorrenza non duplica slot
+PASS portale nasconde agenda futura senza consensi
+PASS disdetta non cancella
+PASS disdetta idempotente
+PASS carico idempotente
+PASS rifiuto scorta_insufficiente (scorta_insufficiente)
+PASS consumo automatico una sola volta
+PASS ripristino esito riaccredita scorta
+PASS presenze escluse pause e preparazione
+PASS rifiuto presenza_sovrapposta (presenza_sovrapposta)
+PASS ricorrenze distinte da uscite reali
+PASS stato segreto senza contenuto
+PASS credenziali cifrate su disco
+PASS pianificatore non modifica autonomamente
+PASS pianificatore include gruppi e disponibilità anagrafiche
+PASS otto pazienti distribuiti su due gruppi
+PASS gruppi con capienza e bilanciamento
+PASS avanzamento del paziente nel gruppo
+PASS rifiuto proposta_gia_chiusa (proposta_gia_chiusa)
+PASS intervallo minimo per terapia
+PASS approvazione solo della seduta scelta
+PASS assenza non consuma il ciclo
+PASS materiali detratti prima del 70 percento
+PASS rifiuto ricevuta_richiesta (ricevuta_richiesta)
+PASS CSV validato con mappatura
+PASS migrazione idempotente
+PASS riconoscimento articolo da fattura XML
+PASS fattura non carica due volte
+PASS rifiuto documento_non_sicuro (documento_non_sicuro)
+PASS rifiuto orari_non_validi (orari_non_validi)
+PASS rifiuto preparazione_esclusa (preparazione_esclusa)
+PASS rifiuto consensi_obbligatori (consensi_obbligatori)
+PASS tracciato TS validato e codici fiscali cifrati
+PASS opposizione TS senza codice fiscale cittadino
+PASS pacchetto TS non invia senza approvazione
+PASS trasporto TS confinato al profilo di prova
+PASS invio TS MTOM con allegato binario
+PASS protocollo TS distinto da esito finale
+PASS rifiuto invio_gia_preso_in_carico (invio_gia_preso_in_carico)
+PASS trasporto TS confinato al profilo di prova
+PASS consultazione esito TS separata
+PASS Aruba usa ambiente demo
+PASS password Aruba nel corpo
+PASS Aruba usa ambiente demo
+PASS Aruba verifica senza trasmissione allo SdI
+PASS stato Aruba non simula consegna fiscale
+PASS fisioterapista con agenda sola lettura
+PASS rifiuto non_autorizzato (non_autorizzato)
+PASS rifiuto non_autorizzato (non_autorizzato)
+PASS rifiuto seduta_gia_eseguita (seduta_gia_eseguita)
+PASS rifiuto seduta_gia_eseguita (seduta_gia_eseguita)
+PASS cancellazione singola preserva eseguite e storico del gruppo
+PASS segnali manuali prima seduta senza alterare esito
+PASS disponibilità scadute non diventano illimitate
+PASS copia selettiva della sola seduta scelta
+PASS copia selettiva ripetuta non duplica
+PASS conferme OTP simultanee: un solo appuntamento creato
+PASS date Excel riconosciute dagli stili
+PASS rifiuto foglio_non_valido (foglio_non_valido)
+PASS vincolo intervallo anche per proposta modificata manualmente
+PASS rifiuto terapia_con_storico (terapia_con_storico)
+PASS rifiuto riga_non_valida (riga_non_valida)
+PASS assenza futura pianificabile senza registrare ore lavorate
+PASS rifiuto presenza_futura (presenza_futura)
+PASS liquidazione registra una sola uscita dopo contabile
+PASS rifiuto passaggio_di_stato_non_consentito (passaggio_di_stato_non_consentito)
+PASS rifiuto compenso_bloccato (compenso_bloccato)
+PASS IVA per prestazione e bollo escluso dal solo imponibile IVA
+PASS XML fiscale con aliquota corretto e XSD valido
+PASS PDF fattura generato dopo emissione
+PASS rifiuto fattura_sanitaria_non_destinata_sdi (fattura_sanitaria_non_destinata_sdi)
+PASS pacchetto contabile ZIP con revisione obbligatoria
+PASS approvazione accoda allegato ma non simula consegna
+PASS riepilogo personale esporta ore effettive
+PASS ricontatto da 40 giorni non anticipato al giorno 39
+PASS ricontatti proposti dopo l’ultima terapia e conclusione effettiva
+PASS ricontatti manuali non inviano messaggi da soli
+PASS recensione separata dal contatto e non anticipata
+PASS link recensione mancante non blocca il registro dei ricontatti
+PASS recensione proposta tre giorni dopo il contatto registrato
+PASS campagna include soltanto consenzienti
+PASS consenso ricontrollato prima dell’invio in coda
+PASS silenzio 21-08 rinvia anche i messaggi tecnici non urgenti
+PASS nessun riepilogo medico senza conferma paziente
+PASS riepilogo medico dopo conferma verificata
+PASS rifiuto tetto_ai_raggiunto (tetto_ai_raggiunto)
+PASS limite mensile blocca la chiamata prima di sostenere costi
+PASS diario terapeutico salva una sola annotazione per invio
+PASS bozza referto compilata localmente senza trasmettere dati clinici
+COMPLETATI 107 controlli

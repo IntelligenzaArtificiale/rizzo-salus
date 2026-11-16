@@ -1,0 +1,17 @@
+# Calendar · uso della copia aggiornata
+
+Aprire http://localhost:8081/#/agenda. Accesso titolare: `titolare@demo.it`, password `DemoPassword2026`. Segreteria: `segreteria@demo.it`, stessa password. I clinici mantengono l’agenda in sola lettura.
+
+Il profilo del documento è applicato alla sola copia. Gli appuntamenti già presenti restano nello storico senza riscritture automatiche; orari, risorse e limiti aggiornati sono controllati sulle nuove operazioni. In **Impostazioni → Calendar** si scelgono professionisti di riabilitazione, limiti e colori; in **Cataloghi** si gestiscono turni, assenze, straordinari, durata e modalità delle prestazioni, risorse e tariffe. L’applicazione del profilo è idempotente e non sovrascrive successive scelte parametriche.
+
+- **Settimana:** lunedì–venerdì, sottocolonne TS, TSF, manuali, palestra, piscina e visite di Antonio. Il giorno attuale è blu. “A tutto schermo” amplia la griglia e mantiene il ritorno alla settimana corrente; uscire con il pulsante o Esc. Su schermi stretti il calendario scorre internamente.
+- **Giorno / Due giorni:** dettaglio per prestazione o attrezzatura, oppure raggruppamento per professionista. Filtri per famiglia, prestazione e professionista.
+- **Appunti:** aprire il pannello sempre disponibile sopra il calendario; note con data e ora in qualunque giorno, sabato compreso, modificabili e archiviabili con “Fatto”. Non occupano professionista o attrezzatura.
+- **Prima e ultima seduta:** verde/rosso nelle sedute individuali, segnali individuali accanto ai nominativi nei gruppi. I promemoria iniziali/finali per il titolare si trovano sotto l’agenda e si ricalcolano dal percorso corrente. Non sono notifiche SMS già inviate.
+- **Profilo del gruppo:** nel percorso scegliere standard, complesso o neurologico. Il server applica 5 standard, 4 se c’è un caso complesso/neurologico, al massimo un neurologico. Anche inserimento manuale, aggiunta partecipante, approvazione e copia passano dai controlli.
+- **Assegnazione:** il professionista preferito può essere una preferenza o un vincolo obbligatorio nel percorso. Le preferenze piscina favoriscono Chiara al mattino e Marco al pomeriggio, nei rispettivi turni confermati.
+- **Spostamenti:** il trascinamento apre una revisione. Dal dettaglio si possono anche cercare “Proposte di spostamento”; scegliere un’alternativa e confermare. Nessuna modifica prima della conferma, nessun bypass dei conflitti. Le proposte iniziali restano nel pianificatore, con eventuale riorganizzazione da approvare esplicitamente.
+- **Straordinari:** la segreteria può inserire manualmente fuori orario dopo l’avviso; le sovrapposizioni restano bloccate. Le proposte automatiche rispettano apertura, disponibilità, durata, gruppi, sala e apparecchiature contemporaneamente.
+- **Statistiche:** selezionare il periodo “dal / fino al”. Per professionista: pazienti distinti trattati, prestazioni eseguite, ore programmate, ore delle sedute eseguite e presenze registrate. Le ore delle terapie fisse non diventano ore dedicate 1:1; eventuali minuti iniziali sono configurati esplicitamente. Le presenze effettive sono quelle registrate in Personale, escluse le pause. Cinque pazienti in un gruppo di un’ora valgono un’ora dell’operatore.
+
+Riferimento: [checklist delle sole conferme e attivazioni](checklist-bloccanti.md). Per le integrazioni già predisposte dalla call resta valida la guida del 9 novembre. L’originale in gestionale-demo non viene aggiornato né avviato da questa copia.

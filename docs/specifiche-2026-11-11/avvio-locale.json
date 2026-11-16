@@ -1,0 +1,12 @@
+{
+  "titolare@demo.it": {
+    "accesso": true,
+    "agenda": true,
+    "giorno_blu": true
+  },
+  "segreteria@demo.it": {
+    "accesso": true,
+    "agenda": true,
+    "giorno_blu": true
+  }
+}

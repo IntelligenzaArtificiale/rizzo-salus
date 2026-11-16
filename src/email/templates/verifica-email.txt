@@ -1,0 +1,7 @@
+Conferma il tuo indirizzo email
+
+Ciao {{nome}}, per attivare il tuo account su {{marchio_nome}} conferma che questo indirizzo è tuo.
+
+{{azione_testo}}: {{azione_url}}
+
+Il link vale {{validita}}. Se non hai chiesto tu la registrazione, ignora questa email.

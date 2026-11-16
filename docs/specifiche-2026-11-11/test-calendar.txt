@@ -1,0 +1,51 @@
+PASS orari esatti del PDF
+PASS profilo idempotente
+PASS durate confermate
+PASS modalità diamagnetica incerta non attivata
+PASS diamagnetica protegge la stessa macchina
+PASS giorni Chiara da confermare
+PASS venerdì Antonio da confermare
+PASS Antonio assente martedì pomeriggio
+PASS venerdì mattina e sabato note
+PASS cinque standard ammessi
+PASS rifiuto conflitto (conflitto)
+PASS neurologico riduce capienza a quattro
+PASS rifiuto conflitto (conflitto)
+PASS complesso riduce capienza a quattro
+PASS prima e ultima per singolo partecipante
+PASS promemoria interni individuali
+PASS cinque persone una sola ora operatore
+PASS assenza individuale non moltiplica ore
+PASS macchinario fisso libera operatore
+PASS rifiuto conflitto (conflitto)
+PASS rifiuto conflitto (conflitto)
+PASS dopo preparazione operatore disponibile
+PASS rifiuto conflitto (conflitto)
+PASS rifiuto avvisi (avvisi)
+PASS manuale straordinario con conferma avvisi
+PASS rifiuto conflitto (conflitto)
+PASS rifiuto conflitto (conflitto)
+PASS proposta non modifica agenda
+PASS vincolo forte e venerdì Antonio rispettati
+PASS automatico vieta venerdì pomeriggio
+PASS planner TSF parallelo a terapia con operatore
+PASS planner distribuisce gruppi clinici
+PASS approvazione rispetta capienza e neuro
+PASS approvazione rispetta capienza e neuro
+PASS approvazione rispetta capienza e neuro
+PASS nota sabato non occupa slot
+PASS alternative separate sola lettura
+PASS rifiuto revisione_vecchia (revisione_vecchia)
+PASS statistiche distinguono ore terapeutiche e presenze
+PASS copia esclude terapie completate
+PASS capienza non somma prenotazioni consecutive
+PASS capienza misura picco di sovrapposizione
+PASS presenze effettive registrate e pause distinte dalle sedute
+PASS orari Chiara intersecati con apertura centro
+PASS straordinario parametrico per data
+PASS preferenze piscina Chiara mattina Marco pomeriggio
+PASS rifiuto professionista_obbligatorio (professionista_obbligatorio)
+PASS rifiuto limiti_gruppo_non_validi (limiti_gruppo_non_validi)
+PASS rifiuto conflitto (conflitto)
+PASS planner rispetta fermo apparecchio fisso
+COMPLETATI 50 controlli Calendar

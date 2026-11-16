@@ -1,0 +1,209 @@
+{
+  "verificato": "2026-11-03",
+  "repository": "https://github.com/slev12397/beautiful-ui",
+  "commit": "44a274e598395ab61e7c96c26fda2758780253b7 2026-09-22",
+  "versione_package": "0.1.0",
+  "registro": "https://www.beautifului.dev/r/<id>.json",
+  "licenza": "MIT",
+  "file": [
+    {
+      "file": "src/components/atoms/Button.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "1d939f68820366648a7b3292b88001da41253154bc49494be60cb8188100f0b0"
+    },
+    {
+      "file": "src/components/atoms/Chip.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "6138d55e03357698c377a0db9c42595f68ebeee58474e1a6f95642a87631ac73"
+    },
+    {
+      "file": "src/components/atoms/EntityChip.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "2687a88ed112370b14f7f857d14cbe9a0ce88c182b2b71c4257993ba792a975b"
+    },
+    {
+      "file": "src/components/atoms/ProgressRing.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "0c481bbb6d05d3923525fd01edbe662650b2531e55dfbb447961156ad72de738"
+    },
+    {
+      "file": "src/components/atoms/SegmentedControl.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "15feddaeba3a8a482d3e4e4d0715138b5e76d37ade0957179fd5a04988d3397c"
+    },
+    {
+      "file": "src/components/atoms/Shimmer.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "16a1a754bf37d94e6c4634068c883c705b44bd79fc4c53eecba85a21df758ec9"
+    },
+    {
+      "file": "src/components/atoms/StatusPill.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "7ba3c04113d529355ce73d96d14c3f728528d0848fc972a67b3c43b09541f6f2"
+    },
+    {
+      "file": "src/components/atoms/StreamText.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "a98d273d90965b7691e97520e12f6f32df7555ccf08ea60e3eed1b24966bae6f"
+    },
+    {
+      "file": "src/components/atoms/Switch.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "f8ad758e632203bf4243ee64e256537fdbf5930a4c4efda1b5db41dd75979ed3"
+    },
+    {
+      "file": "src/components/atoms/TextRow.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "85aa7a320db28f0cd6d809fdc38780070ff4aaf352da7048c56b342cdf6d1637"
+    },
+    {
+      "file": "src/components/atoms/ValuePill.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "685ca5fba3cccfc1bc23bc6203c066567c200809e83d5d81d3c3491d0a4c9a0a"
+    },
+    {
+      "file": "src/components/primitives/AgentScreen.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "0bcb05500c97a1d520e19b15eeaaf1c3209c0e208eb2bf38f219e94ec612c4c9"
+    },
+    {
+      "file": "src/components/primitives/ApprovalCard.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "8254836f3ea4278d3d91a2ce0bfc5e5dc0869a380bd27a7cd7a1a34823790877"
+    },
+    {
+      "file": "src/components/primitives/ChatComposer.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "007771f8abe6623d0262020c7a8f88f7050566fd3db2267d8488dd5db776730c"
+    },
+    {
+      "file": "src/components/primitives/CodeBlock.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "5f82353d843cf967f7457752a006f0d0d0c5f2e57a90ae7a26a0ac3473f52ad3"
+    },
+    {
+      "file": "src/components/primitives/ContextCards.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "afc2482b1de0c46788f2e038a2a868cb0bd169fa6b26d3a4c3499bf258ba0d83"
+    },
+    {
+      "file": "src/components/primitives/DiffTable.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "daf56d204900f3d424718798bf0bd2c9a82f1ff07281b8a0ab01ec62d6c8e065"
+    },
+    {
+      "file": "src/components/primitives/FilterTable.tsx",
+      "stato": "modificato",
+      "patch_marcate": 4,
+      "sha256": "64f1c78ae9453ed34cc8b0cf8b3c93a1117a27e79b4c8252832412890db12a36"
+    },
+    {
+      "file": "src/components/primitives/FineTuneCard.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "fb8df4d8c5aabbb399d115b143af39fcf3bf8a00b77bd7375a01a77ee8e93c24"
+    },
+    {
+      "file": "src/components/primitives/Flowchart.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "567ab04f25f6f56cd4adf24122f2d722837310797d8935e1cdae0b9048b1e074"
+    },
+    {
+      "file": "src/components/primitives/GlideMenu.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "2b8b64092740dad23aed3367b1e7eaa3e15a8bc0a2ed559c3dec13bb4ba2e00f"
+    },
+    {
+      "file": "src/components/primitives/InsightCards.tsx",
+      "stato": "modificato",
+      "patch_marcate": 4,
+      "sha256": "69d9fbc0c54a5e26398f6a054eff4602393f57a41941631e828cccd7715de0a5"
+    },
+    {
+      "file": "src/components/primitives/LoadingState.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "eb1bdcddcd2dbdfe1232b3bf3d7dfd0912ef9b6e0fb1a9b095cb423778e8a8d1"
+    },
+    {
+      "file": "src/components/primitives/PromptBar.tsx",
+      "stato": "modificato",
+      "patch_marcate": 2,
+      "sha256": "b4ec624784bd643d6c4731dd35e2fc95e9a4065731fa071d0f29cf398e4627b0"
+    },
+    {
+      "file": "src/components/primitives/RecommendationCard.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "c5e8101426defc0a9076a40e929eed816c1ef13f9056c192a74556f5e8c8ea86"
+    },
+    {
+      "file": "src/components/primitives/RecordsTable.tsx",
+      "stato": "modificato",
+      "patch_marcate": 2,
+      "sha256": "de71cfa2589d420a8b6032379bffac4da08a0dcc782afaaa8e3c35b2658c2711"
+    },
+    {
+      "file": "src/components/primitives/SearchList.tsx",
+      "stato": "modificato",
+      "patch_marcate": 2,
+      "sha256": "e1576203c80340e224ce5b1d3eed7213afc0ce307c5c24338cd15ef446b51992"
+    },
+    {
+      "file": "src/components/primitives/SelectionActions.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "22a9395ea4cfa3acf4fe41e07ab7f7e94289d83590cec1827dafbec9a9779feb"
+    },
+    {
+      "file": "src/components/primitives/SidebarNav.tsx",
+      "stato": "modificato",
+      "patch_marcate": 6,
+      "sha256": "0eab4e51b7c2df0733bcaf40926043b3b4896a01aec6da25deaf96394b08c021"
+    },
+    {
+      "file": "src/components/primitives/StreamingText.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "5067e29dfd20137475bc6adccd3534c0f059eae756f7f3c558bc7d05d97b7d39"
+    },
+    {
+      "file": "src/components/primitives/TaskRows.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "089b7dce1b72a354d47199c77debb86a294dd69e0b4d0b7884520ad598ac6471"
+    },
+    {
+      "file": "src/components/primitives/ThinkingState.tsx",
+      "stato": "identico",
+      "patch_marcate": 0,
+      "sha256": "3d73617406120fad93fd15c67054a59debb9e43ccd385a21e2f48a7fb4036e24"
+    },
+    {
+      "file": "src/components/primitives/ToolChips.tsx",
+      "stato": "modificato",
+      "patch_marcate": 1,
+      "sha256": "25139251c0efa0de8d143282c1ffb44b33deaa77cde15ef9de9eebb9a0397d63"
+    }
+  ],
+  "a_monte_non_inclusi": []
+}

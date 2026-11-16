@@ -1,0 +1,45 @@
+/*
+ * Tema del progetto. Sovrascrive i token di Beautiful UI senza toccare i componenti.
+ * Per un nuovo cliente cambiare solo i valori qui sotto (OKLCH, come l'originale).
+ * Ogni coppia testo/sfondo deve restare almeno 4.5:1.
+ */
+:root {
+  /* font del progetto: caricati in src/styles/fonts.ts */
+  --font-inter: "Inter Variable";
+  --font-mono-face: "JetBrains Mono";
+
+  /*
+   * Accento. Stessa tinta di Beautiful UI (255°), luminosità scesa da 0.626 a 0.55:
+   * il testo bianco sui bottoni passa da 3.7:1 a 5.2:1. Esempio cliente: oklch(0.52 0.15 145).
+   */
+  --accent: oklch(0.55 0.2 256);
+  --accent-ink: oklch(0.5 0.19 256);
+  --accent-tint: oklch(0.96 0.019 252.878);
+
+  /* Rosso degli errori: da 0.621 a 0.55, il testo arriva a 5:1 sul bianco. */
+  --red: oklch(0.55 0.2 25);
+
+  /* Verde delle conferme: da 0.603 a 0.52, il testo arriva a 4.8:1 sul bianco. */
+  --green: oklch(0.52 0.14 150);
+}
+
+.dark {
+  /* bottoni pieni restano scuri abbastanza per il testo bianco; link e testi in accent-ink chiaro */
+  --accent: oklch(0.58 0.19 256);
+  --accent-ink: oklch(0.788 0.113 248.33);
+  --accent-tint: oklch(0.58 0.19 256 / 0.22);
+  --red: oklch(0.7 0.17 22);
+}
+
+/* Le pagine applicative usano un fondo pieno, non il tratteggio della galleria. */
+body {
+  background-image: none;
+  background-color: var(--page);
+}
+
+body {
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+}
+
+:root { color-scheme: light; }
+.dark { color-scheme: dark; }

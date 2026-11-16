@@ -1,0 +1,30 @@
+<?php
+use App\Core\{Clock,ApiError};
+use App\Services\Services;
+use App\Http\{Context,Request};
+use App\Domain\Patients\Bookings;
+// Eseguito dalla fixture isolata test-call-domain.php.
+$photo=$s->files()->read($doc['file']['id']);
+$receiptContext=new Context(new Request('POST','/compensi/ricevuta',['id'=>$comp['id'],'base64'=>base64_encode($photo['bytes']),'nome_file'=>'contabile.pdf','mime'=>'application/pdf']),$s,$c->session,$c->user,$c->perms);
+(new App\Http\Controllers\CompensationWorkflowController())->ricevuta($receiptContext);
+$s->compensations()->advance($comp['id'],'liquidato');
+ok(count($s->store->all('expenses',fn($r)=>($r['compenso_id']??null)===$comp['id']))===1,'liquidazione registra una sola uscita dopo contabile');
+fails(fn()=>$s->compensations()->advance($comp['id'],'liquidato'),'passaggio_di_stato_non_consentito');
+fails(fn()=>$s->agenda()->setStatus($ap['id'],'assente'),'compenso_bloccato');
+$patient=$s->store->get('patients',$pt['id']);$patient=array_replace($patient,['indirizzo'=>'Via Test 1','cap'=>'73048','citta'=>'Nardo','provincia'=>'LE']);$s->store->put('patients',$patient);
+$s->settings()->update(['struttura'=>['ragione_sociale'=>'STRUTTURA DI PROVA','partita_iva'=>'01234567897','codice_fiscale'=>'01234567897','indirizzo'=>'Via Test 1','cap'=>'73048','citta'=>'Nardo','provincia'=>'LE','regime_fiscale'=>'RF01']]);
+$taxType=$s->catalog()->saveTherapyType(['nome'=>'Servizio imponibile di prova','categoria'=>'altro','durata_min'=>15,'tariffa'=>100,'natura_iva'=>'ordinaria','aliquota_iva'=>22,'sanitaria'=>false]);
+$draft=$s->invoices()->saveDraft(['patient_id'=>$pt['id'],'righe'=>[['descrizione'=>'Prestazione imponibile','therapy_type_id'=>$taxType['id'],'prezzo'=>100,'quantita'=>1,'tipo_prestazione'=>'libera']]]);
+ok($draft['totale_cents']===12200&&$draft['bollo_cents']===0,'IVA per prestazione e bollo escluso dal solo imponibile IVA');
+$emitted=$s->invoices()->issue($draft['id']);
+ok($emitted['xml_valido']&&str_contains($s->files()->read($emitted['xml_file_id'])['bytes'],'<AliquotaIVA>22.00</AliquotaIVA>'),'XML fiscale con aliquota corretto e XSD valido');
+ok(str_starts_with($s->billingExports()->courtesyPdf($emitted),'%PDF'),'PDF fattura generato dopo emissione');
+$healthContext=new Context(new Request('POST','/fiscale/aruba',['id'=>$inv['id']]),$s,$c->session,$c->user,$c->perms);
+fails(fn()=>(new App\Http\Controllers\FiscalController())->aruba($healthContext),'fattura_sanitaria_non_destinata_sdi');
+$package=(new App\Domain\Management\ReviewExports($s))->prepare($c,['tipo'=>'commercialista','da'=>'2026-11-09','a'=>'2026-11-09']);
+$zipBytes=$s->files()->read($package['file']['id'])['bytes'];ok(str_starts_with($zipBytes,'PK')&&$package['stato']==='da_approvare','pacchetto contabile ZIP con revisione obbligatoria');
+$s->settings()->update(['fatturazione'=>['commercialista_email'=>'contabile@example.test']]);
+$package=(new App\Domain\Management\ReviewExports($s))->prepare($c,['tipo'=>'commercialista','da'=>'2026-11-09','a'=>'2026-11-09']);
+$approvedPackage=(new App\Domain\Management\ReviewExports($s))->approve($c,['id'=>$package['id']]);
+$m=$s->store->get('messages',$approvedPackage['message_id']);ok($m['to']==='contabile@example.test'&&count($m['attachments'])===1&&$m['status']==='in_coda','approvazione accoda allegato ma non simula consegna');
+$staffCsv=(new App\Http\Controllers\ManagementController())->personaleCsv($c);ok($staffCsv->status===200&&str_contains($staffCsv->body,'4.5'),'riepilogo personale esporta ore effettive');

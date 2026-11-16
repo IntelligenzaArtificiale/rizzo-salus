@@ -1,0 +1,9 @@
+{
+  "php": {
+    "file": 136,
+    "errori_sintassi": []
+  },
+  "lint_warning": 59,
+  "lint_errori": 0,
+  "file_modificati_oltre_400_righe": []
+}

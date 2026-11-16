@@ -1,0 +1,3 @@
+# Piano
+Destinazione: ../gestionale-rizzo-boilerplate, nuova cartella richiesta esplicitamente. Ripristino: originale intatto su 127.0.0.1:8080; confronto hash esclusi file runtime generati dal server originale. Backend e dati copiati, sessioni e limitatori esclusi. Nuovo frontend dal pacchetto Boilerplate-piattaforma.zip, vendor invariato. API adattate nel client, nessuna riscrittura del dominio.
+Ordine: shell e autenticazione; agenda e pazienti; pianificazione e messaggi; fatture e statistiche; profilo/impostazioni/assistente; pubblico e materiali. Build/lint/regole UI, prove HTTP autorizzazioni, flussi browser su copia dedicata, desktop/mobile e chiaro/scuro. Nessun reset dei dati originali. Registrare limiti reali e prove nel report finale.

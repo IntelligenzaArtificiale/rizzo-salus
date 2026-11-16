@@ -1,0 +1,35 @@
+
+> bp@0.0.0 build
+> tsc -b && vite build
+
+vite v8.3.5 building client environment for production...
+transforming...
+✓ 2185 modules transformed.
+rendering chunks...
+computing gzip size...
+dist/index.html                                                   0.51 kB │ gzip:   0.31 kB
+dist/assets/jetbrains-mono-greek-400-normal-C190GLew.woff2        4.22 kB
+dist/assets/jetbrains-mono-cyrillic-400-normal-BEIGL1Tu.woff2     5.32 kB
+dist/assets/jetbrains-mono-vietnamese-400-normal-CqNFfHCs.woff    5.37 kB
+dist/assets/jetbrains-mono-greek-400-normal-B9oWc5Lo.woff         5.66 kB
+dist/assets/jetbrains-mono-cyrillic-400-normal-ugxPyKxw.woff      6.97 kB
+dist/assets/jetbrains-mono-latin-ext-400-normal-Bc8Ftmh3.woff2    7.33 kB
+dist/assets/jetbrains-mono-latin-ext-400-normal-fXTG6kC5.woff    10.12 kB
+dist/assets/inter-vietnamese-wght-normal-CBcvBZtf.woff2          10.25 kB
+dist/assets/inter-greek-ext-wght-normal-DlzME5K_.woff2           11.23 kB
+dist/assets/inter-cyrillic-wght-normal-DqGufNeO.woff2            18.74 kB
+dist/assets/inter-greek-wght-normal-CkhJZR-_.woff2               18.99 kB
+dist/assets/jetbrains-mono-latin-400-normal-V6pRDFza.woff2       21.16 kB
+dist/assets/inter-cyrillic-ext-wght-normal-BOeWTOD4.woff2        25.96 kB
+dist/assets/jetbrains-mono-latin-400-normal-6-qcROiO.woff        27.49 kB
+dist/assets/inter-latin-wght-normal-Dx4kXJAl.woff2               48.25 kB
+dist/assets/inter-latin-ext-wght-normal-DO1Apj_S.woff2           85.06 kB
+dist/assets/index-D-dmqXbx.css                                  112.90 kB │ gzip:  27.18 kB
+dist/assets/index-Bfi7C-hq.js                                   703.73 kB │ gzip: 215.70 kB
+
+[plugin builtin:vite-reporter] 
+(!) Some chunks are larger than 500 kB after minification. Consider:
+- Using dynamic import() to code-split the application
+- Use build.rolldownOptions.output.codeSplitting to improve chunking: https://rolldown.rs/reference/OutputOptions.codeSplitting
+- Adjust chunk size limit for this warning via build.chunkSizeWarningLimit.
+✓ built in 753ms

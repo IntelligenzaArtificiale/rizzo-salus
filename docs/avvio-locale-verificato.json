@@ -1,0 +1,33 @@
+{
+  "data": "2026-11-16",
+  "ambiente": "Linux, installazione separata da snapshot dei soli sorgenti destinati a GitHub",
+  "verifiche": {
+    "installazione_pulita_composer_npm": true,
+    "build_frontend": true,
+    "profilo_calendar_automatico": true,
+    "accessi_demo_quattro_ruoli": true,
+    "nessuna_eccezione_js": true,
+    "riavvio_conserva_chiavi_e_pazienti": true,
+    "php_sintassi_file_avvio": true,
+    "shell_sintassi": true,
+    "regole_ui": true,
+    "suite_calendar": 50,
+    "suite_regressione": 107,
+    "browser": 22,
+    "lint_errori": 0,
+    "lint_warning": 59,
+    "source_scan": {
+      "file_in_stage": 593,
+      "percorsi_vietati": [],
+      "segreti_rilevati": []
+    },
+    "originale_sorgenti_invariati": 85,
+    "dati_privati_pubblicati": false,
+    "invii_esterni_eseguiti": false
+  },
+  "limiti": [
+    "Avvio nativo Windows non eseguito su questa macchina; disponibile launcher e guida WSL.",
+    "Vite segnala il bundle principale oltre 500 kB; nessun audit performance dichiarato.",
+    "Warning lint React/Fast Refresh/hooks e vendor preesistenti; zero errori."
+  ]
+}

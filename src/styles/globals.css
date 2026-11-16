@@ -1,0 +1,17 @@
+/*
+ * Ingresso degli stili. Ordine fisso:
+ * 1. fondazione Beautiful UI (token, @theme, keyframe) — file del vendor, non modificare
+ * 2. CSS specifici dei componenti Beautiful UI
+ * 3. tema.css — l'unico file da toccare per personalizzare un progetto
+ */
+@import "../app/beautifui/foundation.css";
+@import "../app/beautifui/records-table.css";
+@import "../app/beautifui/sidebar-nav.css";
+@import "./tema.css";
+
+@import "./app-controls.css";
+@import "./motion.css";
+@import "./aspetto.css";
+@import "./charts.css";
+
+@import "./clinic-calendar.css";
