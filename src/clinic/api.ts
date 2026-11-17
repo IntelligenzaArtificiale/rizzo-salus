@@ -193,3 +193,5 @@ export async function download(path: string, body: Data = {}) {
   a.click();
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
+
+export const downloadUrl = (path: string, params: Record<string, string>) => appConfig.apiBaseUrl + path + "?" + new URLSearchParams(params);

@@ -1,3 +1,4 @@
+import { TrainingPage } from "@/clinic/TrainingPage";
 // Frontend del gestionale con le tre superfici del boilerplate e API PHP reali.
 import {
   createHashRouter,
@@ -131,6 +132,7 @@ const router = createHashRouter(
       <Route path="/firma/:token" element={<PublicSignature />} />
       <Route path="/settimana/:token" element={<PublicWeekPage />} />
       <Route element={<Protected />}>
+        <Route path="/formazione" element={<TrainingPage />} />
         <Route path="/pacchetti" element={<ReviewExportsPage />} />
         <Route
           path="/relazioni"

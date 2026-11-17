@@ -33,7 +33,7 @@ export function CalendarWeek({
     { can } = useClinic(),
     ref = useRef<HTMLDivElement>(null);
   const [full, setFull] = useState(false);
-  useEffect(() => { const update = () => setFull(document.fullscreenElement === ref.current); document.addEventListener("fullscreenchange", update); return () => document.removeEventListener("fullscreenchange", update); }, []);
+  useEffect(() => { const update = () => setFull(!!document.fullscreenElement?.contains(ref.current)); document.addEventListener("fullscreenchange", update); return () => document.removeEventListener("fullscreenchange", update); }, []);
   const days = Array.from({ length: count }, (_, i) => addDays(week, i));
   const entries = appointments.filter((a) => a.tipo !== "nota");
   const cols = channels(entries.filter((a) => days.some((day) => a.start.startsWith(day))), catalog, group).filter((col: Data) => showEmpty || entries.some((a) => days.some((day) => a.start.startsWith(day)) && channelOf(a, catalog, group) === col.id));
@@ -50,7 +50,7 @@ export function CalendarWeek({
         <Button
           variant="secondary"
           size="sm"
-          onClick={() => { if (full) document.exitFullscreen(); else ref.current?.requestFullscreen?.().catch(() => {}); }}
+          onClick={() => { if (full) document.exitFullscreen(); else (ref.current?.closest(".agenda-workspace") || ref.current)?.requestFullscreen?.().catch(() => {}); }}
         >
           {full ? "Esci dallo schermo intero" : "A tutto schermo"}
         </Button>
@@ -68,17 +68,17 @@ export function CalendarWeek({
         <div
           className="clinic-calendar-grid"
           style={{
-            gridTemplateColumns: `48px repeat(${days.length * cols.length},minmax(${min}px,1fr))`,
-            minWidth: 48 + days.length * cols.length * min,
+            gridTemplateColumns: `64px repeat(${days.length * cols.length},minmax(${min}px,1fr))`,
+            minWidth: 64 + days.length * cols.length * min,
           }}
         >
           <div className="clinic-time-column">
-            <div className="clinic-day-heading" />
+            <div className="clinic-day-heading">Orario</div>
             {Array.from({ length: 26 }, (_, i) => i * 30 + 480).map((m) => (
               <span
                 key={m}
                 className="clinic-time"
-                style={{ top: 60 + (m - 480) * 1.6 }}
+                style={{ top: 84 + (m - 480) * 1.6 }}
               >
                 {String(Math.floor(m / 60)).padStart(2, "0")}:
                 {String(m % 60).padStart(2, "0")}
@@ -107,7 +107,7 @@ export function CalendarWeek({
                     Math.min(
                       1215,
                       480 +
-                        Math.round((e.clientY - box.top - 60) / 1.6 / 15) * 15,
+                        Math.round((e.clientY - box.top - 84) / 1.6 / 15) * 15,
                     ),
                   );
                   navigate(

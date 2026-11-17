@@ -15,10 +15,11 @@ use App\Store\Store;
  */
 final class Files
 {
-    private const MAX_BYTES = 15 * 1024 * 1024;
+    private const MAX_BYTES = 50 * 1024 * 1024;
     private const ALLOWED = [
         'application/pdf' => 'pdf', 'image/jpeg' => 'jpg', 'image/png' => 'png', 'application/xml' => 'xml', 'text/xml' => 'xml',
         'application/zip' => 'zip', 'text/csv' => 'csv', 'text/plain' => 'txt',
+        'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => 'docx',
     ];
 
     private string $root;
@@ -109,6 +110,7 @@ final class Files
             'image/jpeg' => str_starts_with($head, "\xFF\xD8\xFF"),
             'image/png' => str_starts_with($head, "\x89PNG"),
             'application/zip' => str_starts_with($head, 'PK'),
+            'application/vnd.openxmlformats-officedocument.wordprocessingml.document' => str_starts_with($head, 'PK'),
             'application/xml', 'text/xml' => str_contains(substr($bytes, 0, 200), '<'),
             default => !str_contains(substr($bytes, 0, 1024), "\0"),
         };

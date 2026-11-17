@@ -3,7 +3,7 @@ declare(strict_types=1);
 namespace App\Domain\Assistant;
 use App\Core\{ApiError, Clock};
 use App\Http\{Context, Request};
-use App\Http\Controllers\{AgendaController, PatientsController, ManagementController, BillingController, CatalogController};
+use App\Http\Controllers\{AgendaController, PatientsController, ManagementController, BillingController, CatalogController, BookingController};
 
 /** Adatta i campi della proposta ai controller reali, senza aggirarne le validazioni. */
 final class OperatorActions
@@ -32,12 +32,16 @@ final class OperatorActions
             case 'paziente_crea': case 'paziente_modifica':
                 if ($type==='paziente_modifica' && empty($d['paziente'])) throw new ApiError('riferimento_operatore_mancante',422,['campo'=>'paziente']);
                 $merge('paziente','patients'); $controller=PatientsController::class; $method='salva'; break;
-            case 'appuntamento_crea':
+            case 'attesa_aggiungi':
+                $reference('paziente','patients','patient_id'); $reference('professionista','professionals','professional_id'); $reference('prestazione','therapy_types','therapy_type_id');
+                $collection='waitlist'; $controller=BookingController::class; $method='attesaSalva'; break;
+            case 'prenotazione_crea': case 'appuntamento_crea':
                 $reference('paziente','patients','patient_id');
                 $reference('professionista','professionals','professional_id');
                 $reference('prestazione','therapy_types','therapy_type_id');
                 if (($d['tipo']??'')!=='nota' && !empty($d['therapy_type_id'])) {
                     $therapy=$this->c->svc->store->get('therapy_types',$d['therapy_type_id']);
+                    if ($type==='prenotazione_crea' && $therapy['categoria']!=='visita') throw new ApiError('solo_visite_mediche',422);
                     $kind=!empty($therapy['di_gruppo'])?'gruppo':($therapy['categoria']==='visita'?'visita':'terapia');
                     $accepted=[$kind,$therapy['categoria'],''];
                     if ($kind==='gruppo') $accepted[]='terapia';
@@ -178,6 +182,7 @@ final class OperatorActions
             'stock_items','stock_movements'=>'/magazzino',
             'staff_attendance','staff_adjustments','professionals'=>'/personale',
             'expenses'=>'/spese',
+            'waitlist'=>'/prenotazioni',
             default=>null,
         };
     }

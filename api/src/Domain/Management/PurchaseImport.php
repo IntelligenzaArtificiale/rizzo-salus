@@ -10,7 +10,7 @@ final class PurchaseImport
     public function __construct(private readonly Services $svc){}
     public function preview(array $b): array
     {
-        $bytes=base64_decode(V::str($b,'base64',true,22000000),true);if(!$bytes)throw new ApiError('file_non_valido',422);
+        $bytes=base64_decode(V::str($b,'base64',true,70000000),true);if(!$bytes)throw new ApiError('file_non_valido',422);
         $hash=hash('sha256',$bytes);foreach($this->svc->store->all('import_log',fn($r)=>($r['sha256']??null)===$hash&&$r['tipo']==='acquisto') as $r)return $r;
         $name=V::str($b,'nome_file',true,120);$pdf=str_ends_with(strtolower($name),'.pdf');$lines=[];$text='';
         if(!$pdf){

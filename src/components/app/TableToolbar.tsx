@@ -12,7 +12,7 @@ type Props = { query: string; onQuery: (q: string) => void; placeholder: string;
 export function TableToolbar({ query, onQuery, placeholder, filters, actions }: Props) {
   return (
     <div className="flex flex-wrap items-center gap-2">
-      <label className="flex h-9 min-w-0 flex-1 basis-56 items-center gap-2 rounded-control bg-field px-3 shadow-hairline focus-within:shadow-[0_0_0_1.5px_var(--accent)] sm:max-w-80">
+      <label className="flex h-11 min-w-0 flex-1 basis-56 items-center gap-2 rounded-control bg-field px-3 shadow-hairline focus-within:shadow-[0_0_0_1.5px_var(--accent)] w-full">
         <Search size={15} className="shrink-0 text-ink-3" aria-hidden />
         <input type="search" value={query} onChange={(e) => onQuery(e.target.value)} placeholder={placeholder} aria-label={placeholder}
           className="min-w-0 flex-1 bg-transparent text-[14px] text-ink outline-none placeholder:text-ink-3 [&::-webkit-search-cancel-button]:hidden" />

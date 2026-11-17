@@ -27,7 +27,6 @@
       "used_by": [
         "src/clinic/EpisodeDiary.tsx",
         "src/clinic/CatalogSettings.tsx",
-        "src/clinic/AgendaPage.tsx",
         "src/clinic/ParameterFields.tsx",
         "src/clinic/PatientForm.tsx"
       ]
@@ -45,6 +44,7 @@
         "src/clinic/InvoiceFiscalActions.tsx",
         "src/clinic/AgendaPages.tsx",
         "src/clinic/PatientForm.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/lib/forms/useUnsavedChanges.tsx",
         "src/pages/profile/ProfileSettings.tsx",
         "src/pages/requests/RequestDetailPage.tsx",
@@ -140,6 +140,7 @@
         "src/clinic/AgendaPage.tsx",
         "src/clinic/BillingPages.tsx",
         "src/clinic/StatsPage.tsx",
+        "src/clinic/AgendaControls.tsx",
         "src/clinic/MaterialsPages.tsx",
         "src/clinic/PatientCare.tsx",
         "src/clinic/PatientsPage.tsx",
@@ -203,6 +204,7 @@
         "src/clinic/ImportPage.tsx",
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/MaterialsPages.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/PatientsPage.tsx",
         "src/pages/profile/ProfilePage.tsx",
@@ -249,6 +251,7 @@
         "src/clinic/common.tsx",
         "src/clinic/MaterialsPages.tsx",
         "src/clinic/PatientCare.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/PatientsPage.tsx",
         "src/pages/admin/StatsPage.tsx",
         "src/pages/admin/AuditPage.tsx",
@@ -279,11 +282,10 @@
         "PageTabs"
       ],
       "used_by": [
-        "src/clinic/SettingsPage.tsx",
         "src/clinic/PatientDetail.tsx",
         "src/clinic/ProfilePage.tsx",
         "src/clinic/CommunicationsPages.tsx",
-        "src/clinic/AgendaPage.tsx",
+        "src/clinic/AgendaControls.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/PatientCare.tsx",
         "src/pages/profile/ProfilePage.tsx",
@@ -306,6 +308,7 @@
         "Pagination"
       ],
       "used_by": [
+        "src/clinic/PatientDirectory.tsx",
         "src/components/app/RowList.tsx",
         "src/pages/blog/BlogPublicPages.tsx"
       ]
@@ -354,7 +357,6 @@
         "src/clinic/ImportPage.tsx",
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
-        "src/clinic/PatientsPage.tsx",
         "src/clinic/AgendaNotes.tsx",
         "src/pages/admin/AuditPage.tsx",
         "src/pages/notifications/NotificationsPage.tsx",
@@ -456,6 +458,7 @@
       "used_by": [
         "src/clinic/CommunicationsPages.tsx",
         "src/clinic/BillingPages.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/PatientsPage.tsx",
         "src/pages/dev/components/sections/tables.tsx",
         "src/pages/dev/components/sections/tableDemos.tsx"
@@ -516,6 +519,7 @@
         "src/clinic/AssistantPage.tsx",
         "src/clinic/PublicVisitConfirmation.tsx",
         "src/clinic/PlanningPage.tsx",
+        "src/clinic/AgendaControls.tsx",
         "src/clinic/AutomationSettings.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/ExpensesPage.tsx",
@@ -530,9 +534,11 @@
         "src/clinic/CalendarSettings.tsx",
         "src/clinic/MaterialsPages.tsx",
         "src/clinic/PatientCare.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/IntegrationStatus.tsx",
         "src/clinic/AgendaNotes.tsx",
+        "src/clinic/ClinicFileField.tsx",
         "src/components/form/FormActions.tsx",
         "src/components/form/PrimaryButton.tsx",
         "src/components/primitives/AgentScreen.tsx",
@@ -628,6 +634,7 @@
       ],
       "used_by": [
         "src/clinic/PatientDetail.tsx",
+        "src/clinic/PatientDirectory.tsx",
         "src/clinic/PublicPortal.tsx",
         "src/clinic/StockPage.tsx",
         "src/clinic/GroupParticipants.tsx",
@@ -904,13 +911,13 @@
       "used_by": [
         "src/clinic/DocumentTemplates.tsx",
         "src/clinic/PublicSignature.tsx",
-        "src/clinic/AgendaPage.tsx",
         "src/clinic/ParameterFields.tsx",
         "src/clinic/EpisodeForm.tsx",
         "src/clinic/PatientDocuments.tsx",
         "src/clinic/CopySelection.tsx",
         "src/clinic/SettingsPeople.tsx",
         "src/clinic/InvoiceForms.tsx",
+        "src/clinic/AgendaControls.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/ExpensesPage.tsx",
         "src/clinic/BookingManagement.tsx",
@@ -919,6 +926,7 @@
         "src/clinic/ImportPage.tsx",
         "src/clinic/ProposalSelection.tsx",
         "src/clinic/CalendarSettings.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/TherapyResources.tsx",
         "src/components/wizard/ConsentStep.tsx",
         "src/pages/auth/LoginPage.tsx",
@@ -1041,6 +1049,7 @@
         "src/clinic/BillingPages.tsx",
         "src/clinic/SettingsPeople.tsx",
         "src/clinic/InvoiceForms.tsx",
+        "src/clinic/AgendaControls.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/ExpensesPage.tsx",
         "src/clinic/PurchaseImport.tsx",
@@ -1098,6 +1107,7 @@
         "src/clinic/PatientForm.tsx",
         "src/clinic/PurchaseImport.tsx",
         "src/clinic/CompensationsPage.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/AgendaNotes.tsx",
         "src/pages/requests/RequestFormPage.tsx",
         "src/pages/blog/BlogEditorPage.tsx",
@@ -1142,6 +1152,7 @@
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/TherapyConsumption.tsx",
         "src/clinic/ProposalSelection.tsx",
+        "src/clinic/TrainingPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/AgendaNotes.tsx",
         "src/components/form/PasswordField.tsx",
@@ -1625,6 +1636,7 @@
     "/portale",
     "/firma/:token",
     "/settimana/:token",
+    "/formazione",
     "/pacchetti",
     "/relazioni",
     "/importazione",
@@ -2266,6 +2278,18 @@
     {
       "endpoint": "/gestione/stock",
       "file": "src/clinic/TherapyConsumption.tsx"
+    },
+    {
+      "endpoint": "/formazione/elenco",
+      "file": "src/clinic/TrainingPage.tsx"
+    },
+    {
+      "endpoint": "/formazione/elimina",
+      "file": "src/clinic/TrainingPage.tsx"
+    },
+    {
+      "endpoint": "/formazione/salva",
+      "file": "src/clinic/TrainingPage.tsx"
     },
     {
       "endpoint": "/pazienti/cerca",

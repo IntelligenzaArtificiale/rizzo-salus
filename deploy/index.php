@@ -2,6 +2,7 @@
 declare(strict_types=1);
 /** Ingresso dell'hosting: asset pubblici separati da codice, archivio e segreti. */
 ini_set('display_errors', '0');
+ini_set('memory_limit', '512M');
 ini_set('log_errors', '1');
 $private = __DIR__ . '/private';
 putenv('APP_ENV_FILE=' . $private . '/runtime/.env');

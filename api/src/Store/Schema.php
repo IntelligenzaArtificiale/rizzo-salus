@@ -47,6 +47,7 @@ final class Schema
         'tokens' => ['prefix' => 'tok', 'part' => null, 'enc' => [], 'version' => 1],
         'ai_usage' => ['prefix' => 'aiu', 'part' => ['field' => 'at', 'by' => 'month'], 'enc' => [], 'version' => 1],
         'operator_plans' => ['prefix' => 'opa', 'part' => null, 'enc' => ['azioni','anteprima','risultati'], 'version' => 1],
+        'training_documents' => ['prefix' => 'frm', 'part' => null, 'enc' => ['testo'], 'version' => 1],
         'notifications' => ['prefix' => 'not', 'part' => null, 'enc' => [], 'version' => 1],
         'import_log' => ['prefix' => 'imp', 'part' => null, 'enc' => ['righe','estratto'], 'version' => 1],
         'integration_secrets' => ['prefix' => 'sec', 'part' => null, 'enc' => ['valori'], 'version' => 1],

@@ -24,7 +24,7 @@ export function ImportPage() {
           nome: "Nome *",
           cognome: "Cognome *",
           codice_fiscale: "Codice fiscale",
-          data_nascita: "Data nascita (anno-mese-giorno)",
+          data_nascita: "Data di nascita",
           telefono: "Telefono",
           email: "Email",
           indirizzo: "Indirizzo",
@@ -35,7 +35,7 @@ export function ImportPage() {
         }
       : {
           numero: "Numero documento *",
-          date: "Data documento (anno-mese-giorno) *",
+          date: "Data documento *",
           codice_fiscale: "Codice fiscale paziente già presente *",
           totale: "Totale in euro *",
           data_pagamento: "Data pagamento (facoltativa)",
@@ -45,7 +45,7 @@ export function ImportPage() {
     <Page>
       <PageHeader
         title="Importa dati storici"
-        subtitle="CSV o primo foglio Excel. Anteprima e controllo duplicati prima di scrivere."
+        subtitle="Porta qui i tuoi archivi e controlla l’anteprima prima di importarli."
       />
       <Section title="Sorgente">
         <SelectField
@@ -80,11 +80,7 @@ export function ImportPage() {
         >
           Leggi anteprima
         </Button>
-        <p className="text-sm text-ink-2">
-          Le date devono essere esplicite nel formato anno-mese-giorno, anche in
-          Excel. Le formule non sono accettate. Le fatture storiche sono
-          archiviate senza nuove trasmissioni fiscali.
-        </p>
+
       </Section>
       {table && (
         <Section title="Associa le colonne">

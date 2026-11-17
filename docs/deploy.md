@@ -79,3 +79,11 @@ Prima della pubblicazione sono passati 107 controlli di dominio, 50 Calendar, 10
 Pubblicata e verificata in HTTPS la revisione `7d49179`, esclusivamente nella cartella autorizzata. Superate 39 verifiche online: quattro accessi/ricaricamenti/logout, cookie sicuri con Path dedicato, API agenda, rifiuto del privato, CSRF, permessi, download CSV, risposta reale OpenAI coerente con i conteggi, agenda mobile senza overflow. Nessuna eccezione JavaScript rilevata. Ispezionate le schermate agenda desktop/mobile e assistente. [Report](deploy-verificato-2026-11-16.json).
 
 Il dataset è sintetico e indipendente da quello locale. La credenziale AI è ricifrata nel runtime remoto; la configurazione privata e i dati non sono nel repository. SMS/email e servizi fiscali non sono stati attivati. Il backup locale prima del caricamento è `.deploy/backup/20261116-191238`; il manifesto iniziale della cartella vuota resta nel dossier privato.
+
+## Rilascio del 17 novembre 2026
+
+Pacchetto `.deploy/release-formazione-20261117-finale`, 873 file, pubblicato con la procedura esistente nella sola cartella autorizzata. Backup recuperabile `.deploy/backup/20261117-132802`; runtime remoto, chiave e dati conservati. Prima del rilascio creato anche backup applicativo remoto. Ripristino del solo codice: `python3 scripts/upload-hosting.py --rollback .deploy/backup/20261117-132802`.
+
+25 verifiche HTTPS: 10 pazienti e 59 appuntamenti precedenti conservati, orari/stati invariati, nuovi gruppi aggiuntivi e procedura di esempio, viewport, menu, protezione del privato e cookie, estrazione PDF via CDN, formazione interrogata con AI reale e modifica del solo paziente dimostrativo confermata nell’interfaccia. Il recapito di prova è stato poi ripristinato. Provato upload effettivo di 50 MiB; rimossi soltanto il documento temporaneo e i suoi due file privati identificati. JS/CSS remoti corrispondono via SHA-256 alla build. [Report](verifica-formazione-2026-11-17.json).
+
+La configurazione `.user.ini` è limitata al progetto, con richieste fino a 80M, upload 50M e memoria 512M. Nessuna configurazione globale del server o altro sito modificata. Le librerie CDN di Formazione sono esterne e versionate; al trasferimento serve accesso HTTPS a cdnjs.cloudflare.com e cdn.jsdelivr.net. Rotte, download e asset mantengono la base centralizzata dell’applicazione.

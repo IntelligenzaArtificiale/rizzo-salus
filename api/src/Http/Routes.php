@@ -46,7 +46,13 @@ final class Routes
         $r->add('/audit/elenco', [AuditController::class, 'elenco'], 'audit.vedi');
         $r->add('/audit/verifica', [AuditController::class, 'verifica'], 'audit.vedi');
 
+        $r->add("/demo/prepara-presentazione", [\App\Http\Controllers\DemoPresentationController::class,"prepare"], "impostazioni.gestisci");
+
         // Struttura: professionisti, terapie, risorse, gruppi
+        $r->add('/formazione/elenco', [\App\Http\Controllers\TrainingController::class,'list']);
+        $r->add('/formazione/salva', [\App\Http\Controllers\TrainingController::class,'save']);
+        $r->add('/formazione/elimina', [\App\Http\Controllers\TrainingController::class,'remove']);
+        $r->add('/formazione/scarica', [\App\Http\Controllers\TrainingController::class,'download'],null,false,'GET');
         $r->add('/catalogo/elenco', [CatalogController::class, 'elenco']);
         $r->add('/catalogo/professionista/salva', [CatalogController::class, 'professionistaSalva'], 'impostazioni.gestisci');
         $r->add('/catalogo/terapia/salva', [CatalogController::class, 'terapiaSalva'], 'impostazioni.gestisci');

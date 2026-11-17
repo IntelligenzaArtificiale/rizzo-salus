@@ -10,7 +10,7 @@ final class Migration
     public function __construct(private readonly Services $svc){}
     public function preview(array $b): array
     {
-        $bytes=base64_decode(V::str($b,'base64',true,12000000),true);if(!$bytes)throw new ApiError('file_non_valido',422);
+        $bytes=base64_decode(V::str($b,'base64',true,70000000),true);if(!$bytes)throw new ApiError('file_non_valido',422);
         $data=TabularFile::read($bytes,V::str($b,'nome_file',true,120));
         return $data+['sha256'=>hash('sha256',$bytes)];
     }

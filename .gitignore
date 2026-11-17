@@ -66,3 +66,6 @@ SHA256SUMS.txt
 /docs/redesign/verifica/
 /docs/redesign/revisione-ux/
 /docs/verifica/
+
+# Accessi locali di deploy
+/.deploy/

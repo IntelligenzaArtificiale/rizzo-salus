@@ -9,6 +9,8 @@ final class OperatorDefinitions
 {
     public const ACTIONS = [
         'appuntamento_crea' => ['Crea appuntamento', ['agenda.modifica'], 'paziente professionista prestazione start durata_min tipo titolo nota'],
+        'prenotazione_crea' => ['Prenota visita medica', ['agenda.modifica'], 'paziente professionista prestazione start durata_min nota'],
+        'attesa_aggiungi' => ['Aggiungi alla lista di attesa', ['prenotazioni.liste_attesa'], 'paziente professionista prestazione nota'],
         'appuntamento_sposta' => ['Sposta appuntamento', ['agenda.modifica'], 'appuntamento start professionista'],
         'appuntamento_stato' => ['Aggiorna esito appuntamento', ['agenda.segna_eseguita','agenda.modifica'], 'appuntamento stato paziente'],
         'appuntamento_annulla' => ['Annulla appuntamento', ['agenda.modifica'], 'appuntamento paziente'],
@@ -66,6 +68,7 @@ final class OperatorDefinitions
             . 'presenza_salva tipo=presenza/ferie/malattia/permesso/assenza; fattura_incasso metodo=contanti/bonifico/carta/bancomat/assegno. '
             . 'Magazzino: quantita positiva carico, negativa scarico; nuovo articolo richiede nome e unita, movimento richiede motivo. '
             . 'Per modifica identifica prima il record: paziente, professionista, articolo, spesa, presenza o fornitore. '
+            . 'Per una prenotazione interna di visita usa prenotazione_crea; per una lista di attesa usa attesa_aggiungi. Non generare OTP né prenotazioni pubbliche. '
             . 'Per appuntamento_crea ometti tipo: lo ricava il gestionale dalla prestazione; usa tipo=nota soltanto per appunti, con titolo e start. '
             . 'Non modificare diagnosi, consensi, password o permessi. Non inviare messaggi. Massimo 8 azioni.';
         $object = static fn ($properties) => ['type' => 'object', 'properties' => $properties, 'required' => array_keys($properties), 'additionalProperties' => false];

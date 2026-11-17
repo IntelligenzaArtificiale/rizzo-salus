@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+ini_set('memory_limit', '512M');
 
 /** Ingresso dell'API: tutte le richieste a /api/... arrivano qui (vedi .htaccess). */
 require __DIR__ . '/vendor/autoload.php';

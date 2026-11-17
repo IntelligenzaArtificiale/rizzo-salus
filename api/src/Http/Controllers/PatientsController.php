@@ -13,7 +13,8 @@ final class PatientsController
     {
         $c->need('pazienti.anagrafica', 'pazienti.essenziali', 'pazienti.tutti');
         $q = V::str($c->body(), 'q', false, 80) ?? '';
-        return ['risultati' => $c->svc->patients()->search($q, $c, min(50, max(1, V::int($c->body(), 'limite') ?? 20)))];
+        $rows=$c->svc->patients()->search($q, $c, min(50, max(1, V::int($c->body(), 'limite') ?? 20)));
+        return ['risultati' => \App\Domain\Patients\PatientSummary::enrich($c,$rows)];
     }
 
     public function dettaglio(Context $c): array

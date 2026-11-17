@@ -16,6 +16,7 @@ export function category(a: Data, catalog: Data) {
   return t?.famiglia === "TSF" || a.impegna_operatore === false ? "TSF" : "TS";
 }
 export function channels(items: Data[], catalog: Data, group: string) {
+  if (group === "giorno") return [{ id: "giorno", label: "Appuntamenti", short: "Agenda" }];
   if (group === "professionista")
     return catalog.professionisti
       .filter(
@@ -49,6 +50,7 @@ export function channels(items: Data[], catalog: Data, group: string) {
     }));
 }
 export function channelOf(a: Data, catalog: Data, group: string) {
+  if (group === "giorno") return "giorno";
   return group === "professionista"
     ? a.professional_id
     : group === "prestazione"

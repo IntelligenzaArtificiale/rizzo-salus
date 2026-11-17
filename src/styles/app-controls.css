@@ -27,3 +27,12 @@
 /* SidebarNav: le righe (208 px fissi nel vendor) si restringono se una barra di scorrimento
    classica toglie spazio, così il testo si tronca invece di uscire in orizzontale. */
 .sidebar-row { max-width: calc(100% - 1rem); }
+
+/* Select native coerenti in entrambi i temi, incluse le opzioni aperte dal browser. */
+:root { color-scheme: light; }
+:root.dark { color-scheme: dark; }
+select option, select optgroup { background-color: var(--surface); color: var(--ink); }
+select option:disabled { color: var(--ink-2); }
+.clinic-upload { display:flex; align-items:center; gap:14px; padding:20px; border:1px dashed var(--line-strong); border-radius:var(--radius-card,12px); background:var(--inset); }
+.clinic-upload-over { border-color:var(--accent); background:var(--hover); }
+@media(max-width:540px) { .clinic-upload { flex-wrap:wrap; padding:16px; } }

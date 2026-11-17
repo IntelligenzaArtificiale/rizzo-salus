@@ -64,7 +64,7 @@ export function AssistantPage() {
     <Page>
       <PageHeader
         title="AI operatore"
-        subtitle="Agenda, pazienti, incassi, personale e magazzino. Chiedi, controlla e conferma."
+        subtitle="Operazioni, informazioni e procedure del centro. Chiedi, controlla e conferma."
         actions={
           messages.length ? (
             <Button

@@ -53,7 +53,7 @@ def prepare(url, destination, with_ai):
             shutil.copytree(source, target)
         else:
             shutil.copy2(source, target)
-    for name in ['index.php', '.htaccess']:
+    for name in ['index.php', '.htaccess', '.user.ini']:
         shutil.copy2(ROOT / 'deploy' / name, dest / name)
     runtime = private / 'runtime'
     runtime.mkdir(mode=0o700)

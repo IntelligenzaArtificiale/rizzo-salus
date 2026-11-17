@@ -13,6 +13,7 @@ export function clinicNavigation(
   can: (p: string) => boolean,
 ): SidebarNavItem[] {
   const admin = [
+    { key: "/formazione", label: "Formazione" },
     ...(can("fatture.gestisci") || can("personale.presenze")
       ? [{ key: "/pacchetti", label: "Documenti consulenti" }]
       : []),

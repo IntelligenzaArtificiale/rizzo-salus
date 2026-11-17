@@ -10,13 +10,13 @@ final class TabularFile
 {
     public static function xml(string $bytes): DOMDocument
     {
-        if(strlen($bytes)>8*1024*1024||stripos($bytes,'<!DOCTYPE')!==false||stripos($bytes,'<!ENTITY')!==false)throw new ApiError('documento_non_sicuro',422);
+        if(strlen($bytes)>50*1024*1024||stripos($bytes,'<!DOCTYPE')!==false||stripos($bytes,'<!ENTITY')!==false)throw new ApiError('documento_non_sicuro',422);
         $doc=new DOMDocument();$old=libxml_use_internal_errors(true);$ok=$doc->loadXML($bytes,LIBXML_NONET|LIBXML_NOBLANKS);libxml_clear_errors();libxml_use_internal_errors($old);
         if(!$ok)throw new ApiError('documento_non_valido',422);return $doc;
     }
     public static function read(string $bytes,string $name): array
     {
-        if(strlen($bytes)>8*1024*1024)throw new ApiError('file_troppo_grande',413);
+        if(strlen($bytes)>50*1024*1024)throw new ApiError('file_troppo_grande',413);
         if(str_ends_with(strtolower($name),'.xlsx'))$rows=self::xlsx($bytes);else{
             if(!mb_check_encoding($bytes,'UTF-8'))$bytes=mb_convert_encoding($bytes,'UTF-8','Windows-1252');
             $bytes=preg_replace('/^\xEF\xBB\xBF/','',$bytes);$line=strtok($bytes,"\n");$sep=substr_count($line?:'',';')>=substr_count($line?:'',',')?';':',';
@@ -34,7 +34,7 @@ final class TabularFile
         $tmp=tempnam(sys_get_temp_dir(),'rizxlsx');file_put_contents($tmp,$bytes);$zip=new ZipArchive();$opened=false;
         try{
             $opened=$zip->open($tmp)===true;if(!$opened||$zip->numFiles>1000)throw new ApiError('foglio_non_valido',422);
-            $total=0;for($i=0;$i<$zip->numFiles;$i++){ $st=$zip->statIndex($i);$total+=$st['size'];if($total>25*1024*1024)throw new ApiError('file_troppo_grande',413); }
+            $total=0;for($i=0;$i<$zip->numFiles;$i++){ $st=$zip->statIndex($i);$total+=$st['size'];if($total>100*1024*1024)throw new ApiError('file_troppo_grande',413); }
             $dateStyles=[];$styles=$zip->getFromName('xl/styles.xml');
             if($styles!==false){$st=self::xml($styles);$sx=new DOMXPath($st);$custom=[];foreach($sx->query('//*[local-name()="numFmt"]') as $f)$custom[(int)$f->getAttribute('numFmtId')]=$f->getAttribute('formatCode');
                 foreach($sx->query('//*[local-name()="cellXfs"]/*[local-name()="xf"]') as $i=>$xf){$format=(int)$xf->getAttribute('numFmtId');$pattern=preg_replace('/"[^"]*"|\\\\.|\[[^\]]*\]/','',$custom[$format]??'');$dateStyles[$i]=in_array($format,array_merge(range(14,22),range(27,36),range(50,58)),true)||preg_match('/[dy]/i',$pattern);}}

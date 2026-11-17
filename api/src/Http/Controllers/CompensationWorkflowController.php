@@ -29,7 +29,7 @@ final class CompensationWorkflowController
     {
         $c->need('compensi.vedi_tutti');$r=$this->load($c);$b=$c->body();
         if($r['stato']!=='approvato')throw new ApiError('compenso_non_approvato',409);
-        $r['ricevuta']=$c->svc->files()->put(base64_decode(V::str($b,'base64',true,22000000),true)?:'',V::str($b,'nome_file',true,120),V::str($b,'mime',true,80),'contabile_compenso','compensations',$r['id']);
+        $r['ricevuta']=$c->svc->files()->put(base64_decode(V::str($b,'base64',true,70000000),true)?:'',V::str($b,'nome_file',true,120),V::str($b,'mime',true,80),'contabile_compenso','compensations',$r['id']);
         $r=$c->svc->store->put('compensations',$r,$r['revision']);$c->svc->audit()->log('compenso.ricevuta','compensations',$r['id']);return $r;
     }
     public function scarica(Context $c): Response

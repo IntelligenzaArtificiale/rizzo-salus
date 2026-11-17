@@ -9,7 +9,7 @@ import { useState } from "react";
 import { email, cap, partitaIva, codiceFiscale } from "@/lib/validation";
 import { useSearchParams } from "react-router-dom";
 import { PageHeader } from "@/components/app/PageHeader";
-import { PageTabs } from "@/components/app/PageTabs";
+
 import { SettingsSection, SaveBar } from "@/components/app/SettingsSection";
 import { TextField } from "@/components/form/TextField";
 import { SelectField } from "@/components/form/SelectField";
@@ -44,13 +44,10 @@ export function SettingsPage() {
   const load = useLoad(() => api("/impostazioni/leggi"));
   return (
     <LoadState load={load} wide>
-      <PageHeader title="Impostazioni" />
-      <PageTabs
-        label="Impostazioni"
-        options={Object.keys(sections)}
-        value={tab}
-        onChange={(v) => setParams({ scheda: v })}
-      />
+      <div className="flex flex-wrap items-center gap-4">
+        <SelectField compact className="w-full sm:w-64" label="Sezione impostazioni" value={tab} onChange={v => setParams({ scheda: v })} options={Object.keys(sections).map(value => ({ value, label: value }))} />
+        <div className="min-w-0 flex-1"><PageHeader title="Impostazioni" /></div>
+      </div>
       {load.data &&
         (tab === "Calendar" ? (
           <CalendarSettings

@@ -4,11 +4,11 @@ import { Plus } from "lucide-react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { TableToolbar } from "@/components/app/TableToolbar";
 import { PrimaryAction } from "@/components/app/IconButton";
-import { RowList } from "@/components/app/RowList";
+import { PatientDirectory } from "./PatientDirectory";
 import { EmptyState } from "@/components/app/PageState";
 import { api, type Data } from "./api";
 import { useClinic } from "./ClinicContext";
-import { LoadState, useLoad, name, date } from "./common";
+import { LoadState, useLoad } from "./common";
 export function PatientsPage() {
   const [q, setQ] = useState(""),
     [search, setSearch] = useState("");
@@ -23,7 +23,7 @@ export function PatientsPage() {
   );
   const rows: Data[] = load.data?.risultati || [];
   return (
-    <LoadState load={{ ...load, loading: load.loading && !load.data }}>
+    <LoadState load={{ ...load, loading: load.loading && !load.data }} wide>
       <PageHeader
         title="Pazienti"
         subtitle="Contatti, percorsi di cura e appuntamenti."
@@ -43,24 +43,7 @@ export function PatientsPage() {
         placeholder="Cerca nome, telefono o codice fiscale"
       />
       {rows.length ? (
-        <RowList
-          resetKey={search}
-          rows={rows.map((p) => ({
-            key: p.id,
-            to: "/pazienti/" + p.id,
-            title: name(p),
-            meta:
-              [
-                p.telefono
-                  ?.replace(/^\+39/, "")
-                  .replace(/(\d{3})(\d{3})(\d+)/, "$1 $2 $3"),
-                p.codice_fiscale ? `CF ${p.codice_fiscale}` : null,
-              ]
-                .filter(Boolean)
-                .join(" · ") || "Nessun recapito indicato",
-            aside: p.data_nascita ? date(p.data_nascita) : undefined,
-          }))}
-        />
+        <PatientDirectory rows={rows} resetKey={search} />
       ) : (
         <EmptyState
           title={q ? "Nessun paziente trovato" : "Non ci sono ancora pazienti"}

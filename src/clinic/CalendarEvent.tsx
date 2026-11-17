@@ -42,10 +42,10 @@ export function CalendarEvent({
       title={`${names} · ${pro?.nome || ""} ${pro?.cognome || ""} · ${a.start.slice(11, 16)}–${a.end.slice(11, 16)} · ${t?.nome || ""} · ${marker} ${last}`}
       style={
         {
-          top: 60 + (minutes(a.start) - 480) * 1.6,
+          top: 84 + (minutes(a.start) - 480) * 1.6,
           height: Math.max(22, (minutes(a.end) - minutes(a.start)) * 1.6 - 2),
-          left: `calc(${(lane * 100) / of}% + 2px)`,
-          width: `calc(${100 / of}% - 4px)`,
+          left: `calc(${(lane * 100) / of}% + 6px)`,
+          width: `calc(${100 / of}% - 12px)`,
           "--event-color": eventColor(a, catalog, colors),
         } as CSSProperties
       }

@@ -81,3 +81,7 @@ Adeguato il minimo a PHP 8.2 con versioni delle dipendenze immutate, dopo 107 re
 - [x] 43 controlli operatore, 107 dominio, 50 Calendar, 10 contatori, 23 URL; 148 sintassi PHP. 83 verifiche browser dedicate, comprese chiamate OpenAI reali e scritture confermate in QA isolata. Build/lint/regole UI passate, 59 warning lint e bundle >500 kB documentati.
 
 Dati e server originali preservati; nessun reset della copia in uso o del sito pubblico. [Funzioni e limiti](operatore-ui-2026-11-17.md), [report](operatore-verifica-2026-11-17.json). La revisione corrente è locale su 8081; il rilascio remoto del 16 novembre resta invariato.
+
+## 17 novembre — agenda, Formazione e pubblicazione
+
+Completata la revisione richiesta di agenda a tutta altezza con pannello sovrapposto e vista compatta, directory pazienti, ricerche, select, upload e impostazioni. Aggiunta Formazione con estrazione browser PDF/DOCX/TXT, documenti per ruolo e contesto AI con fonte. Operatore esteso a prenotazioni interne e attese; letture amministrative per ruolo. Due gruppi dimostrativi e una procedura aggiunti senza reset. Collaudo locale e remoto completato, compreso allegato HTTP da 50 MiB e operazione AI confermata online. Dati precedenti conservati. [Guida e verifiche](ui-formazione-2026-11-17.md).
