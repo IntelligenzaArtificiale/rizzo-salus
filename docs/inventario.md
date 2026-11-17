@@ -7,6 +7,7 @@ Generato da `python3 scripts/catalogue.py`. Non sostituisce la lettura dei tipi 
 | File | Livello | Esportazioni | Usato da |
 |---|---|---|---|
 | [app/ActionMenu.tsx](../src/components/app/ActionMenu.tsx) | app | MenuAction, ActionMenu | `src/clinic/AppointmentList.tsx`, `src/pages/assistant/useChatHistory.tsx`, `src/pages/dev/components/sections/cards.tsx`, `src/pages/dev/components/sections/assistant.tsx`, `src/pages/admin/settings/BackupTab.tsx`, `src/pages/admin/settings/AutomationsTab.tsx` |
+| [app/Breadcrumbs.tsx](../src/components/app/Breadcrumbs.tsx) | app | Crumb, BREADCRUMB_EVENT, Breadcrumbs | `src/layouts/AppLayout.tsx` |
 | [app/CollapsiblePanel.tsx](../src/components/app/CollapsiblePanel.tsx) | app | CollapsiblePanel | `src/clinic/EpisodeDiary.tsx`, `src/clinic/CatalogSettings.tsx`, `src/clinic/ParameterFields.tsx`, `src/clinic/PatientForm.tsx` |
 | [app/ConfirmDialog.tsx](../src/components/app/ConfirmDialog.tsx) | app | ConfirmDialog | `src/clinic/MoveSuggestions.tsx`, `src/clinic/AppointmentForm.tsx`, `src/clinic/InvoiceFiscalActions.tsx`, `src/clinic/AgendaPages.tsx`, `src/clinic/PatientForm.tsx`, `src/clinic/TrainingPage.tsx`, `src/lib/forms/useUnsavedChanges.tsx`, `src/pages/profile/ProfileSettings.tsx`, `src/pages/requests/RequestDetailPage.tsx`, `src/pages/assistant/useChatHistory.tsx`, `src/pages/blog/BlogEditorPage.tsx`, `src/pages/users/UserDetailPage.tsx`, `src/pages/dev/components/sections/feedback.tsx`, `src/pages/dev/components/sections/assistant.tsx`, `src/pages/admin/settings/BackupTab.tsx`, `src/pages/admin/settings/SecurityTab.tsx` |
 | [app/EntityCard.tsx](../src/components/app/EntityCard.tsx) | app | EntityCardProps, EntityCard, CardGrid | `src/clinic/OverviewPage.tsx`, `src/clinic/MaterialsPages.tsx`, `src/pages/dev/components/sections/cards.tsx`, `src/pages/admin/settings/AppearanceTab.tsx` |
@@ -217,6 +218,7 @@ Percorsi relativi alla base configurata; payload e risultati sono tipizzati nei 
 | POST `/documenti/modelli` | [src/clinic/DocumentTemplates.tsx](../src/clinic/DocumentTemplates.tsx) |
 | POST `/documenti/modello-salva` | [src/clinic/DocumentTemplates.tsx](../src/clinic/DocumentTemplates.tsx) |
 | POST `/percorsi/nota-salva` | [src/clinic/EpisodeDiary.tsx](../src/clinic/EpisodeDiary.tsx) |
+| POST `/pazienti/dettaglio` | [src/clinic/EpisodeForm.tsx](../src/clinic/EpisodeForm.tsx) |
 | POST `/percorsi/dettaglio` | [src/clinic/EpisodeForm.tsx](../src/clinic/EpisodeForm.tsx) |
 | POST `/percorsi/salva` | [src/clinic/EpisodeForm.tsx](../src/clinic/EpisodeForm.tsx) |
 | POST `/gestione/allegato` | [src/clinic/ExpensesPage.tsx](../src/clinic/ExpensesPage.tsx) |

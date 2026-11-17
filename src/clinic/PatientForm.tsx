@@ -124,6 +124,7 @@ function PatientForm({ p }: { p: Data }) {
   return (
     <>
       <PageHeader
+        breadcrumbs={[{ label: "Pazienti", to: "/pazienti" }, ...(p.id ? [{ label: name(p), to: "/pazienti/" + p.id }] : []), { label: p.id ? "Modifica paziente" : "Nuovo paziente" }]}
         title={p.id ? "Modifica paziente" : "Nuovo paziente"}
         subtitle={p.id ? name(p) : undefined}
         back={{

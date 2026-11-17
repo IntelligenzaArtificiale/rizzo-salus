@@ -18,6 +18,19 @@
       ]
     },
     {
+      "path": "src/components/app/Breadcrumbs.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "Crumb",
+        "BREADCRUMB_EVENT",
+        "Breadcrumbs"
+      ],
+      "used_by": [
+        "src/layouts/AppLayout.tsx"
+      ]
+    },
+    {
       "path": "src/components/app/CollapsiblePanel.tsx",
       "layer": "app",
       "vendor": false,
@@ -1942,6 +1955,10 @@
     {
       "endpoint": "/percorsi/nota-salva",
       "file": "src/clinic/EpisodeDiary.tsx"
+    },
+    {
+      "endpoint": "/pazienti/dettaglio",
+      "file": "src/clinic/EpisodeForm.tsx"
     },
     {
       "endpoint": "/percorsi/dettaglio",

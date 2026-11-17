@@ -1,3 +1,4 @@
+import { Breadcrumbs } from "@/components/app/Breadcrumbs";
 /*
  * Cornice dell'area riservata, come l'esempio chat di Beautiful UI: Sidebar Nav sul fondo,
  * contenuto su un foglio bianco con bordo sottile. Su mobile la sidebar diventa un pannello
@@ -23,7 +24,6 @@ import {
   LogOut,
   Map,
   ListChecks,
-  ChevronRight,
 } from "lucide-react";
 import { usePlatform } from "@/lib/platform/PlatformContext";
 import { BrandLogo } from "@/components/brand/BrandMark";
@@ -187,28 +187,7 @@ export function AppLayout({
             >
               <Menu size={18} />
             </button>
-            <button
-              type="button"
-              onClick={() => navigate("/panoramica")}
-              className="hidden text-[12px] font-medium text-ink-2 hover:text-ink sm:block"
-            >
-              Poliambulatorio Rizzo
-            </button>
-            <ChevronRight
-              size={12}
-              className="hidden text-ink-2 sm:block"
-              aria-hidden
-            />
-            <span className="truncate text-[12px] text-ink-2">
-              {current?.label ||
-                (pathname.startsWith("/profilo")
-                  ? "Profilo"
-                  : pathname.startsWith("/mappa")
-                    ? "Mappa dei moduli"
-                    : pathname.startsWith("/decisioni")
-                      ? "Decisioni"
-                      : "")}
-            </span>
+            <Breadcrumbs fallback={current?.label || ({ percorsi: "Percorsi", pianificazione: "Pianificazione", profilo: "Profilo", mappa: "Mappa dei moduli", decisioni: "Decisioni" }[pathname.split("/")[1]] || "Panoramica")} />
             <div className="ml-auto flex shrink-0 items-center gap-2">
               {platform.on("temaScuro") && <ThemeToggle />}
             </div>

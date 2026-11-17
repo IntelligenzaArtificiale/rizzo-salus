@@ -43,6 +43,8 @@ function EpisodeForm({ initial }: { initial: Data }) {
     a = useAction(),
     navigate = useNavigate();
   const [v, setV] = useState<Data>(structuredClone(initial));
+  const patient = useLoad(() => api("/pazienti/dettaglio", { id: initial.patient_id }), [initial.patient_id]);
+  const patientName = patient.data ? name(patient.data) : "Scheda paziente";
   const lines: Data[] = v.therapies;
   const patch = (i: number, p: Data) =>
     setV({
@@ -52,6 +54,8 @@ function EpisodeForm({ initial }: { initial: Data }) {
   return (
     <>
       <PageHeader
+        compact
+        breadcrumbs={[{ label: "Pazienti", to: "/pazienti" }, { label: patientName, to: "/pazienti/" + v.patient_id }, { label: v.id ? "Modifica percorso" : "Nuovo percorso" }]}
         title={v.id ? "Modifica percorso" : "Nuovo percorso"}
         back={{ label: "Paziente", to: "/pazienti/" + v.patient_id }}
       />
@@ -67,9 +71,9 @@ function EpisodeForm({ initial }: { initial: Data }) {
             navigate("/pazienti/" + v.patient_id);
           }, "Percorso salvato");
         }}
-        className="flex flex-col gap-6"
+        className="episode-form flex flex-col gap-6"
       >
-        <Section title="Percorso di cura">
+        <div className="flex flex-col gap-3">
           <TextField
             label="Titolo"
             value={v.titolo}
@@ -121,7 +125,7 @@ function EpisodeForm({ initial }: { initial: Data }) {
               }
             />
           )}
-        </Section>
+        </div>
         <SelectField
           label="Profilo organizzativo del gruppo"
           value={v.profilo_gruppo || "standard"}
