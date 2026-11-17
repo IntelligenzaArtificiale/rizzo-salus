@@ -1,7 +1,7 @@
 /* Bottone solo icona, con nome accessibile e tooltip. Stile "secondary" del Button di Beautiful UI. */
 import type { ReactNode } from "react";
 import { Link } from "react-router-dom";
-import { Button, buttonVariants } from "@/components/atoms/Button";
+import { Button, buttonVariants, type ButtonVariant } from "@/components/atoms/Button";
 import { cn } from "@/lib/utils";
 
 type IconButtonProps = { label: string; icon: ReactNode; onClick?: () => void; to?: string; tone?: "default" | "danger" };
@@ -25,8 +25,8 @@ export function IconButton({ label, icon, onClick, to, tone = "default" }: IconB
 }
 
 /** Azione principale della pagina: icona + verbo breve, Button primario di Beautiful UI. */
-export function PrimaryAction({ label, icon, to, onClick }: { label: string; icon: ReactNode; to?: string; onClick?: () => void }) {
-  const cls = cn(buttonVariants({ variant: "primary" }), "h-9 gap-1.5 px-3.5");
+export function PrimaryAction({ label, icon, to, onClick, variant = "primary" }: { label: string; icon: ReactNode; to?: string; onClick?: () => void; variant?: ButtonVariant }) {
+  const cls = cn(buttonVariants({ variant }), "h-9 gap-1.5 px-3.5");
   if (to) return <Link to={to} className={cls}>{icon}{label}</Link>;
-  return <Button type="button" variant="primary" onClick={onClick} className="h-9 gap-1.5 px-3.5">{icon}{label}</Button>;
+  return <Button type="button" variant={variant} onClick={onClick} className="h-9 gap-1.5 px-3.5">{icon}{label}</Button>;
 }

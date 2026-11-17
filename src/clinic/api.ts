@@ -8,6 +8,12 @@ export const setCsrf = (value: string) => {
   else sessionStorage.removeItem("rizzo-csrf");
 };
 const messages: Record<string, string> = {
+  piano_operatore_obsoleto: "I dati sono cambiati. Chiedi all’operatore di preparare una nuova proposta aggiornata.",
+  piano_operatore_scaduto: "Il piano è scaduto. Riformula la richiesta per una nuova anteprima.",
+  piano_operatore_chiuso: "Questo piano è già stato applicato o scartato.",
+  conferma_operatore_richiesta: "Controlla il riepilogo e usa Conferma e applica.",
+  azione_ai_non_consentita: "L’operazione richiesta non è disponibile per il tuo ruolo.",
+
   gruppo_pieno: "Il gruppo supera la capienza consentita per i profili dei partecipanti.",
   limite_neurologici_gruppo: "È ammesso un solo paziente neurologico nello stesso gruppo.",
   vincolo_professionista: "Questa terapia è vincolata al professionista scelto nel percorso.",

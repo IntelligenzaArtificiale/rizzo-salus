@@ -1,0 +1,71 @@
+<?php
+declare(strict_types=1);
+/** Prove di dominio isolate: nessuna API esterna o scrittura sulla demo. */
+require dirname(__DIR__).'/api/vendor/autoload.php';
+use App\Core\{Env,Clock,ApiError};
+use App\Services\Services;
+use App\Http\{Context,Request,Session};
+use App\Auth\Permissions;
+use App\Domain\Assistant\{OperatorPlans,OperatorDefinitions,OperatorPrivacy};
+Env::set('APP_ENV','test');Env::set('DATA_ENCRYPTION_KEY',base64_encode(random_bytes(32)));Env::set('APP_URL','http://127.0.0.1:8082');
+Clock::fix('2026-11-17T10:00:00');
+$dir=dirname(__DIR__).'/.runtime/qa/operator-'.bin2hex(random_bytes(4));$s=new Services($dir);$checks=0;
+function ok(bool $v,string $name):void{global $checks;if(!$v)throw new RuntimeException('FAIL '.$name);$checks++;echo "PASS $name\n";}
+function fails(callable $f,string $code):void{try{$f();}catch(ApiError $e){ok($e->errorCode===$code,'rifiuto '.$code.' ('.$e->errorCode.')');return;}throw new RuntimeException('Mancato rifiuto '.$code);}
+function ctx(Services $s,array $u,?array $perms=null):Context{return new Context(new Request('POST','/test',[],[],[],'127.0.0.1'),$s,Session::open($s->dataDir.'/_sessions',null,60),$u,$perms??Permissions::effective($u['role'],Permissions::defaultRoles()));}
+function action(string $type,array $data):array{return ['tipo'=>$type,'dati'=>array_map(fn($k,$v)=>['campo'=>$k,'valore'=>is_bool($v)?($v?'true':'false'):(string)$v],array_keys($data),array_values($data))];}
+$u=$s->users()->create(['nome'=>'Owner','cognome'=>'QA','email'=>'owner@example.test','role'=>'titolare','password'=>'TestPassword2026']);$c=ctx($s,$u);$plans=new OperatorPlans();
+$s->settings()->update(['festivita_nazionali'=>false,'orari'=>array_fill(1,5,[['08:00','20:00']]),'messaggi'=>['modalita'=>'test']]);
+$pro=$s->catalog()->saveProfessional(['nome'=>'Marco','cognome'=>'Operatore','tipo'=>'fisioterapista']);
+$t=$s->catalog()->saveTherapyType(['nome'=>'Terapia QA','categoria'=>'manuale','durata_min'=>30]);
+$p=$s->patients()->create(['nome'=>'Anna','cognome'=>'Verifica','email'=>'anna@example.test','telefono'=>'3331234567','anamnesi'=>'Campo clinico da preservare']);
+$plan=$plans->prepare($c,[action('paziente_crea',['nome'=>'Paziente','cognome'=>'Nuovo','telefono'=>'3337654321'])]);
+ok(count($s->store->all('patients'))===1,'anteprima non scrive pazienti');
+ok(!str_contains(file_get_contents($dir.'/operator_plans.json'),'3337654321'),'piano cifrato su disco');
+$r=$plans->confirm($c,$plan['id']);ok($r['stato']==='applicato'&&count($s->store->all('patients'))===2,'conferma crea il paziente');
+$r2=$plans->confirm($c,$plan['id']);ok($r===$r2&&count($s->store->all('patients'))===2,'conferma idempotente');
+$edit=$plans->prepare($c,[action('paziente_modifica',['paziente'=>'Anna Verifica','telefono'=>'3338889999'])]);$plans->confirm($c,$edit['id']);$p=$s->store->get('patients',$p['id']);
+ok($p['telefono']==='+393338889999'&&$p['email']==='anna@example.test'&&$p['anamnesi']==='Campo clinico da preservare','modifica conserva contatti e dati clinici non richiesti');
+$old=$plans->prepare($c,[action('paziente_modifica',['paziente'=>'Anna Verifica','telefono'=>'3337778888'])]);$s->store->patch('patients',$p['id'],['note_amministrative'=>'Cambiato fuori dalla chat']);fails(fn()=>$plans->confirm($c,$old['id']),'piano_operatore_obsoleto');
+$discard=$plans->prepare($c,[action('paziente_crea',['nome'=>'Da','cognome'=>'Scartare'])]);$plans->discard($c,$discard['id']);fails(fn()=>$plans->confirm($c,$discard['id']),'piano_operatore_chiuso');ok(count($s->store->all('patients'))===2,'scarto non crea dati');
+$other=$s->users()->create(['nome'=>'Other','cognome'=>'Owner','email'=>'other@example.test','role'=>'titolare','password'=>'TestPassword2026']);fails(fn()=>$plans->confirm(ctx($s,$other),$old['id']),'non_autorizzato');
+$expired=$plans->prepare($c,[action('paziente_crea',['nome'=>'Da','cognome'=>'Scadere'])]);Clock::fix('2026-11-17T10:16:00');fails(fn()=>$plans->confirm($c,$expired['id']),'piano_operatore_scaduto');Clock::fix('2026-11-17T10:00:00');
+fails(fn()=>$plans->prepare($c,[action('paziente_crea',['nome'=>'Senza cognome'])]),'cognome_mancante');
+fails(fn()=>$plans->prepare($c,[action('paziente_modifica',['paziente'=>'Anna Verifica','password'=>'segreto'])]),'campo_operatore_non_valido');
+fails(fn()=>$plans->prepare($c,[action('backup_ripristina',[])]),'azione_ai_non_consentita');
+fails(fn()=>$plans->prepare($c,array_fill(0,9,action('paziente_crea',['nome'=>'A','cognome'=>'B']))),'piano_operatore_non_valido');
+$s->patients()->create(['nome'=>'Sara','cognome'=>'Verifica']);fails(fn()=>$plans->prepare($c,[action('paziente_modifica',['paziente'=>'Verifica','telefono'=>'3331112222'])]),'riferimento_operatore_ambiguo');
+$stock=$plans->prepare($c,[action('articolo_salva',['nome'=>'Guanti QA','unita'=>'pezzi','costo'=>'2.50']),action('magazzino_movimento',['articolo'=>'Guanti QA','quantita'=>'20','motivo'=>'Acquisto QA'])]);
+ok(!$s->store->all('stock_items')&&!$s->store->all('stock_movements'),'anteprima multi azione non scrive magazzino');$plans->confirm($c,$stock['id']);$item=$s->store->all('stock_items')[0];
+ok((new App\Domain\Management\Stock($s))->list()['articoli'][0]['giacenza']===20.0,'creazione articolo e carico in un solo piano');
+$plans->confirm($c,$stock['id']);ok(count($s->store->all('stock_movements'))===1,'retry non duplica carico');
+$atomic=$plans->prepare($c,[action('spesa_salva',['descrizione'=>'Spesa atomica QA','date'=>'2026-11-17','importo'=>'12,50','categoria'=>'materiali']),action('magazzino_movimento',['articolo'=>'Guanti QA','quantita'=>'-15','motivo'=>'Consumo QA'])]);
+(new App\Domain\Management\Stock($s))->move(['articolo_id'=>$item['id'],'quantita'=>-10,'motivo'=>'Consumo esterno'],'esterno');fails(fn()=>$plans->confirm($c,$atomic['id']),'scorta_insufficiente');
+ok(!$s->store->all('expenses')&&$s->store->get('operator_plans',$atomic['id'])['stato']==='da_confermare','errore seconda azione annulla anche la prima');
+$spesa=$plans->prepare($c,[action('spesa_salva',['descrizione'=>'Utenza QA','importo'=>'20','pagata'=>true,'data_pagamento'=>'2026-11-17'])]);$plans->confirm($c,$spesa['id']);ok($s->store->all('expenses')[0]['importo_cents']===2000,'uscita pagata registrata');
+$staff=$plans->prepare($c,[action('professionista_salva',['nome'=>'Giulia','cognome'=>'Segreteria','tipo'=>'segreteria']),action('presenza_salva',['professionista'=>'Giulia Segreteria','date'=>'2026-11-17','da'=>'08:00','a'=>'10:00','pausa_minuti'=>'15'])]);$plans->confirm($c,$staff['id']);ok($s->store->all('staff_attendance')[0]['minuti']===105,'personale e presenza con entrata uscita pausa');
+$contract=$plans->prepare($c,[action('contratto_salva',['professionista'=>'Giulia Segreteria','mese'=>'2026-11','ore'=>'120'])]);$plans->confirm($c,$contract['id']);ok($s->store->all('staff_adjustments')[0]['minuti_contratto']===7200,'monte ore contrattuale');
+$invoice=$s->store->put('invoices',['date'=>'2026-11-17','tipo'=>'fattura','stato'=>'emessa','numero_testo'=>'1/2026','totale_cents'=>10000]);
+fails(fn()=>$plans->prepare($c,[action('fattura_incasso',['fattura'=>'1/2026','metodo'=>'bonifico','importo'=>'50'])]),'incasso_parziale_non_supportato');
+$pay=$plans->prepare($c,[action('fattura_incasso',['fattura'=>'1/2026','metodo'=>'bonifico','data'=>'2026-11-17'])]);$plans->confirm($c,$pay['id']);ok($s->store->get('invoices',$invoice['id'])['stato']==='pagata','entrata su fattura emessa');
+$appointment=$plans->prepare($c,[action('appuntamento_crea',['paziente'=>'Anna Verifica','professionista'=>'Marco Operatore','prestazione'=>'Terapia QA','start'=>'2026-11-18T09:00:00'])]);ok(!$s->store->all('appointments'),'anteprima agenda senza scritture');$created=$plans->confirm($c,$appointment['id']);$aid=$created['risultati'][0]['id'];
+ok(count($s->store->all('appointments'))===1&&str_contains($created['risultati'][0]['soggetto'],'Anna Verifica'),'appuntamento inserito con riepilogo comprensibile');
+fails(fn()=>$plans->prepare($c,[action('appuntamento_crea',['paziente'=>'Anna Verifica','professionista'=>'Marco Operatore','prestazione'=>'Terapia QA','start'=>'2026-11-18T09:00:00'])]),'conflitto');
+$move=$plans->prepare($c,[action('appuntamento_sposta',['appuntamento'=>$aid,'start'=>'2026-11-18T10:00:00'])]);$plans->confirm($c,$move['id']);ok($s->store->get('appointments',$aid)['start']==='2026-11-18T10:00:00','spostamento con regole del calendario');
+$cancel=$plans->prepare($c,[action('appuntamento_annulla',['appuntamento'=>$aid])]);$plans->confirm($c,$cancel['id']);ok($s->store->get('appointments',$aid)['stato']==='annullato','annullamento esplicito');
+$secretary=$s->users()->create(['nome'=>'Secret','cognome'=>'QA','email'=>'secret@example.test','role'=>'segreteria','password'=>'TestPassword2026']);$sc=ctx($s,$secretary,array_values(array_diff(Permissions::defaultRoles()['segreteria'],['statistiche.economiche'])));fails(fn()=>$plans->prepare($sc,[action('spesa_salva',['descrizione'=>'Non permessa','importo'=>'1'])]),'non_autorizzato');
+$fisio=$s->users()->create(['nome'=>'Fisio','cognome'=>'QA','email'=>'fisio@example.test','role'=>'fisioterapista','password'=>'TestPassword2026','professional_id'=>$pro['id']]);fails(fn()=>$plans->prepare(ctx($s,$fisio),[action('paziente_crea',['nome'=>'A','cognome'=>'B'])]),'non_autorizzato');
+$limited=ctx($s,$fisio,['ai.assistente','pazienti.anagrafica','pazienti.essenziali']);fails(fn()=>$plans->prepare($limited,[action('paziente_modifica',['paziente'=>'Sara Verifica','telefono'=>'3331112222'])]),'riferimento_operatore_non_trovato');
+$privacy=new OperatorPrivacy(['P1'=>['Verifica Anna','Anna Verifica','Verifica']]);$masked=$privacy->mask('Aggiorna Anna Verifica telefono 3331112222 email nuova@example.test');ok(!str_contains($masked,'3331112222')&&!str_contains($masked,'nuova@example.test')&&!str_contains($masked,'Anna'),'mascheramento nomi recapiti prima del modello');ok($privacy->restore('DATO_1 DATO_2 P1')==='nuova@example.test 3331112222 Verifica Anna','ripristino recapiti solo sul server');
+$tools=OperatorDefinitions::tools($sc);ok($tools[0]['function']['strict']===true&&!in_array('spesa_salva',$tools[0]['function']['parameters']['properties']['azioni']['items']['properties']['tipo']['enum'],true),'strumenti strict limitati ai permessi');
+$groupType=$s->catalog()->saveTherapyType(['nome'=>'Gruppo QA','categoria'=>'palestra_gruppo','durata_min'=>60,'capienza'=>5]);
+$groupPlan=$plans->prepare($c,[action('appuntamento_crea',['paziente'=>'Anna Verifica','professionista'=>'Marco Operatore','prestazione'=>'Gruppo QA','start'=>'2026-11-19T12:00:00'])]);$groupResult=$plans->confirm($c,$groupPlan['id']);$gid=$groupResult['risultati'][0]['id'];ok($s->store->get('appointments',$gid)['tipo']==='gruppo','terapia di gruppo genera partecipanti corretti');
+$join=$plans->prepare($c,[action('gruppo_aggiungi',['appuntamento'=>$gid,'paziente'=>'Sara Verifica'])]);$plans->confirm($c,$join['id']);ok(count($s->store->get('appointments',$gid)['participants'])===2,'operatore aggiunge al gruppo esistente');
+$episode=$s->episodes()->save(['patient_id'=>$p['id'],'titolo'=>'Ciclo QA','terapie'=>[['therapy_type_id'=>$t['id'],'sedute_previste'=>1]]],null,null);
+$cyclePlan=$plans->prepare($c,[action('appuntamento_crea',['paziente'=>'Anna Verifica','professionista'=>'Marco Operatore','prestazione'=>'Terapia QA','start'=>'2026-11-20T12:00:00'])]);$cycleResult=$plans->confirm($c,$cyclePlan['id']);ok($s->store->get('appointments',$cycleResult['risultati'][0]['id'])['episode_id']===$episode['id'],'inserimento AI collegato al ciclo aperto');
+fails(fn()=>$plans->prepare($c,[action('appuntamento_crea',['paziente'=>'Anna Verifica','professionista'=>'Marco Operatore','prestazione'=>'Terapia QA','start'=>'2026-11-20T14:00:00'])]),'sedute_esaurite');
+$ep2=$s->episodes()->save(['patient_id'=>$s->patients()->search('Sara Verifica',$c)[0]['id'],'titolo'=>'Ciclo revisioni','terapie'=>[['therapy_type_id'=>$t['id'],'sedute_previste'=>2]]],null,null);
+$epPlan=$plans->prepare($c,[action('appuntamento_crea',['paziente'=>'Sara Verifica','professionista'=>'Marco Operatore','prestazione'=>'Terapia QA','start'=>'2026-11-20T16:00:00'])]);$s->store->patch('episodes',$ep2['id'],['titolo'=>'Prescrizione cambiata']);fails(fn()=>$plans->confirm($c,$epPlan['id']),'piano_operatore_obsoleto');
+fails(fn()=>$plans->confirm(ctx($s,$u,['ai.assistente']),$spesa['id']),'non_autorizzato');
+ok($s->audit()->verify()['valido'],'registro integro dopo anteprime e transazioni annullate');
+echo "COMPLETATI $checks controlli operatore\n";

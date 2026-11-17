@@ -9,13 +9,14 @@ import GlideMenu from "@/components/primitives/GlideMenu";
 import { EmptyState } from "@/components/app/PageState";
 import { Button } from "@/components/atoms/Button";
 import { useClinic } from "./ClinicContext";
-import { api } from "./api";
+import { OperatorPlanCard } from "./OperatorPlanCard";
+import { api, type Data } from "./api";
 import { useLoad, useAction } from "./common";
 const suggestions: Record<string, string[]> = {
   titolare: [
-    "Quanto abbiamo fatturato questo mese?",
-    "Quali pazienti hanno sedute da pianificare?",
-    "Ci sono fatture da incassare?",
+    "Crea un nuovo paziente: quali dati ti servono?",
+    "Registra una spesa: quali dati ti servono?",
+    "Voglio caricare materiale in magazzino",
   ],
   segreteria: [
     "Chi viene domani mattina?",
@@ -32,14 +33,15 @@ const suggestions: Record<string, string[]> = {
     "Quanto ho fatturato questo mese?",
   ],
 };
-type Message = { role: "user" | "assistant"; text: string };
+type Message = { role: "user" | "assistant"; text: string; plan?: Data };
 export function AssistantPage() {
-  const { user } = useClinic();
+  const { user, refresh } = useClinic();
   const load = useLoad(() => api("/assistente/stato"));
   const a = useAction();
   const [messages, setMessages] = useState<Message[]>([]);
+  const [operating, setOperating] = useState(false);
   const send = (q: string) => {
-    if (a.busy || !q.trim() || !load.data?.configurata) return;
+    if (a.busy || operating || !q.trim() || !load.data?.configurata) return;
     a.act(async () => {
       const history = messages.slice(-6);
       setMessages((m) => [...m, { role: "user", text: q }]);
@@ -48,7 +50,7 @@ export function AssistantPage() {
           domanda: q,
           storia: history,
         });
-        setMessages((m) => [...m, { role: "assistant", text: r.risposta }]);
+        setMessages((m) => [...m, { role: "assistant", text: r.risposta, plan: r.piano }]);
       } catch (e) {
         setMessages((m) => [
           ...m,
@@ -61,13 +63,13 @@ export function AssistantPage() {
   return (
     <Page>
       <PageHeader
-        title="Assistente"
-        subtitle="Domande su agenda, pazienti e fatturazione."
+        title="AI operatore"
+        subtitle="Agenda, pazienti, incassi, personale e magazzino. Chiedi, controlla e conferma."
         actions={
           messages.length ? (
             <Button
               variant="secondary"
-              disabled={a.busy}
+              disabled={a.busy || operating}
               onClick={() => setMessages([])}
             >
               Nuova conversazione
@@ -109,7 +111,7 @@ export function AssistantPage() {
                       data-menu-row
                       className="relative z-10 rounded-control px-3 py-3 text-left text-[14px] text-ink-2"
                       key={q}
-                      disabled={a.busy}
+                      disabled={a.busy || operating}
                       onClick={() => send(q)}
                     >
                       {q}
@@ -130,7 +132,7 @@ export function AssistantPage() {
                 </div>
               ) : (
                 // Nasconde i controlli dimostrativi del componente, senza cambiare il vendor.
-                <div key={i} className="[&>div>div]:hidden">
+                <div key={i}><div className="[&>div>div]:hidden">
                   <StreamingText
                     fill
                     loop={false}
@@ -139,20 +141,25 @@ export function AssistantPage() {
                     followUps={[]}
                   />
                 </div>
+                {m.plan && <OperatorPlanCard plan={m.plan} blocked={operating || a.busy} onBusy={setOperating} onChanged={(plan) => {
+                  setMessages((items) => items.map((entry, index) => index === i ? { ...entry, plan, text: plan.stato === "applicato" ? "Operazioni applicate nel gestionale." : "Piano scartato: nessuna modifica applicata." } : entry));
+                  if (plan.stato === "applicato") void a.act(() => refresh());
+                }} />}
+                </div>
               ),
             )}
             {a.busy && (
               <LoadingState variant="Dots" label="Sto preparando la risposta" />
             )}
           </div>
-          <fieldset disabled={a.busy} className="mt-auto min-w-0 pt-4">
+          <fieldset disabled={a.busy || operating} className="mt-auto min-w-0 pt-4">
             <PromptBar
               demo={false}
               showModel={false}
               dictate={null}
               sources={[]}
               commands={[]}
-              placeholder="Chiedi qualcosa su agenda, pazienti o fatture…"
+              placeholder="Es. registra una spesa, crea un paziente o sposta un appuntamento…"
               labels={{
                 prompt: "Domanda",
                 send: "Invia",
@@ -163,8 +170,8 @@ export function AssistantPage() {
             />
           </fieldset>
           <p className="text-center text-[12px] text-ink-3">
-            Risposte limitate ai dati consentiti dal tuo ruolo. I pazienti sono
-            indicati con codici nel contesto inviato. Evita dati clinici nel testo libero.
+            Operazioni limitate al tuo ruolo e applicate dopo conferma. I dati necessari
+            alla richiesta sono elaborati tramite AI; evita dati clinici nel testo libero.
           </p>
         </>
       )}

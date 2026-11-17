@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/components/atoms/Button";
 import { Link } from "react-router-dom";
 // Scheda paziente: percorsi al centro, anagrafica e agenda su schede distinte.
 import { PatientDocuments } from "./PatientDocuments";
@@ -46,7 +47,7 @@ export function PatientPage() {
           {can("pazienti.anagrafica") && (
             <Link
               to={"/percorsi/nuovo?paziente=" + p.id}
-              className="text-sm font-medium text-accent underline"
+              className={buttonVariants({ variant: "secondary", size: "sm" })}
             >
               Nuovo percorso
             </Link>

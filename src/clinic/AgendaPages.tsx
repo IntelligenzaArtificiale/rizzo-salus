@@ -9,7 +9,8 @@ import {
   useSearchParams,
 } from "react-router-dom";
 import { PageHeader } from "@/components/app/PageHeader";
-import { Button } from "@/components/atoms/Button";
+import { Button, buttonVariants } from "@/components/atoms/Button";
+import { CalendarClock, MoveRight } from "lucide-react";
 import { DetailList, Section } from "@/components/app/Section";
 import { RowList } from "@/components/app/RowList";
 import { EmptyState } from "@/components/app/PageState";
@@ -113,17 +114,19 @@ export function AppointmentPage() {
                 <>
                   <Link
                     to={`/agenda/${id}/modifica?giorno=${day}`}
-                    className="text-sm text-accent underline"
+                    className={buttonVariants({ variant: "secondary" })}
                   >
+                    <MoveRight size={16} aria-hidden="true" />
                     Sposta appuntamento
                   </Link>
                   <Link
-                    className="text-sm text-accent underline"
+                    className={buttonVariants({ variant: "secondary" })}
                     to={`/agenda/${id}/proposte-spostamento`}
                   >
+                    <CalendarClock size={16} aria-hidden="true" />
                     Proponi nuovi orari
                   </Link>
-                  <Button variant="secondary" onClick={() => setConfirm(true)}>
+                  <Button variant="secondary" className="text-red" disabled={a.busy} onClick={() => setConfirm(true)}>
                     Annulla appuntamento
                   </Button>
                 </>

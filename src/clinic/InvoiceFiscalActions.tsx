@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Section } from "@/components/app/Section";
-import { Button } from "@/components/atoms/Button";
+import { Button, buttonVariants } from "@/components/atoms/Button";
 import { StatusPill } from "@/components/atoms/StatusPill";
 import { ConfirmDialog } from "@/components/app/ConfirmDialog";
 import { api, type Data } from "./api";
@@ -17,7 +17,7 @@ export function InvoiceFiscalActions({
   const a = useAction();
   return (
     <Section title="Trasmissioni e revisione">
-      <Link className="text-sm text-accent underline" to="/pacchetti">
+      <Link className={buttonVariants({ variant: "secondary", size: "sm" })} to="/pacchetti">
         Prepara o verifica il pacchetto per commercialista e Sistema TS
       </Link>
       {(invoice.sanitaria ?? true) ? (

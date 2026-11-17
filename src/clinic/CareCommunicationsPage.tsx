@@ -2,7 +2,7 @@ import { useState } from "react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
 import { RowList } from "@/components/app/RowList";
-import { Button } from "@/components/atoms/Button";
+import { Button, buttonVariants } from "@/components/atoms/Button";
 import { TextAreaField } from "@/components/form/TextAreaField";
 import { SelectField } from "@/components/form/SelectField";
 import { api, type Data } from "./api";
@@ -39,7 +39,7 @@ export function CareCommunicationsPage() {
               <div className="flex flex-wrap gap-2">
                 {r.link_whatsapp ? (
                   <a
-                    className="text-sm text-accent underline"
+                    className={buttonVariants({ variant: "secondary", size: "sm" })}
                     href={r.link_whatsapp}
                     target="_blank"
                     rel="noreferrer"

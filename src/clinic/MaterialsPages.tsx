@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/components/atoms/Button";
 // Materiali della demo originale ricomposti con card, scelte e dettagli del boilerplate.
 import { Link, useParams } from "react-router-dom";
 import { ClipboardCopy, Printer } from "lucide-react";
@@ -103,7 +104,7 @@ export function DecisionsPage() {
           <p className="text-sm leading-relaxed text-ink-2">{text}</p>
         </Section>
       ))}
-      <Link className="text-sm text-accent underline" to="/impostazioni">
+      <Link className={buttonVariants({ variant: "secondary", size: "sm" })} to="/impostazioni">
         Apri i parametri della struttura
       </Link>
     </Page>

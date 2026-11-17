@@ -6,9 +6,18 @@ namespace App\Http\Controllers;
 use App\Http\Context;
 use App\Support\Validator as V;
 
-/** Assistente AI: risponde sui dati che il ruolo può vedere; nessun dato personale lascia il server. */
+/** AI operatore: dati consentiti al ruolo, proposte validate e conferma separata. */
 final class AssistantController
 {
+    public function conferma(Context $c): array
+    {
+        if (!V::bool($c->body(),'conferma')) throw new \App\Core\ApiError('conferma_operatore_richiesta',422);
+        return (new \App\Domain\Assistant\OperatorPlans())->confirm($c,(string)V::id($c->body(),'id','opa',true));
+    }
+    public function scarta(Context $c): array
+    {
+        return (new \App\Domain\Assistant\OperatorPlans())->discard($c,(string)V::id($c->body(),'id','opa',true));
+    }
     public function chiedi(Context $c): array
     {
         $c->need('ai.assistente');

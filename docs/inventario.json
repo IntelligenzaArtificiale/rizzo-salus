@@ -18,6 +18,21 @@
       ]
     },
     {
+      "path": "src/components/app/CollapsiblePanel.tsx",
+      "layer": "app",
+      "vendor": false,
+      "symbols": [
+        "CollapsiblePanel"
+      ],
+      "used_by": [
+        "src/clinic/EpisodeDiary.tsx",
+        "src/clinic/CatalogSettings.tsx",
+        "src/clinic/AgendaPage.tsx",
+        "src/clinic/ParameterFields.tsx",
+        "src/clinic/PatientForm.tsx"
+      ]
+    },
+    {
       "path": "src/components/app/ConfirmDialog.tsx",
       "layer": "app",
       "vendor": false,
@@ -472,9 +487,11 @@
       "used_by": [
         "src/layouts/SiteLayout.tsx",
         "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/PatientDetail.tsx",
         "src/clinic/DocumentTemplates.tsx",
         "src/clinic/PatientAvailability.tsx",
         "src/clinic/CareCommunicationsPage.tsx",
+        "src/clinic/OperatorPlanCard.tsx",
         "src/clinic/ProfilePage.tsx",
         "src/clinic/AppointmentForm.tsx",
         "src/clinic/PublicPortal.tsx",
@@ -511,6 +528,8 @@
         "src/clinic/TherapyConsumption.tsx",
         "src/clinic/ProposalSelection.tsx",
         "src/clinic/CalendarSettings.tsx",
+        "src/clinic/MaterialsPages.tsx",
+        "src/clinic/PatientCare.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/IntegrationStatus.tsx",
         "src/clinic/AgendaNotes.tsx",
@@ -525,6 +544,7 @@
         "src/components/app/IconButton.tsx",
         "src/components/app/ConfirmDialog.tsx",
         "src/components/app/SettingsSection.tsx",
+        "src/components/app/CollapsiblePanel.tsx",
         "src/components/app/PageState.tsx",
         "src/pages/profile/ProfileForms.tsx",
         "src/pages/profile/ProfileSettings.tsx",
@@ -884,6 +904,7 @@
       "used_by": [
         "src/clinic/DocumentTemplates.tsx",
         "src/clinic/PublicSignature.tsx",
+        "src/clinic/AgendaPage.tsx",
         "src/clinic/ParameterFields.tsx",
         "src/clinic/EpisodeForm.tsx",
         "src/clinic/PatientDocuments.tsx",
@@ -2001,6 +2022,14 @@
     {
       "endpoint": "/agenda/sposta",
       "file": "src/clinic/MoveSuggestions.tsx"
+    },
+    {
+      "endpoint": "/assistente/conferma",
+      "file": "src/clinic/OperatorPlanCard.tsx"
+    },
+    {
+      "endpoint": "/assistente/scarta",
+      "file": "src/clinic/OperatorPlanCard.tsx"
     },
     {
       "endpoint": "/agenda/vista",

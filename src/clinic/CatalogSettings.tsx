@@ -1,3 +1,4 @@
+import { CollapsiblePanel } from "@/components/app/CollapsiblePanel";
 import { TherapyConsumption } from "./TherapyConsumption";
 import { TextField } from "@/components/form/TextField";
 import { TherapyResources } from "./TherapyResources";
@@ -182,10 +183,7 @@ export function CatalogSettings() {
           />
         )}
         {kind === "professionisti" && (
-          <details>
-            <summary className="text-sm text-ink">
-              Percentuali per singola prestazione
-            </summary>
+          <CollapsiblePanel title={<> Percentuali per singola prestazione </>}>
             {catalog.terapie.map((t: Data) => (
               <TextField
                 key={t.id}
@@ -207,7 +205,7 @@ export function CatalogSettings() {
                 }
               />
             ))}
-          </details>
+          </CollapsiblePanel>
         )}
         {kind === "terapie" && (
           <TherapyConsumption

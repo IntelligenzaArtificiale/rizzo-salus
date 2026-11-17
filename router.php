@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 // Adattatore locale: API originali e build React, senza esporre file privati.
-putenv('APP_ENV_FILE=' . __DIR__ . '/demo/.env.demo');
+if (!getenv('APP_ENV_FILE')) putenv('APP_ENV_FILE=' . __DIR__ . '/demo/.env.demo');
 $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 if ($path === '/api' || str_starts_with($path, '/api/')) { require __DIR__ . '/api/index.php'; return true; }
 if (str_starts_with($path, '/s/')) { header('Location: /#/settimana/' . rawurlencode(basename($path))); return true; }

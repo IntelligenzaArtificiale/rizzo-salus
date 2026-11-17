@@ -1,3 +1,4 @@
+import { CollapsiblePanel } from "@/components/app/CollapsiblePanel";
 // Campi parametrici composti dai controlli del boilerplate.
 import { TextField } from "@/components/form/TextField";
 import { TextAreaField } from "@/components/form/TextAreaField";
@@ -26,18 +27,14 @@ export function ParameterFields({
             change = (next: any) => onChange({ ...value, [k]: next });
           if (v !== null && typeof v === "object" && !Array.isArray(v))
             return (
-              <details
+              <CollapsiblePanel
                 key={k}
-                className="rounded-card border border-line p-4"
-                open={prefix === "" && Object.keys(value).length < 5}
-              >
-                <summary className="cursor-pointer text-[14px] font-medium text-ink">
-                  {labelFor(k)}
-                </summary>
+                defaultOpen={prefix === "" && Object.keys(value).length < 5}
+               title={<> {labelFor(k)} </>}>
                 <div className="pt-4">
                   <ParameterFields value={v} onChange={change} prefix={path} />
                 </div>
-              </details>
+              </CollapsiblePanel>
             );
           if (Array.isArray(v))
             return (

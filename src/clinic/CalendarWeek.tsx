@@ -1,3 +1,4 @@
+import { createPortal } from "react-dom";
 // Geometria del calendario di dominio; controlli e superfici del boilerplate.
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,12 +16,16 @@ export function CalendarWeek({
   group = "categoria",
   colors = {},
   onCurrentWeek,
+  showEmpty = false,
+  toolbarContainer,
 }: {
   week: string;
   appointments: Data[];
   catalog: Data;
   count?: number;
   group?: string;
+  showEmpty?: boolean;
+  toolbarContainer?: HTMLElement | null;
   colors?: Data;
   onCurrentWeek: () => void;
 }) {
@@ -31,12 +36,11 @@ export function CalendarWeek({
   useEffect(() => { const update = () => setFull(document.fullscreenElement === ref.current); document.addEventListener("fullscreenchange", update); return () => document.removeEventListener("fullscreenchange", update); }, []);
   const days = Array.from({ length: count }, (_, i) => addDays(week, i));
   const entries = appointments.filter((a) => a.tipo !== "nota");
-  const cols = channels(entries, catalog, group);
+  const cols = channels(entries.filter((a) => days.some((day) => a.start.startsWith(day))), catalog, group).filter((col: Data) => showEmpty || entries.some((a) => days.some((day) => a.start.startsWith(day)) && channelOf(a, catalog, group) === col.id));
   if (!cols.length)
     cols.push({ id: "vuoto", label: "Nessun appuntamento", short: "Agenda" });
-  const min = count === 5 ? 40 : 140;
-  return (
-    <div ref={ref} className="clinic-calendar-shell flex min-w-0 flex-col gap-2">
+  const min = count === 5 ? 112 : 168;
+  const controls = (
       <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-ink-2">
         <span>
           08:00–20:30 · ● Prima seduta · ▲ Ultima seduta · gruppi con indicatori
@@ -51,6 +55,10 @@ export function CalendarWeek({
           {full ? "Esci dallo schermo intero" : "A tutto schermo"}
         </Button>
       </div>
+  );
+  return (
+    <div ref={ref} className="clinic-calendar-shell flex min-w-0 flex-col gap-2">
+      {full || !toolbarContainer ? controls : createPortal(controls, toolbarContainer)}
       <div
         className="clinic-calendar"
         role="region"
@@ -123,7 +131,7 @@ export function CalendarWeek({
                     className="truncate max-w-full text-center"
                     title={col.label}
                   >
-                    {count === 5 ? col.short : col.label}
+                    {col.label}
                   </strong>
                 </div>
                 {overlaps(

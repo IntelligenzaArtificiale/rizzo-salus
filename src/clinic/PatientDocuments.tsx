@@ -7,7 +7,7 @@ import { TextField } from "@/components/form/TextField";
 import { TextAreaField } from "@/components/form/TextAreaField";
 import { SelectField } from "@/components/form/SelectField";
 import { Checkbox } from "@/components/form/Checkbox";
-import { Button } from "@/components/atoms/Button";
+import { Button, buttonVariants } from "@/components/atoms/Button";
 import { ClinicFileField } from "./ClinicFileField";
 import { useClinic } from "./ClinicContext";
 import { api, download, type Data } from "./api";
@@ -108,7 +108,7 @@ export function PatientDocuments({ patient }: { patient: Data }) {
         {link && (
           <div className="rounded-card border border-line p-4">
             <a
-              className="text-accent underline"
+              className={buttonVariants({ variant: "secondary", size: "sm" })}
               href={link}
               target="_blank"
               rel="noreferrer"

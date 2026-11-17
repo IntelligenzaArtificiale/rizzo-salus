@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { SiteLayout } from "@/layouts/SiteLayout";
 import { Section } from "@/components/app/Section";
-import { Button } from "@/components/atoms/Button";
+import { Button, buttonVariants } from "@/components/atoms/Button";
 import { TextField } from "@/components/form/TextField";
 import { SelectField } from "@/components/form/SelectField";
 import { Checkbox } from "@/components/form/Checkbox";
@@ -46,7 +46,7 @@ export function PublicBooking() {
         <p className="text-sm text-ink-2">
           Scegli una visita medica. Per le terapie contatta la segreteria.
         </p>
-        <Link to="/portale" className="text-accent underline">
+        <Link to="/portale" className={buttonVariants({ variant: "secondary", size: "sm" })}>
           Accedi ai tuoi appuntamenti
         </Link>
         {catalog.error ? (

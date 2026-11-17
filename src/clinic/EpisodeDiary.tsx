@@ -1,3 +1,4 @@
+import { CollapsiblePanel } from "@/components/app/CollapsiblePanel";
 import { useState } from "react";
 import { TextAreaField } from "@/components/form/TextAreaField";
 import { Button } from "@/components/atoms/Button";
@@ -13,10 +14,7 @@ export function EpisodeDiary({ episode }: { episode: Data }) {
   const a = useAction();
   if (!can("pazienti.note_terapeutiche")) return null;
   return (
-    <details className="rounded-card border border-line p-4">
-      <summary className="cursor-pointer text-sm font-medium text-ink">
-        Diario terapeutico · {entries.length} annotazioni
-      </summary>
+    <CollapsiblePanel title={<> Diario terapeutico · {entries.length} annotazioni </>}>
       <div className="flex flex-col gap-3 pt-4">
         {episode.note_terapeutiche && (
           <p className="whitespace-pre-wrap text-sm text-ink-2">
@@ -56,6 +54,6 @@ export function EpisodeDiary({ episode }: { episode: Data }) {
           Aggiungi annotazione
         </Button>
       </div>
-    </details>
+    </CollapsiblePanel>
   );
 }

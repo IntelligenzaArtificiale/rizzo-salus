@@ -1,3 +1,4 @@
+import { CollapsiblePanel } from "@/components/app/CollapsiblePanel";
 // Tutti i campi dell'anagrafica originale. Revision e conferma duplicato restano nel contratto server.
 import { useState, useRef, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
@@ -170,10 +171,7 @@ function PatientForm({ p }: { p: Data }) {
               maxLength={16}
               {...f.field("codice_fiscale")}
             />
-            <details className="border-t border-line pt-3">
-              <summary className="cursor-pointer py-2 text-[13px] font-medium text-ink-2 outline-offset-4">
-                Altri dati anagrafici
-              </summary>
+            <CollapsiblePanel title={<> Altri dati anagrafici </>}>
               <div className="pt-4">
                 <TextField
                   label="Data di nascita"
@@ -199,7 +197,7 @@ function PatientForm({ p }: { p: Data }) {
                   {...f.field("medico_curante")}
                 />
               </div>
-            </details>
+            </CollapsiblePanel>
           </Section>
         )}
         {step === "Contatti" && (
@@ -217,10 +215,7 @@ function PatientForm({ p }: { p: Data }) {
                 { value: "nessuno", label: "Nessuno" },
               ]}
             />
-            <details className="border-t border-line pt-3">
-              <summary className="cursor-pointer py-2 text-[13px] font-medium text-ink-2 outline-offset-4">
-                Indirizzo per la fatturazione
-              </summary>
+            <CollapsiblePanel title={<> Indirizzo per la fatturazione </>}>
               <div className="pt-4">
                 <TextField label="Indirizzo" {...f.field("indirizzo")} />
                 <TextField label="CAP" maxLength={5} {...f.field("cap")} />
@@ -231,7 +226,7 @@ function PatientForm({ p }: { p: Data }) {
                   {...f.field("provincia")}
                 />
               </div>
-            </details>
+            </CollapsiblePanel>
           </Section>
         )}
         {step === "Consensi" && (

@@ -45,15 +45,15 @@
   text-transform: capitalize;
 }
 .clinic-day-heading strong {
-  font-size: 10px;
+  font-size: 11px;
   color: var(--ink);
 }
 .clinic-today {
-  background: #dbeafe;
-  color: #1d4ed8;
+  background: var(--inset);
+  color: var(--ink);
 }
 .clinic-today strong {
-  color: #1d4ed8;
+  color: var(--ink);
 }
 .clinic-time {
   position: absolute;
@@ -116,3 +116,14 @@
 .clinic-calendar-shell:fullscreen {display:flex;width:100vw;height:100vh;padding:12px;background:var(--surface);}
 .clinic-calendar-shell:fullscreen .clinic-calendar {flex:1;max-height:none;min-height:0;}
 .clinic-calendar-shell:fullscreen .clinic-full-only {display:inline-flex;}
+
+.clinic-time-column {position:sticky;left:0;z-index:7;background:var(--surface);}
+.clinic-day-heading strong {white-space:normal;line-height:1.25;padding:0 5px;}
+.clinic-event {font-size:11px;padding:3px 6px;text-decoration:none;}
+.clinic-event b {font-size:12px;}
+.clinic-today {box-shadow:inset 0 -2px var(--ink);}
+.clinic-calendar {scrollbar-gutter:stable;}
+.clinic-day-heading {text-transform:none;}
+.clinic-day-heading > span {text-transform:capitalize;}
+.clinic-calendar {font-variant-numeric:tabular-nums;}
+.clinic-time {color:var(--ink-2);}

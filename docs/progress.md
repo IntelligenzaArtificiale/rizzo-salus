@@ -71,3 +71,13 @@ Verificati risposta reale per titolare e segreteria, conteggio di 8 appuntamenti
 Pubblicata su https://www.stop-paper.it/rizzo-salus/ nella sola cartella FTP confermata dall'utente. La destinazione era vuota; backup e prove preliminari eseguiti prima del runtime. Nuovi dati sintetici, archivio cifrato e chiave separati dalla demo locale; assistente configurato e interrogato realmente via HTTPS. Nessuna modifica a root, altri siti, DNS o configurazione PHP condivisa.
 
 Adeguato il minimo a PHP 8.2 con versioni delle dipendenze immutate, dopo 107 regressioni, 50 controlli Calendar, 10 assistente, 23 URL e 141 sintassi PHP superate. Centralizzati URL e cookie per sottocartelle, mantenendo compatibilità locale. Quattro destinazioni Apache/PHP 8.2 collaudate, poi 39 verifiche HTTPS online senza eccezioni JS. SMS/email in prova e connettori fiscali non attivati. [Procedura e ripristino](deploy.md), [verifica online](deploy-verificato-2026-11-16.json).
+
+## UI e AI operatore - 17 novembre 2026
+
+- [x] Azioni del dettaglio e delle altre pagine rese come bottoni del kit; gerarchia e contrasto corretti.
+- [x] Un solo pannello Controlli agenda per area, viste, filtri, navigazione, professionisti, appunti, copia, legenda e schermo intero. Nuovo CollapsiblePanel con più/meno, Mostra/Nascondi, tastiera e campi conservati, adottato nei form e nei parametri.
+- [x] Colonne leggibili, categorie vuote opzionali, temi e mobile; appunti esclusi dal conteggio appuntamenti.
+- [x] Operatore AI con 15 azioni, strumenti strict e permessi correnti; anteprima senza scritture operative, piano cifrato valido 15 minuti, conferma atomica/idempotente, scarto e revisioni.
+- [x] 43 controlli operatore, 107 dominio, 50 Calendar, 10 contatori, 23 URL; 148 sintassi PHP. 83 verifiche browser dedicate, comprese chiamate OpenAI reali e scritture confermate in QA isolata. Build/lint/regole UI passate, 59 warning lint e bundle >500 kB documentati.
+
+Dati e server originali preservati; nessun reset della copia in uso o del sito pubblico. [Funzioni e limiti](operatore-ui-2026-11-17.md), [report](operatore-verifica-2026-11-17.json). La revisione corrente è locale su 8081; il rilascio remoto del 16 novembre resta invariato.

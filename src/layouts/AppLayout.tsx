@@ -126,7 +126,7 @@ export function AppLayout({
               <span className="block truncate text-[13px] font-medium text-ink">
                 {clinic.user?.name}
               </span>
-              <span className="block text-[11px] capitalize text-ink-3">
+              <span className="block text-[11px] capitalize text-ink-2">
                 {clinic.user?.role}
               </span>
             </span>
@@ -190,13 +190,13 @@ export function AppLayout({
             <button
               type="button"
               onClick={() => navigate("/panoramica")}
-              className="hidden text-[12px] font-medium text-ink-3 hover:text-ink sm:block"
+              className="hidden text-[12px] font-medium text-ink-2 hover:text-ink sm:block"
             >
               Poliambulatorio Rizzo
             </button>
             <ChevronRight
               size={12}
-              className="hidden text-ink-3 sm:block"
+              className="hidden text-ink-2 sm:block"
               aria-hidden
             />
             <span className="truncate text-[12px] text-ink-2">

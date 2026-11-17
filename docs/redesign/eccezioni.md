@@ -19,3 +19,8 @@ CalendarWeek è scomposto in geometria, canali e CalendarEvent. Sottocolonne e i
 
 ## Assistente reale, 16 novembre 2026
 StreamingText resta il componente del kit per il testo animato. Il wrapper applicativo nasconde i suoi blocchi dimostrativi di azioni, fonti e follow-up: il componente non espone opzioni per rimuoverli e i pulsanti non sono collegati ad azioni reali. Nessun conteggio di fonti inventato e nessuna modifica al vendor.
+
+## UI e operatore richiesti il 17 novembre 2026
+L'utente richiede espressamente di sostituire i disclosure nativi: CollapsiblePanel compone Button del kit, mostra più/meno e Mostra/Nascondi, mantiene i campi al cambio stato e supporta tastiera/aria-expanded. Sostituisce i details dell'app clinica, senza cambiare il vendor. Tutti i controlli e gli appunti dell'agenda sono nello stesso pannello. Le azioni di navigazione riusano buttonVariants: nessuna seconda libreria di bottoni.
+Le colonne temporali mantengono la geometria specifica del calendario, con minimo 112 px nella settimana e categorie vuote opzionali. Le righe orarie via repeating-linear-gradient sono geometria, non sfumature decorative; i bordi del kit realizzati come shadow-hairline rimangono. Il taglio dei contenuti all'estremità del calendario riguarda il suo scorrimento interno; la pagina non deve avere overflow orizzontale. Queste tre eccezioni sono dichiarate all'ispettore grafico, non nascoste.
+La stessa richiesta autorizza l'operatore con scritture: API nuove per piani cifrati e conferma, riuso dei controller e delle regole effettive. Non abilita invii a servizi esterni o modifiche ai permessi.

@@ -39,11 +39,11 @@ Sono credenziali pubbliche per la sola demo locale, con dati sintetici creati da
 
 Chiara non viene pianificata finché non si confermano i giorni; il venerdì di Antonio resta chiuso e la pompa diamagnetica non assistita disattivata. Tutto è inseribile da **Impostazioni → Cataloghi / Calendar**. Il pianificatore a vincoli funziona senza chiavi AI esterne.
 
-## Assistente AI
+## AI operatore
 
 Accedere come titolare e aprire **Impostazioni → Integrazioni** per salvare la chiave OpenAI; nella sezione **Assistente** impostare il modello (verificato con `gpt-4.1-mini`), attivazione e tetti di spesa. La chiave resta cifrata sul server. Ogni clone richiede la propria configurazione: il repository non contiene credenziali API.
 
-L'[assistente](http://localhost:8081/#/assistente) risponde sui dati consentiti al ruolo e conserva la conversazione solo nella schermata corrente. Non esegue modifiche o invii. I limiti del gestionale si basano sui costi stimati: il consumo effettivo resta consultabile presso il fornitore. Evitare dati clinici nel testo libero.
+L'[AI operatore](http://localhost:8081/#/assistente) risponde e prepara modifiche sui dati consentiti al ruolo: appuntamenti e gruppi, pazienti, incassi di fatture emesse, spese, personale e magazzino. Mostra un riepilogo validato e applica il piano soltanto con **Conferma e applica**. I piani scadono dopo 15 minuti; dati cambiati richiedono una nuova anteprima. La conferma ripetuta non duplica i record. La conversazione rimane nella schermata corrente. I limiti del gestionale si basano sui costi stimati: il consumo effettivo resta consultabile presso il fornitore. Evitare dati clinici nel testo libero.
 
 ## Preparazione manuale e Windows
 
@@ -118,6 +118,7 @@ python3 -I scripts/verify-ui-rules.py
 php scripts/test-calendar-domain.php
 php scripts/test-call-domain.php
 php scripts/test-assistant-summary.php
+php scripts/test-operator.php
 ```
 
 Python 3 serve solo per gli strumenti di verifica, non per eseguire l'applicazione. Le due suite PHP creano dataset isolati sotto `.runtime/qa`; i test browser devono usare esclusivamente il server QA 8082 con dati separati, mai la demo in uso. Playwright/Chrome serve soltanto ai collaudi browser.
@@ -129,3 +130,5 @@ Il server PHP integrato è destinato all'avvio locale. Hosting, dominio, HTTPS, 
 ## Pubblicazione su hosting
 
 [Procedura di rilascio e ripristino](docs/deploy.md). Il pacchetto Apache/PHP separa asset pubblici, codice e runtime protetto e supporta root e sottocartelle. Le credenziali di trasferimento e gli archivi generati rimangono in `.deploy/`, escluso dal repository.
+
+La revisione del 17 novembre raccoglie tutti i controlli dell’agenda in **Controlli agenda**, richiudibile; usa bottoni uniformi e pannelli Mostra/Nascondi anche nei moduli. [Funzioni e verifiche dell’operatore](docs/operatore-ui-2026-11-17.md).

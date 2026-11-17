@@ -1,3 +1,4 @@
+import { buttonVariants } from "@/components/atoms/Button";
 import { EpisodeDiary } from "./EpisodeDiary";
 import { useState } from "react";
 import { PageTabs } from "@/components/app/PageTabs";
@@ -38,7 +39,7 @@ export function PatientEpisodes({
           {can("pazienti.anagrafica") && (
             <Link
               to={"/percorsi/" + e.id}
-              className="text-sm text-accent underline"
+              className={buttonVariants({ variant: "secondary", size: "sm" })}
             >
               Modifica percorso
             </Link>

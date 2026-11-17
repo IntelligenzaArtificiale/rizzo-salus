@@ -74,7 +74,7 @@ export function clinicNavigation(
       ? [
           {
             key: "/assistente",
-            label: "Assistente",
+            label: "AI operatore",
             icon: <Sparkles size={18} />,
           },
         ]

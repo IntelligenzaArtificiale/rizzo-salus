@@ -1,0 +1,140 @@
+{
+  "data": "2026-11-17",
+  "ambiente": "copia locale 8081; prove scriventi esclusivamente QA isolata 8082",
+  "operazioni_supportate": 15,
+  "suite_php82": {
+    "operatore": 43,
+    "regressioni_dominio": 107,
+    "calendar": 50,
+    "contatori_assistente": 10,
+    "url": 23
+  },
+  "sintassi_php82": {
+    "file": 148,
+    "errori": []
+  },
+  "verifiche_browser": {
+    "verifica-ui.json": [
+      "Pannello inizialmente chiuso light1440",
+      "Filtri nascosti quando chiuso light1440",
+      "Pannello unico apre tutti i controlli light1440",
+      "Nessun disclosure nativo light1440",
+      "Nessun overflow pagina light1440",
+      "Tastiera chiude light1440",
+      "Filtro conservato light1440",
+      "Azioni come bottoni light1440",
+      "Dettaglio senza overflow light1440",
+      "Pannello inizialmente chiuso light768",
+      "Filtri nascosti quando chiuso light768",
+      "Pannello unico apre tutti i controlli light768",
+      "Nessun disclosure nativo light768",
+      "Nessun overflow pagina light768",
+      "Tastiera chiude light768",
+      "Filtro conservato light768",
+      "Azioni come bottoni light768",
+      "Dettaglio senza overflow light768",
+      "Pannello inizialmente chiuso light390",
+      "Filtri nascosti quando chiuso light390",
+      "Pannello unico apre tutti i controlli light390",
+      "Nessun disclosure nativo light390",
+      "Nessun overflow pagina light390",
+      "Tastiera chiude light390",
+      "Filtro conservato light390",
+      "Azioni come bottoni light390",
+      "Dettaglio senza overflow light390",
+      "Pannello inizialmente chiuso dark1440",
+      "Filtri nascosti quando chiuso dark1440",
+      "Pannello unico apre tutti i controlli dark1440",
+      "Nessun disclosure nativo dark1440",
+      "Nessun overflow pagina dark1440",
+      "Tastiera chiude dark1440",
+      "Filtro conservato dark1440",
+      "Azioni come bottoni dark1440",
+      "Dettaglio senza overflow dark1440",
+      "Pannello inizialmente chiuso dark768",
+      "Filtri nascosti quando chiuso dark768",
+      "Pannello unico apre tutti i controlli dark768",
+      "Nessun disclosure nativo dark768",
+      "Nessun overflow pagina dark768",
+      "Tastiera chiude dark768",
+      "Filtro conservato dark768",
+      "Azioni come bottoni dark768",
+      "Dettaglio senza overflow dark768",
+      "Pannello inizialmente chiuso dark390",
+      "Filtri nascosti quando chiuso dark390",
+      "Pannello unico apre tutti i controlli dark390",
+      "Nessun disclosure nativo dark390",
+      "Nessun overflow pagina dark390",
+      "Tastiera chiude dark390",
+      "Filtro conservato dark390",
+      "Azioni come bottoni dark390",
+      "Dettaglio senza overflow dark390",
+      "Disclosure form conserva dati",
+      "Disclosure non invia form",
+      "Nessuna eccezione JS"
+    ],
+    "verifica-reale.json": [
+      "AI reale restituisce piano",
+      "Più domini nello stesso piano",
+      "Anteprima non crea paziente",
+      "Anteprima non crea spesa",
+      "Conferma applica piano",
+      "Paziente creato dopo conferma",
+      "Giacenza creata dal piano",
+      "Spesa creata dopo conferma",
+      "Retry API non duplica",
+      "Paziente ancora unico",
+      "Nessuna eccezione JS"
+    ],
+    "verifica-agenda-reale.json": [
+      "AI prepara appuntamento reale",
+      "Tipo azione appuntamento",
+      "Agenda salvata dopo conferma",
+      "Orario e durata corretti",
+      "Risultato apre il dettaglio corretto"
+    ],
+    "verifica-http.json": [
+      "Conferma protetta da CSRF",
+      "Conferma esplicita obbligatoria",
+      "Campi client non sostituiscono il piano",
+      "Piano non utilizzabile da altro utente",
+      "Ruolo senza AI rifiutato"
+    ],
+    "verifica-fullscreen.json": [
+      "Schermo intero nel pannello chiuso",
+      "Copia nel pannello chiuso",
+      "Schermo intero si apre",
+      "Comando uscita resta accessibile",
+      "Chiusura pannello ripristinata"
+    ]
+  },
+  "schermate": "18 schermate UI (agenda chiusa/aperta, dettaglio; 1440/768/390, chiaro/scuro), più piani e risultati AI reali",
+  "ispezione_visiva": "Schermate e gallerie locali esaminate; correzioni su ombra disclosure, contrasto, intestazione appunti duplicata e collocazione dei comandi calendario",
+  "ispettore_ui": {
+    "fail": 0,
+    "warning": [
+      {
+        "level": "WARN",
+        "id": "no-data-hue",
+        "width": 1440,
+        "message": "The screen has 3 charts or timelines but no hue on any of its data (0.0% coloured pixels).",
+        "fix": "Put the style's one chart hue (or the brand's) on the screen's main data element: today's line, the booked bars, the current period, the cover margin. Keep the chrome neutral; the hue still stays under the style's colour budget.",
+        "alsoAt": [
+          768
+        ]
+      }
+    ],
+    "eccezioni_dichiarate": [
+      "gradient: griglia oraria tramite righe ripetute",
+      "edge-text: taglio delle colonne nel solo contenitore a scorrimento interno",
+      "heavy-shadow: hairline del kit implementate come ombre, vendor conservato"
+    ]
+  },
+  "lint": {
+    "errori": 0,
+    "warning": 59
+  },
+  "bundle": "Warning Vite oltre 500 kB già presente",
+  "dati_e_credenziali": "Nessun reset o dato di collaudo nella demo in uso; chiave AI riusata soltanto nel runtime privato, nessun segreto nel repository",
+  "pubblicazione_remota": "Non eseguita in questa revisione UI; sito del 16 novembre preservato"
+}

@@ -1,3 +1,4 @@
+import { CollapsiblePanel } from "@/components/app/CollapsiblePanel";
 // Tre viste della stessa agenda. Su telefono parte dalla giornata, con esiti rapidi.
 import { useState } from "react";
 import { useSearchParams } from "react-router-dom";
@@ -7,6 +8,7 @@ import { PageTabs } from "@/components/app/PageTabs";
 import { IconButton, PrimaryAction } from "@/components/app/IconButton";
 import { EmptyState } from "@/components/app/PageState";
 import { Button } from "@/components/atoms/Button";
+import { Checkbox } from "@/components/form/Checkbox";
 import { SelectField } from "@/components/form/SelectField";
 import { api, type Data } from "./api";
 import { useClinic } from "./ClinicContext";
@@ -25,6 +27,7 @@ import { AgendaNotes, CycleAlertsPanel } from "./AgendaNotes";
 import { endedWithoutOutcome } from "./schedule";
 export function AgendaPage() {
   const { catalog, can, user } = useClinic();
+  const [calendarTools, setCalendarTools] = useState<HTMLDivElement | null>(null);
   const [params, setParams] = useSearchParams();
   const [compact] = useState(() => matchMedia("(max-width:767px)").matches);
   const view = params.get("vista") || (compact ? "Giorno" : "Settimana");
@@ -85,7 +88,7 @@ export function AgendaPage() {
   });
   const selected = (
     view === "Giorno" ? all.filter((a) => a.start.startsWith(day)) : all
-  ).filter((a) => !onlyOutcomes || endedWithoutOutcome(a));
+  ).filter((a) => a.tipo !== "nota" && (!onlyOutcomes || endedWithoutOutcome(a)));
   const subtitle =
     view === "Giorno"
       ? new Date(day + "T12:00:00").toLocaleDateString("it-IT", {
@@ -108,23 +111,19 @@ export function AgendaPage() {
                 icon={<Plus size={16} />}
                 to="/agenda/nuovo"
               />
-              <PrimaryAction
-                label="Copia settimana"
-                icon={<Copy size={16} />}
-                to={`/agenda/copia?settimana=${week}`}
-              />
+
             </div>
           ) : undefined
         }
       />
+      <CollapsiblePanel title="Controlli agenda" description={`${area} · ${view} · ${pro ? name(professionals.find((p: Data) => p.id === pro) || {}) : "Tutti i professionisti"}`} >
       <PageTabs
         options={["Fisioterapia", "Poliambulatorio"]}
         value={area}
         label="Area clinica"
         onChange={(area) => set({ area, terapia: "", famiglia: "" })}
       />
-      <details open={!compact} className="rounded-card border border-line p-3">
-        <summary className="cursor-pointer text-sm font-medium">Filtri e raggruppamento</summary>
+      <div>
       <div className="mt-3 grid gap-3 lg:grid-cols-3">
         <SelectField
           label="Famiglia terapia"
@@ -162,7 +161,7 @@ export function AgendaPage() {
         ]}
       />
       </div>
-      </details>
+      </div>
       <div className="flex flex-wrap items-center gap-3">
         <div className="w-full sm:w-80">
           <PageTabs
@@ -239,16 +238,21 @@ export function AgendaPage() {
           ))}
         </div>
       )}
-      <details className="rounded-card border border-line p-3">
-        <summary className="cursor-pointer text-sm font-medium">Appunti della segreteria · sabato e settimana</summary>
-        <div className="mt-3"><AgendaNotes week={week} /></div>
-      </details>
+      <div className="border-t border-line pt-4">
+        <AgendaNotes week={week} />
+      </div>
+      {can("agenda.modifica") && <div><PrimaryAction variant="secondary" label="Copia settimana" icon={<Copy size={16} />} to={`/agenda/copia?settimana=${week}`} /></div>}
+      <div ref={setCalendarTools} />
+      <Checkbox label="Mostra anche le categorie senza appuntamenti" checked={params.get("colonne_vuote") === "1"} onChange={(v) => set({ colonne_vuote: v ? "1" : "" })} />
+      </CollapsiblePanel>
       {view !== "Elenco" && (
         <>
           <CalendarWeek
             week={["Due giorni", "Giorno"].includes(view) ? day : week}
             count={view === "Giorno" ? 1 : view === "Due giorni" ? 2 : 5}
             group={grouping}
+            showEmpty={params.get("colonne_vuote") === "1"}
+            toolbarContainer={calendarTools}
             onCurrentWeek={() => set({ settimana: monday(today()), giorno: today() })}
             colors={settings.data?.valori?.agenda?.colori}
             appointments={all}

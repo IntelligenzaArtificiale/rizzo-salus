@@ -11,7 +11,7 @@ use App\Store\Store;
 
 /**
  * Unico punto da cui si parla con OpenAI. Regole:
- *  - mai dati identificativi del paziente nel testo inviato;
+ *  - contesto minimizzato dal chiamante; i recapiti noti vengono mascherati dall'operatore;
  *  - tetto di spesa giornaliero, tempo massimo, modello scelto dalle impostazioni;
  *  - se non è configurato o scade il tetto, il resto del gestionale continua a funzionare senza.
  */
@@ -41,7 +41,7 @@ final class AiClient
      * @return array{testo:string,json:?array<string,mixed>}
      * @throws ApiError ai_non_configurata | tetto_ai_raggiunto | ai_non_disponibile
      */
-    public function complete(string $purpose, string $system, string $user, bool $json = false): array
+    public function complete(string $purpose, string $system, string $user, bool $json = false, array $tools = []): array
     {
         if (!$this->enabled()) {
             throw new ApiError('ai_non_configurata', 503);
@@ -50,7 +50,7 @@ final class AiClient
         if ($this->spentToday() >= $cap || $this->spentMonth() >= (float) $this->settings->get('ai.tetto_mensile_eur', 5.0)) {
             throw new ApiError('tetto_ai_raggiunto', 429);
         }
-        $reserve=(strlen($system)+strlen($user)+1536)/1000*(float)$this->settings->get('ai.costo_per_1k_token_eur',0.002);
+        $reserve=(strlen($system)+strlen($user)+strlen(json_encode($tools))+6144)/1000*(float)$this->settings->get('ai.costo_per_1k_token_eur',0.002);
         $reservation=$this->store->transaction(function()use($reserve,$purpose,$cap){
             if($this->spentToday()+$reserve>$cap || $this->spentMonth()+$reserve>(float)$this->settings->get('ai.tetto_mensile_eur',5.0))throw new ApiError('tetto_ai_raggiunto',429);
             return $this->store->put('ai_usage',['at'=>Clock::stamp(),'giorno'=>Clock::today(),'scopo'=>$purpose,'token'=>0,'costo_eur'=>$reserve,'stato'=>'riservato']);
@@ -59,17 +59,24 @@ final class AiClient
         if ($json) {
             $payload['response_format'] = ['type' => 'json_object'];
         }
+        if ($tools) {
+            $payload['tools']=$tools;
+            $payload['tool_choice']='auto';
+            $payload['parallel_tool_calls']=false;
+            $payload['max_completion_tokens']=1536;
+        }
         $timeout = max(3, min(60, (int) $this->settings->get('ai.timeout_secondi', 20)));
         $res = ($this->transport ?? [$this, 'http'])($payload, (string) (new \App\Services\IntegrationSecrets($this->store))->get('openai_api_key'), $timeout);
         $data = json_decode($res['body'], true);
-        if ($res['status'] !== 200 || !is_array($data) || !isset($data['choices'][0]['message']['content'])) {
+        if ($res['status'] !== 200 || !is_array($data) || (!isset($data['choices'][0]['message']['content']) && empty($data['choices'][0]['message']['tool_calls']))) {
             throw new ApiError('ai_non_disponibile', 503);
         }
         $tokens = (int) ($data['usage']['total_tokens'] ?? 0);
         $cost = $tokens / 1000 * (float) $this->settings->get('ai.costo_per_1k_token_eur', 0.002);
         $this->store->transaction(fn () => $this->store->put('ai_usage', array_replace($reservation,['token'=>$tokens,'costo_eur'=>round($cost,6),'stato'=>'consuntivo'])));
-        $text = (string) $data['choices'][0]['message']['content'];
-        return ['testo' => $text, 'json' => $json ? (json_decode($text, true) ?: null) : null];
+        $text = (string) ($data['choices'][0]['message']['content'] ?? '');
+        return ['testo' => $text, 'json' => $json ? (json_decode($text, true) ?: null) : null,
+            'strumenti'=>$data['choices'][0]['message']['tool_calls']??[]];
     }
 
     private function spentMonth(): float

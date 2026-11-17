@@ -11,6 +11,8 @@ final class Routes
     public static function build(): Router
     {
         $r = new Router();
+        $r->add('/assistente/conferma',[AssistantController::class,'conferma'],'ai.assistente');
+        $r->add('/assistente/scarta',[AssistantController::class,'scarta'],'ai.assistente');
 
         // Accesso e primo avvio (pubblici, con limiti di frequenza)
         $r->add('/auth/login', [AuthController::class, 'login'], null, true);
