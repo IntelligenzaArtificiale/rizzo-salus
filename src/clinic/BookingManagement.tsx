@@ -1,5 +1,6 @@
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
 import { WaitlistForm } from "./WaitlistForm";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
 import { RowList } from "@/components/app/RowList";
@@ -12,6 +13,7 @@ import { useClinic } from "./ClinicContext";
 import { api, type Data } from "./api";
 import { useAction, useLoad, LoadState, today, date, name } from "./common";
 export function BookingManagement() {
+  const navigate = useNavigate(), mode = useLocation().pathname.split("/")[2] || "elenco", [params] = useSearchParams(), editId = params.get("id");
   const { catalog, user, can } = useClinic();
   const load = useLoad(async () => ({
     ...(await api("/prenotazioni/finestre")),
@@ -27,21 +29,24 @@ export function BookingManagement() {
     a: "13:00",
     pubblicata: true,
   });
+  useEffect(() => { if (mode === "disponibilita") { const row = load.data?.finestre.find((r: Data) => r.id === editId); if (row) setV(row); else if (!editId) setV({ professional_id: user?.professional_id || "", therapy_type_id: "", date: today(), da: "09:00", a: "13:00", pubblicata: true }); } }, [mode, editId, load.data]);
   const a = useAction();
   return (
     <LoadState load={load}>
       <PageHeader
-        title="Prenotazioni e attesa"
+        title={mode === "elenco" ? "Prenotazioni e attesa" : mode === "attesa" ? "Nuova richiesta in attesa" : editId ? "Modifica disponibilità" : "Nuova disponibilità"}
+        back={mode !== "elenco" ? { to: "/prenotazioni", label: "Prenotazioni e attesa" } : undefined}
+        actions={mode === "elenco" ? <div className="flex flex-wrap gap-2"><Button onClick={() => navigate("/prenotazioni/disponibilita")}>Nuova disponibilità</Button>{can("prenotazioni.liste_attesa") && <Button onClick={() => navigate("/prenotazioni/attesa")}>Aggiungi in attesa</Button>}</div> : undefined}
         subtitle="Pubblica le disponibilità mediche e gestisci le richieste."
       />
-      <Section title="Disponibilità mediche">
-        <form
+      {mode !== "attesa" && <Section title="Disponibilità mediche">
+        {mode === "disponibilita" && <form
           className="flex flex-col gap-3"
           onSubmit={(e) => {
             e.preventDefault();
             a.act(async () => {
               await api("/prenotazioni/finestra-salva", v);
-              load.reload();
+              load.reload(); navigate("/prenotazioni");
             }, "Disponibilità salvata");
           }}
         >
@@ -105,8 +110,8 @@ export function BookingManagement() {
           >
             Salva disponibilità
           </Button>
-        </form>
-        <RowList
+        </form>}
+        {mode === "elenco" && <RowList
           rows={(load.data?.finestre ?? []).map((w: Data) => ({
             key: w.id,
             title: date(w.date) + " · " + w.da + "–" + w.a,
@@ -117,15 +122,16 @@ export function BookingManagement() {
                 <StatusPill tone={w.pubblicata ? "green" : "neutral"}>
                   {w.pubblicata ? "Pubblicata" : "Riservata"}
                 </StatusPill>
-                <Button onClick={() => setV(w)}>Modifica</Button>
+                <Button onClick={() => navigate("/prenotazioni/disponibilita?id=" + w.id)}>Modifica</Button>
               </div>
             ),
           }))}
-        />
-      </Section>
+        />}
+      </Section>}
       {can("prenotazioni.liste_attesa") && (
         <>
-          <WaitlistForm onSaved={load.reload} />
+          {mode === "attesa" && <WaitlistForm onSaved={() => { load.reload(); navigate("/prenotazioni"); }} />}
+          {mode === "elenco" && <>
           <Section title="Richieste e avvisi">
             <RowList
               rows={(load.data?.avvisi ?? []).map((n: Data) => ({
@@ -198,7 +204,7 @@ export function BookingManagement() {
                 ),
               }))}
             />
-          </Section>
+          </Section></>}
         </>
       )}
     </LoadState>

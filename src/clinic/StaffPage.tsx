@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
 import { RowList } from "@/components/app/RowList";
@@ -10,8 +11,10 @@ import { useClinic } from "./ClinicContext";
 import { api, download, type Data } from "./api";
 import { useLoad, LoadState, useAction, today, date, name } from "./common";
 export function StaffPage() {
+  const navigate = useNavigate(), { pathname } = useLocation(), [params] = useSearchParams();
+  const mode = pathname.split("/")[2] || "elenco", form = mode !== "elenco", editId = params.get("id");
   const { catalog, can } = useClinic();
-  const [month, setMonth] = useState(today().slice(0, 7)),
+  const [month, setMonth] = useState(params.get("mese") || today().slice(0, 7)),
     [v, setV] = useState<Data>({
       professional_id: "",
       date: today(),
@@ -22,19 +25,23 @@ export function StaffPage() {
       nota: "",
     }),
     [hours, setHours] = useState("");
+  useEffect(() => { if (form && !editId) { setV({ professional_id: "", date: today(), tipo: "presenza", da: "08:00", a: "13:00", pausa_minuti: 0, nota: "" }); setHours(""); } }, [mode, editId]);
   const a = useAction();
   const load = useLoad(
     () => api("/gestione/personale", { mese: month }),
     [month],
   );
+  useEffect(() => { if (editId && load.data) { const row = load.data.righe.flatMap((r: Data) => r.presenze).find((r: Data) => r.id === editId); if (row) setV(row); } }, [editId, load.data]);
   return (
     <LoadState load={load}>
       <PageHeader
-        title="Personale"
+        title={form ? mode === "contratto" ? "Monte ore contrattuale" : editId ? "Modifica registrazione" : "Nuova registrazione" : "Personale"}
+        back={form ? { to: "/personale", label: "Personale" } : undefined}
+        actions={!form && can("personale.presenze") ? <div className="flex flex-wrap gap-2"><Button onClick={() => { setV({ professional_id: "", date: today(), tipo: "presenza", da: "08:00", a: "13:00", pausa_minuti: 0, nota: "" }); navigate("/personale/registrazione"); }}>Nuova registrazione</Button><Button onClick={() => navigate("/personale/contratto")}>Monte ore</Button></div> : undefined}
         subtitle="Ore in agenda, presenze effettive e monte contrattuale. La preparazione è esclusa."
       />
-      <TextField label="Mese" type="month" value={month} onChange={setMonth} />
-      <Section title="Riepilogo mensile">
+      {(!form || mode === "contratto") && <TextField label="Mese" type="month" value={month} onChange={setMonth} />}
+      {!form && <Section title="Riepilogo mensile">
         <RowList
           rows={(load.data?.righe ?? []).map((r: Data) => ({
             key: r.professional_id,
@@ -58,16 +65,16 @@ export function StaffPage() {
         >
           Scarica riepilogo mensile
         </Button>
-      </Section>
-      {can("personale.presenze") && (
+      </Section>}
+      {form && can("personale.presenze") && (
         <Section title="Presenze, assenze e giustificativi">
-          <form
+          {mode === "registrazione" && <form
             className="flex flex-col gap-3"
             onSubmit={(e) => {
               e.preventDefault();
               a.act(async () => {
                 await api("/gestione/presenza", v);
-                load.reload();
+                load.reload(); navigate("/personale");
               }, "Presenza salvata");
             }}
           >
@@ -135,12 +142,12 @@ export function StaffPage() {
             <Button
               type="submit"
               variant="primary"
-              disabled={a.busy || !v.professional_id}
+              disabled={a.busy || !v.professional_id || !!editId && !v.id}
             >
               Salva registrazione
             </Button>
-          </form>
-          <form
+          </form>}
+          {mode === "contratto" && <form
             className="mt-6 flex flex-col gap-3"
             onSubmit={(e) => {
               e.preventDefault();
@@ -150,10 +157,11 @@ export function StaffPage() {
                   mese: month,
                   ore: Number(hours),
                 });
-                load.reload();
+                load.reload(); navigate("/personale");
               }, "Monte ore aggiornato");
             }}
           >
+            <SelectField label="Professionista" value={v.professional_id} onChange={professional_id => setV({ ...v, professional_id })} options={[{ value: "", label: "Scegli professionista" }, ...catalog.professionisti.map((p: Data) => ({ value: p.id, label: name(p) }))]} />
             <TextField
               label="Monte contrattuale del mese per il professionista selezionato"
               type="number"
@@ -166,10 +174,10 @@ export function StaffPage() {
             >
               Imposta ore del mese
             </Button>
-          </form>
+          </form>}
         </Section>
       )}
-      {(load.data?.righe ?? []).map((r: Data) => (
+      {!form && (load.data?.righe ?? []).map((r: Data) => (
         <Section key={r.professional_id} title={"Registrazioni · " + r.nome}>
           <RowList
             rows={r.presenze.map((p: Data) => ({
@@ -182,7 +190,7 @@ export function StaffPage() {
               actions: (
                 <div className="flex flex-wrap gap-2">
                   {can("personale.presenze") && (
-                    <Button onClick={() => setV(p)}>Modifica</Button>
+                    <Button onClick={() => navigate(`/personale/registrazione?id=${p.id}&mese=${month}`)}>Modifica</Button>
                   )}
                   {p.giustificativo && (
                     <Button

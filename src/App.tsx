@@ -132,8 +132,8 @@ const router = createHashRouter(
       <Route path="/firma/:token" element={<PublicSignature />} />
       <Route path="/settimana/:token" element={<PublicWeekPage />} />
       <Route element={<Protected />}>
-        <Route path="/formazione" element={<TrainingPage />} />
-        <Route path="/pacchetti" element={<ReviewExportsPage />} />
+        <Route path="/formazione/*" element={<TrainingPage />} />
+        <Route path="/pacchetti/*" element={<ReviewExportsPage />} />
         <Route
           path="/relazioni"
           element={
@@ -151,17 +151,17 @@ const router = createHashRouter(
           }
         />
         <Route path="/compensi" element={<CompensationsPage />} />
-        <Route path="/magazzino" element={<StockPage />} />
-        <Route path="/personale" element={<StaffPage />} />
+        <Route path="/magazzino/*" element={<StockPage />} />
+        <Route path="/personale/*" element={<StaffPage />} />
         <Route
-          path="/spese"
+          path="/spese/*"
           element={
             <Permission permission="statistiche.economiche">
               <ExpensesPage />
             </Permission>
           }
         />
-        <Route path="/prenotazioni" element={<BookingManagement />} />
+        <Route path="/prenotazioni/*" element={<BookingManagement />} />
         <Route path="/panoramica" element={<OverviewPage />} />
         <Route path="/agenda" element={<AgendaPage />} />
         <Route

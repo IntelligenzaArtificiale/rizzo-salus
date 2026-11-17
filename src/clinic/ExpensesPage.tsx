@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
 import { RowList } from "@/components/app/RowList";
@@ -11,6 +12,8 @@ import { api, download, type Data } from "./api";
 import { useLoad, LoadState, useAction, today, money, date } from "./common";
 import { ClinicFileField } from "./ClinicFileField";
 export function ExpensesPage() {
+  const navigate = useNavigate(), { pathname } = useLocation(), [params] = useSearchParams();
+  const form = pathname !== "/spese", editId = params.get("id"), sourceDate = params.get("data");
   const [from, setFrom] = useState(today().slice(0, 7) + "-01"),
     [to, setTo] = useState(today()),
     [v, setV] = useState<Data>({
@@ -27,21 +30,24 @@ export function ExpensesPage() {
     });
   const a = useAction();
   const load = useLoad(
-    () => api("/gestione/spese", { da: from, a: to }),
-    [from, to],
+    () => api("/gestione/spese", { da: form && sourceDate ? sourceDate : from, a: form && sourceDate ? sourceDate : to }),
+    [from, to, form, sourceDate],
   );
   const d = load.data;
+  useEffect(() => { if (form && !editId) setV({ descrizione: "", date: today(), categoria: "altro", importo: 0, pagata: false, ricorrenza: "nessuna" }); if (editId && load.data) { const e = load.data.spese.find((r: Data) => r.id === editId); if (e) setV({ ...e, importo: e.importo_cents / 100 }); } }, [form, editId, load.data]);
   return (
     <LoadState load={load}>
       <PageHeader
-        title="Entrate e uscite"
+        title={form ? (editId ? "Modifica spesa" : "Nuova spesa") : "Entrate e uscite"}
+        back={form ? { to: "/spese", label: "Entrate e uscite" } : undefined}
+        actions={!form ? <Button onClick={() => { setV({ descrizione: "", date: today(), categoria: "altro", importo: 0, pagata: false, ricorrenza: "nessuna" }); navigate("/spese/nuova"); }}>Nuova spesa</Button> : undefined}
         subtitle="Costi amministrativi, scadenze e previsione delle ricorrenze."
       />
-      <div className="grid gap-3 sm:grid-cols-2">
+      {!form && <div className="grid gap-3 sm:grid-cols-2">
         <TextField label="Dal" type="date" value={from} onChange={setFrom} />
         <TextField label="Al" type="date" value={to} onChange={setTo} />
-      </div>
-      {d && (
+      </div>}
+      {!form && d && (
         <Section title="Risultato del periodo">
           <DetailList
             items={[
@@ -64,7 +70,7 @@ export function ExpensesPage() {
           </p>
         </Section>
       )}
-      <Section title="Spese registrate">
+      {!form && <Section title="Spese registrate">
         <RowList
           rows={(d?.spese ?? []).map((e: Data) => ({
             key: e.id,
@@ -78,7 +84,7 @@ export function ExpensesPage() {
             actions: (
               <div className="flex flex-wrap gap-2">
                 <Button
-                  onClick={() => setV({ ...e, importo: e.importo_cents / 100 })}
+                  onClick={() => navigate(`/spese/modifica?id=${e.id}&data=${e.date}`)}
                 >
                   Modifica
                 </Button>
@@ -100,8 +106,8 @@ export function ExpensesPage() {
             ),
           }))}
         />
-      </Section>
-      <Section title={v.id ? "Modifica spesa" : "Registra spesa"}>
+      </Section>}
+      {form && <Section title={v.id ? "Modifica spesa" : "Registra spesa"}>
         <form
           className="flex flex-col gap-3"
           onSubmit={(e) => {
@@ -111,7 +117,7 @@ export function ExpensesPage() {
               for (const k of ["scadenza", "data_pagamento", "fine_ricorrenza"])
                 body[k] = body[k] || null;
               await api("/gestione/spesa", body);
-              load.reload();
+              load.reload(); navigate("/spese");
             }, "Spesa salvata");
           }}
         >
@@ -194,12 +200,12 @@ export function ExpensesPage() {
           <Button
             type="submit"
             variant="primary"
-            disabled={a.busy || !v.descrizione || v.importo <= 0}
+            disabled={a.busy || !v.descrizione || v.importo <= 0 || !!editId && !v.id}
           >
             Salva spesa
           </Button>
         </form>
-      </Section>
+      </Section>}
     </LoadState>
   );
 }

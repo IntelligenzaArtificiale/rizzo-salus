@@ -37,3 +37,9 @@ select option:disabled { color: var(--ink-2); }
 .clinic-upload-over { border-color:var(--accent); background:var(--hover); }
 @media(max-width:540px) { .clinic-upload { flex-wrap:wrap; padding:16px; } }
 .page-shell:has(.episode-form) { padding-block:20px; gap:16px; }
+/* Un unico contenitore scorrevole per le schermate amministrative. */
+html:has(.app-shell), body:has(.app-shell), #root:has(.app-shell) { height:100%; overflow:hidden; }
+main { overscroll-behavior:contain; }
+.page-shell > * { flex-shrink:0; }
+.agenda-period-navigation { display:flex; align-items:center; justify-content:center; gap:6px; }
+.agenda-period-navigation > div { width:160px; }

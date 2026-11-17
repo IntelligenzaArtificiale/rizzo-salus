@@ -157,7 +157,7 @@ export function AppLayout({
   );
 
   return (
-    <div className="flex h-svh bg-canvas">
+    <div className="app-shell flex h-svh bg-canvas">
       <div className="hidden py-2 pl-1 md:flex">{sidebar}</div>
 
       {menuOpen && (

@@ -5,11 +5,10 @@ import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { IconButton, PrimaryAction } from "@/components/app/IconButton";
 import { EmptyState } from "@/components/app/PageState";
-import { Button } from "@/components/atoms/Button";
 import { SelectField } from "@/components/form/SelectField";
 import { api, type Data } from "./api";
 import { useClinic } from "./ClinicContext";
-import { LoadState, useLoad, today, monday, addDays, date } from "./common";
+import { LoadState, useLoad, today, monday, addDays } from "./common";
 import { CalendarWeek } from "./CalendarWeek";
 import { AppointmentList } from "./AppointmentList";
 import { AgendaControls } from "./AgendaControls";
@@ -37,13 +36,12 @@ export function AgendaPage() {
     return (a.tipo === "nota" || (area === "Poliambulatorio") === (a.categoria === "visita") || (area === "Fisioterapia" && a.tipo === "visita" && catalog.professionisti.find((p: Data) => p.id === a.professional_id)?.titolare)) && (!family || t?.famiglia === family) && (!therapy || a.therapy_type_id === therapy);
   });
   const current = () => set({ settimana: monday(today()), giorno: today() });
-  const subtitle = view === "Giorno" ? new Date(day + "T12:00:00").toLocaleDateString("it-IT", { weekday: "long", day: "numeric", month: "long" }) : `${date(week)} – ${date(addDays(week, 4))}`;
+
   return <LoadState load={{ ...load, loading: load.loading && !load.data }} wide>
     <div className={`agenda-workspace ${view === "Elenco" ? "agenda-list-workspace" : ""}`}>
-      <PageHeader title="Agenda" subtitle={subtitle} actions={can("agenda.modifica") ? <PrimaryAction label="Nuovo appuntamento" icon={<Plus size={16} />} to="/agenda/nuovo" /> : undefined} />
+      <PageHeader title="Agenda" actions={can("agenda.modifica") ? <PrimaryAction label="Nuovo appuntamento" icon={<Plus size={16} />} to="/agenda/nuovo" /> : undefined} />
       <div className="agenda-toolbar">
-        <div className="flex items-center gap-1"><IconButton label={view === "Giorno" ? "Giorno precedente" : "Periodo precedente"} icon={<ChevronLeft size={17} />} onClick={() => move(-1)} /><Button variant="secondary" size="sm" onClick={current}>Settimana corrente</Button><IconButton label={view === "Giorno" ? "Giorno successivo" : "Periodo successivo"} icon={<ChevronRight size={17} />} onClick={() => move(1)} /></div>
-        <div className="agenda-view-select"><SelectField compact label="Vista agenda" value={view} onChange={vista => set({ vista })} options={["Settimana", "Due giorni", "Giorno", "Elenco"].map(value => ({ value, label: value }))} /></div>
+        <div className="agenda-period-navigation"><IconButton label="Periodo precedente" icon={<ChevronLeft size={17} />} onClick={() => move(-1)} /><SelectField compact label="Vista agenda" value={view} onChange={vista => set({ vista })} options={["Settimana", "Due giorni", "Giorno", "Elenco"].map(value => ({ value, label: value }))} /><IconButton label="Periodo successivo" icon={<ChevronRight size={17} />} onClick={() => move(1)} /></div>
         <AgendaControls {...{ area, view, grouping, family, therapy, pro, week, set }} showEmpty={params.get("colonne_vuote") === "1"} />
       </div>
       {view !== "Elenco" ? <CalendarWeek week={["Due giorni", "Giorno"].includes(view) ? day : week} count={view === "Giorno" ? 1 : view === "Due giorni" ? 2 : 5} group={grouping} showEmpty={params.get("colonne_vuote") === "1"} onCurrentWeek={current} colors={settings.data?.valori?.agenda?.colori} appointments={all} catalog={catalog} /> : <div className="min-h-0 flex-1 overflow-auto">{all.some(a => a.tipo !== "nota") ? <AppointmentList items={all.filter(a => a.tipo !== "nota")} onChanged={load.reload} showDate /> : <EmptyState title="Nessun appuntamento" description="Scegli un altro periodo o modifica i filtri." />}</div>}

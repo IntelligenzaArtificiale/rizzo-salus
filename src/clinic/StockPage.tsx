@@ -1,5 +1,7 @@
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom";
+import { PageTabs } from "@/components/app/PageTabs";
 import { PurchaseImport } from "./PurchaseImport";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
 import { RowList } from "@/components/app/RowList";
@@ -12,6 +14,10 @@ import { api, type Data } from "./api";
 import { useLoad, LoadState, useAction, today, date } from "./common";
 export function StockPage() {
   const { can } = useClinic();
+  const navigate = useNavigate(), { pathname } = useLocation(), [params] = useSearchParams();
+  const mode = pathname.split("/")[2] || "articoli", editId = params.get("id");
+  const listing = ["articoli", "fornitori", "movimenti"].includes(mode);
+
   const load = useLoad(() => api("/gestione/stock"));
   const a = useAction();
   const [item, setItem] = useState<Data>({
@@ -36,13 +42,23 @@ export function StockPage() {
       date: today(),
       chiave: crypto.randomUUID(),
     });
+  useEffect(() => {
+    if (!load.data) return;
+    if (mode === "articolo") { const row = load.data.articoli.find((r: Data) => r.id === editId); setItem(row ? { ...row, costo: row.costo_cents / 100 } : { nome: "", codice: "", unita: "pezzi", soglia_minima: 0, costo: 0, fornitore_id: "", attivo: true }); }
+    if (mode === "fornitore") setSupplier(load.data.fornitori.find((r: Data) => r.id === editId) || { nome: "", partita_iva: "", email: "", telefono: "" });
+  }, [mode, editId, load.data]);
+  useEffect(() => { if (mode === "movimento") setMove({ articolo_id: "", quantita: -1, motivo: "", date: today(), chiave: crypto.randomUUID() }); }, [mode]);
   return (
     <LoadState load={load}>
       <PageHeader
-        title="Magazzino"
+        title={mode === "articolo" ? (editId ? "Modifica articolo" : "Nuovo articolo") : mode === "fornitore" ? (editId ? "Modifica fornitore" : "Nuovo fornitore") : mode === "movimento" ? "Registra movimento" : mode === "acquisti" ? "Importa acquisto" : "Magazzino"}
+        back={!listing ? { to: "/magazzino", label: "Magazzino" } : undefined}
+        actions={listing ? <div className="flex flex-wrap gap-2">{can("magazzino.gestisci") && <><Button onClick={() => navigate("/magazzino/articolo")}>Nuovo articolo</Button><Button onClick={() => navigate("/magazzino/fornitore")}>Nuovo fornitore</Button><Button onClick={() => navigate("/magazzino/acquisti")}>Importa acquisto</Button></>}<Button onClick={() => navigate("/magazzino/movimento")}>Registra movimento</Button></div> : undefined}
         subtitle="Giacenze, soglie e consumi per prestazione."
       />
-      <Section title="Articoli e scorte">
+      {listing && <PageTabs options={["Articoli", "Fornitori", "Movimenti"]} value={mode === "fornitori" ? "Fornitori" : mode === "movimenti" ? "Movimenti" : "Articoli"} onChange={v => navigate(v === "Articoli" ? "/magazzino" : "/magazzino/" + v.toLowerCase())} />}
+      {mode === "fornitori" && <Section title="Fornitori"><RowList rows={(load.data?.fornitori || []).map((f: Data) => ({ key: f.id, title: f.nome, meta: [f.email, f.telefono].filter(Boolean).join(" · "), actions: can("magazzino.gestisci") ? <Button onClick={() => navigate("/magazzino/fornitore?id=" + f.id)}>Modifica</Button> : undefined }))} /></Section>}
+      {mode === "articoli" && <Section title="Articoli e scorte">
         <RowList
           rows={(load.data?.articoli ?? []).map((i: Data) => ({
             key: i.id,
@@ -53,10 +69,10 @@ export function StockPage() {
                 <StatusPill tone={i.sotto_soglia ? "orange" : "green"}>
                   {i.sotto_soglia ? "Da riordinare" : "Disponibile"}
                 </StatusPill>
-                {can("magazzino.gestisci") && (
+      {can("magazzino.gestisci") && (
                   <Button
                     onClick={() =>
-                      setItem({ ...i, costo: i.costo_cents / 100 })
+                      navigate("/magazzino/articolo?id=" + i.id)
                     }
                   >
                     Modifica
@@ -66,15 +82,15 @@ export function StockPage() {
             ),
           }))}
         />
-      </Section>
-      <Section title="Registra carico o consumo">
+      </Section>}
+      {mode === "movimento" && <Section title="Registra carico o consumo">
         <form
           onSubmit={(e) => {
             e.preventDefault();
             a.act(async () => {
               await api("/gestione/movimento", move);
               setMove({ ...move, chiave: crypto.randomUUID(), motivo: "" });
-              load.reload();
+              load.reload(); navigate("/magazzino");
             }, "Movimento registrato");
           }}
         >
@@ -108,10 +124,10 @@ export function StockPage() {
             Registra movimento
           </Button>
         </form>
-      </Section>
+      </Section>}
       {can("magazzino.gestisci") && (
         <>
-          <Section title={item.id ? "Modifica articolo" : "Nuovo articolo"}>
+          {mode === "articolo" && <Section title={item.id ? "Modifica articolo" : "Nuovo articolo"}>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -120,7 +136,7 @@ export function StockPage() {
                     ...item,
                     fornitore_id: item.fornitore_id || null,
                   });
-                  load.reload();
+                  load.reload(); navigate("/magazzino");
                 }, "Articolo salvato");
               }}
             >
@@ -153,36 +169,36 @@ export function StockPage() {
                   })),
                 ]}
               />
-              <Button type="submit" disabled={a.busy || !item.nome}>
+              <Button type="submit" disabled={a.busy || !item.nome || !!editId && !item.id}>
                 Salva articolo
               </Button>
             </form>
-          </Section>
-          <Section title="Nuovo fornitore">
+          </Section>}
+          {mode === "fornitore" && <Section title={editId ? "Modifica fornitore" : "Nuovo fornitore"}>
             <form
               onSubmit={(e) => {
                 e.preventDefault();
                 a.act(async () => {
                   await api("/gestione/fornitore", supplier);
-                  load.reload();
+                  load.reload(); navigate("/magazzino");
                 }, "Fornitore salvato");
               }}
             >
-              <ParameterFields value={supplier} onChange={setSupplier} />
-              <Button type="submit" disabled={a.busy || !supplier.nome}>
+              <ParameterFields value={supplier} onChange={setSupplier} hidden={["id", "revision", "created_at", "updated_at", "created_by", "updated_by", "deleted_at"]} />
+              <Button type="submit" disabled={a.busy || !supplier.nome || !!editId && !supplier.id}>
                 Salva fornitore
               </Button>
             </form>
-          </Section>
+          </Section>}
         </>
       )}
-      {can("magazzino.gestisci") && (
+      {can("magazzino.gestisci") && mode === "acquisti" && (
         <PurchaseImport
           items={load.data?.articoli ?? []}
           onSaved={load.reload}
         />
       )}
-      <Section title="Movimenti recenti">
+      {mode === "movimenti" && <Section title="Movimenti recenti">
         <RowList
           rows={(load.data?.movimenti ?? []).map((m: Data) => ({
             key: m.id,
@@ -194,7 +210,7 @@ export function StockPage() {
             meta: date(m.date) + " · " + m.motivo,
           }))}
         />
-      </Section>
+      </Section>}
     </LoadState>
   );
 }

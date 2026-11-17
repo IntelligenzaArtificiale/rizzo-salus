@@ -1,3 +1,4 @@
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
@@ -10,6 +11,7 @@ import { api, download } from "./api";
 import { useClinic } from "./ClinicContext";
 import { useAction, useLoad, LoadState, today, date } from "./common";
 export function ReviewExportsPage() {
+  const navigate = useNavigate(), form = useLocation().pathname.endsWith("/nuovo");
   const { can } = useClinic();
   const [type, setType] = useState(
       can("fatture.gestisci") ? "commercialista" : "personale",
@@ -21,10 +23,12 @@ export function ReviewExportsPage() {
   return (
     <LoadState load={load}>
       <PageHeader
-        title="Documenti per i consulenti"
+        title={form ? "Prepara documenti" : "Documenti per i consulenti"}
+        back={form ? { to: "/pacchetti", label: "Documenti consulenti" } : undefined}
+        actions={!form ? <Button onClick={() => navigate("/pacchetti/nuovo")}>Prepara documenti</Button> : undefined}
         subtitle="Prepara, scarica e verifica i documenti prima di approvare l’invio."
       />
-      <Section title="Prepara pacchetto">
+      {form && <Section title="Prepara pacchetto">
         <SelectField
           label="Destinazione"
           value={type}
@@ -61,14 +65,14 @@ export function ReviewExportsPage() {
           onClick={() =>
             a.act(async () => {
               await api("/pacchetti/prepara", { tipo: type, da: from, a: to });
-              load.reload();
+              load.reload(); navigate("/pacchetti");
             }, "Pacchetto preparato per la revisione")
           }
         >
           Prepara documenti
         </Button>
-      </Section>
-      <Section title="Pacchetti e approvazioni">
+      </Section>}
+      {!form && <Section title="Pacchetti e approvazioni">
         <RowList
           rows={(load.data?.pacchetti ?? []).map((r: any) => ({
             key: r.id,
@@ -97,7 +101,7 @@ export function ReviewExportsPage() {
                     onClick={() =>
                       a.act(async () => {
                         await api("/pacchetti/approva", { id: r.id });
-                        load.reload();
+                        load.reload(); navigate("/pacchetti");
                       }, "Invio approvato e accodato. Verifica l’esito nelle comunicazioni.")
                     }
                   >
@@ -109,7 +113,7 @@ export function ReviewExportsPage() {
                     onClick={() =>
                       a.act(async () => {
                         await api("/pacchetti/esitoSts", { id: r.id });
-                        load.reload();
+                        load.reload(); navigate("/pacchetti");
                       })
                     }
                   >
@@ -134,7 +138,7 @@ export function ReviewExportsPage() {
           Un protocollo di accoglienza non equivale all’esito finale di tutte le
           spese.
         </p>
-      </Section>
+      </Section>}
     </LoadState>
   );
 }
