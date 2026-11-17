@@ -11,6 +11,7 @@ final class OperatorBusinessContext
         $out="\nDATI AMMINISTRATIVI AUTORIZZATI (solo righe registrate, non previsioni):\n";
         $mine=$c->user()['professional_id']??null;$s=$c->svc->store;
         $append=static function($name,$rows,$fields) use (&$out):void {
+            if (count($rows)>100) $out.="$name: disponibili soltanto 100 righe su ".count($rows)." nel contesto; non dedurre totali completi da questo estratto.\n";
             $out.=$name.': '.json_encode(array_map(fn($r)=>array_intersect_key($r,array_flip($fields)),array_slice($rows,0,100)),JSON_UNESCAPED_UNICODE)."\n";
         };
         if ($c->can('compensi.vedi_tutti')||($mine&&$c->can('compensi.vedi_propri'))) {
@@ -18,7 +19,7 @@ final class OperatorBusinessContext
             $append('Compensi, importi in centesimi',$rows,['id','professional_id','da','a','stato','quota_professionista_cents','quota_struttura_cents']);
         }
         if ($c->can('personale.presenze')||($mine&&$c->can('personale.propria_scheda'))) {
-            $rows=$s->all('staff_attendance',fn($r)=>$r['date']>=substr(Clock::today(),0,8).'01'&&($c->can('personale.presenze')||$r['professional_id']===$mine));
+            $rows=$s->all('staff_attendance',fn($r)=>substr($r['date'],0,7)===substr(Clock::today(),0,7)&&($c->can('personale.presenze')||$r['professional_id']===$mine));
             $append('Presenze del mese, minuti effettivi',$rows,['id','professional_id','date','tipo','da','a','minuti']);
         }
         if ($c->can('prenotazioni.liste_attesa')) {

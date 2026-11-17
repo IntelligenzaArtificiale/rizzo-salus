@@ -7,7 +7,8 @@
     "flussi_clinica": 107,
     "regole_calendar": 50,
     "contatori_ai": 10,
-    "url": 23
+    "url": 23,
+    "periodo_personale_e_isolamento": 2
   },
   "browser": {
     "report-ui": [
@@ -179,5 +180,6 @@
     "PDF scansionati senza testo: trascrizione manuale; Word .docx, non .doc legacy.",
     "Librerie di estrazione caricate via CDN; rete necessaria al primo utilizzo.",
     "Servizi fiscali e invii SMS/email non attivati."
-  ]
+  ],
+  "backup_correzione_contesto": ".deploy/backup/20261117-134256"
 }
