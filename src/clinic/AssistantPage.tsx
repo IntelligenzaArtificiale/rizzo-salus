@@ -169,10 +169,7 @@ export function AssistantPage() {
               onSend={send}
             />
           </fieldset>
-          <p className="text-center text-[12px] text-ink-3">
-            Operazioni limitate al tuo ruolo e applicate dopo conferma. I dati necessari
-            alla richiesta sono elaborati tramite AI; evita dati clinici nel testo libero.
-          </p>
+
         </>
       )}
     </Page>

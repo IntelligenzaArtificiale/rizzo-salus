@@ -1,4 +1,3 @@
-import { createPortal } from "react-dom";
 // Geometria del calendario di dominio; controlli e superfici del boilerplate.
 import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,9 +14,7 @@ export function CalendarWeek({
   count = 5,
   group = "categoria",
   colors = {},
-  onCurrentWeek,
   showEmpty = false,
-  toolbarContainer,
 }: {
   week: string;
   appointments: Data[];
@@ -40,25 +37,10 @@ export function CalendarWeek({
   if (!cols.length)
     cols.push({ id: "vuoto", label: "Nessun appuntamento", short: "Agenda" });
   const min = count === 5 ? 112 : 168;
-  const controls = (
-      <div className="flex flex-wrap items-center justify-between gap-2 text-xs text-ink-2">
-        <span>
-          08:00–20:30 · ● Prima seduta · ▲ Ultima seduta · gruppi con indicatori
-          individuali
-        </span>
-        <Button className="clinic-full-only" variant="secondary" size="sm" onClick={onCurrentWeek}>Settimana corrente</Button>
-        <Button
-          variant="secondary"
-          size="sm"
-          onClick={() => { if (full) document.exitFullscreen(); else (ref.current?.closest(".agenda-workspace") || ref.current)?.requestFullscreen?.().catch(() => {}); }}
-        >
-          {full ? "Esci dallo schermo intero" : "A tutto schermo"}
-        </Button>
-      </div>
-  );
+  const controls = <div className="flex justify-end"><Button variant="secondary" size="sm" onClick={() => document.exitFullscreen()}>Esci dallo schermo intero</Button></div>;
   return (
     <div ref={ref} className="clinic-calendar-shell flex min-w-0 flex-col gap-2">
-      {full || !toolbarContainer ? controls : createPortal(controls, toolbarContainer)}
+      {full && controls}
       <div
         className="clinic-calendar"
         role="region"
@@ -127,12 +109,12 @@ export function CalendarWeek({
                         )
                       : new Date(day + "T12:00:00").getDate()}
                   </span>
-                  <strong
+                  {group !== "giorno" && <strong
                     className="truncate max-w-full text-center"
                     title={col.label}
                   >
                     {col.label}
-                  </strong>
+                  </strong>}
                 </div>
                 {overlaps(
                   entries.filter(
