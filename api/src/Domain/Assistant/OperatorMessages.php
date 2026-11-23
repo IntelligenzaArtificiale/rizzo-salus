@@ -8,6 +8,12 @@ final class OperatorMessages
 {
     public static function explain(ApiError $e): string
     {
+        if ($e->errorCode === 'dati_operatore_mancanti') {
+            $fields = array_map(static fn ($field) => $field === 'start' ? 'giorno e ora' : $field, $e->extra['campi']);
+            return 'Mi indichi ' . implode(', ', $fields) . '?';
+        }
+        if ($e->errorCode === 'nome_mancante') return 'Qual è il nome del paziente?';
+        if ($e->errorCode === 'cognome_mancante') return 'Qual è il cognome del paziente?';
         $prefix='Non ho salvato modifiche. ';
         $message=match($e->errorCode) {
             'riferimento_operatore_ambiguo','percorso_operatore_ambiguo'=>'Ci sono più corrispondenze. Indica il nome completo e, per un appuntamento, data e orario o il suo riferimento.',

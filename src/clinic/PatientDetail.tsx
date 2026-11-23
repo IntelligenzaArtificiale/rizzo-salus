@@ -14,6 +14,7 @@ import { api, type Data } from "./api";
 import { useClinic } from "./ClinicContext";
 import { LoadState, useLoad, name, date } from "./common";
 import { PatientEpisodes, PatientAppointments } from "./PatientCare";
+import { PatientInvoices } from "./PatientInvoices";
 export function PatientPage() {
   const { id } = useParams(),
     [params, setParams] = useSearchParams();
@@ -26,6 +27,7 @@ export function PatientPage() {
     can("agenda.vedi_tutto") || can("agenda.vedi_propria")
       ? ["Percorsi", "Anagrafica", "Disponibilità", "Documenti", "Appuntamenti"]
       : ["Percorsi", "Anagrafica"];
+  if (can("fatture.gestisci")) tabs.push("Fatture");
   return (
     <LoadState load={load}>
       {p && (
@@ -190,7 +192,7 @@ export function PatientPage() {
                 </Section>
               )}
             </>
-          ) : tab === "Documenti" ? (
+          ) : tab === "Fatture" && can("fatture.gestisci") ? <PatientInvoices id={p.id} /> : tab === "Documenti" ? (
             <PatientDocuments patient={p} />
           ) : tab === "Disponibilità" ? (
             <PatientAvailability patient={p} onSaved={load.reload} />

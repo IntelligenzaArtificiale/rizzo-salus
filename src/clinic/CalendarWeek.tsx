@@ -31,9 +31,14 @@ export function CalendarWeek({
     ref = useRef<HTMLDivElement>(null);
   const [full, setFull] = useState(false);
   useEffect(() => { const update = () => setFull(!!document.fullscreenElement?.contains(ref.current)); document.addEventListener("fullscreenchange", update); return () => document.removeEventListener("fullscreenchange", update); }, []);
+  const [now,setNow] = useState(new Date());
+  useEffect(()=>{const timer=window.setInterval(()=>setNow(new Date()),60000);return ()=>clearInterval(timer);},[]);
+  const [hh,mm]=new Intl.DateTimeFormat("it-IT",{timeZone:"Europe/Rome",hour:"2-digit",minute:"2-digit",hourCycle:"h23"}).format(now).split(":").map(Number);
+  const currentMinute=hh*60+mm;
   const days = Array.from({ length: count }, (_, i) => addDays(week, i));
-  const entries = appointments.filter((a) => a.tipo !== "nota");
+  const entries = appointments.filter((a) => a.tipo !== "nota" || a.stato !== "annullato");
   const cols = channels(entries.filter((a) => days.some((day) => a.start.startsWith(day))), catalog, group).filter((col: Data) => showEmpty || entries.some((a) => days.some((day) => a.start.startsWith(day)) && channelOf(a, catalog, group) === col.id));
+  if (group !== "giorno" && entries.some(a=>a.tipo==="nota" && days.includes(a.start.slice(0,10)))) cols.push({id:"nota",label:"Appunti",short:"Appunti"});
   if (!cols.length)
     cols.push({ id: "vuoto", label: "Nessun appuntamento", short: "Agenda" });
   const min = count === 5 ? 112 : 168;
@@ -116,6 +121,7 @@ export function CalendarWeek({
                     {col.label}
                   </strong>}
                 </div>
+                {day === today() && currentMinute >= 480 && currentMinute <= 1230 && <div className="agenda-now" title="Ora corrente" style={{top:84+(currentMinute-480)*1.6}} />}
                 {overlaps(
                   entries.filter(
                     (a) =>

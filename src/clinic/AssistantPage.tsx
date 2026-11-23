@@ -1,4 +1,6 @@
 // Conversazione reale; nessuna risposta o attività simulata del boilerplate.
+import { Link } from "react-router-dom";
+import { buttonVariants } from "@/components/atoms/Button";
 import { useState } from "react";
 import { Page } from "@/layouts/AppLayout";
 import { PageHeader } from "@/components/app/PageHeader";
@@ -15,7 +17,7 @@ import { useLoad, useAction } from "./common";
 const suggestions: Record<string, string[]> = {
   titolare: [
     "Crea un nuovo paziente: quali dati ti servono?",
-    "Registra una spesa: quali dati ti servono?",
+    "Aiutami a pianificare le sedute di un paziente",
     "Voglio caricare materiale in magazzino",
   ],
   segreteria: [
@@ -33,7 +35,7 @@ const suggestions: Record<string, string[]> = {
     "Quanto ho fatturato questo mese?",
   ],
 };
-type Message = { role: "user" | "assistant"; text: string; plan?: Data };
+type Message = { role: "user" | "assistant"; text: string; plan?: Data; percorsi?: Data[] };
 export function AssistantPage() {
   const { user, refresh } = useClinic();
   const load = useLoad(() => api("/assistente/stato"));
@@ -50,7 +52,7 @@ export function AssistantPage() {
           domanda: q,
           storia: history,
         });
-        setMessages((m) => [...m, { role: "assistant", text: r.risposta, plan: r.piano }]);
+        setMessages((m) => [...m, { role: "assistant", text: r.risposta, plan: r.piano, percorsi:r.percorsi }]);
       } catch (e) {
         setMessages((m) => [
           ...m,
@@ -141,6 +143,7 @@ export function AssistantPage() {
                     followUps={[]}
                   />
                 </div>
+                {m.percorsi?.map(ep=><Link key={ep.episodio} className={buttonVariants({variant:"secondary"})} to={"/pianificazione/nuova?episodio="+ep.episodio+"&paziente="+ep.paziente}>Pianifica · {ep.titolo}</Link>)}
                 {m.plan && <OperatorPlanCard plan={m.plan} blocked={operating || a.busy} onBusy={setOperating} onChanged={(plan) => {
                   setMessages((items) => items.map((entry, index) => index === i ? { ...entry, plan, text: plan.stato === "applicato" ? "Operazioni applicate nel gestionale." : "Piano scartato: nessuna modifica applicata." } : entry));
                   if (plan.stato === "applicato") void a.act(() => refresh());

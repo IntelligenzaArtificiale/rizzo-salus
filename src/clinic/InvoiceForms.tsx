@@ -1,6 +1,6 @@
 // Creazione della bozza e nota di credito: pagine dedicate sui componenti del boilerplate.
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageHeader } from "@/components/app/PageHeader";
 import { Section } from "@/components/app/Section";
 import { SelectField } from "@/components/form/SelectField";
@@ -13,11 +13,17 @@ import { useUnsavedChanges } from "@/lib/forms/useUnsavedChanges";
 import { api, type Data } from "./api";
 import { LoadState, useLoad, useAction, money, name } from "./common";
 export function NewInvoicePage() {
-  const [pid, setPid] = useState(""),
+  const [params] = useSearchParams();
+  const initial = params.get("paziente") || "";
+  const [pid, setPid] = useState(initial),
     [selected, setSelected] = useState<string[]>([]),
     navigate = useNavigate(),
     a = useAction();
-  const patients = useLoad(() => api("/pazienti/cerca", { q: "", limite: 50 }));
+  const patients = useLoad(async () => {
+    const list = await api("/pazienti/cerca", { q: "", limite: 50 });
+    if (initial && !list.risultati.some((p:Data) => p.id === initial)) list.risultati.push(await api("/pazienti/dettaglio", {id:initial}));
+    return list;
+  }, [initial]);
   const lines = useLoad(
     () =>
       pid
@@ -77,6 +83,7 @@ export function NewInvoicePage() {
             </p>
           ) : free.length ? (
             <Section title="Prestazioni da fatturare">
+              <Checkbox label="Seleziona tutte le prestazioni" checked={selected.length === free.length} onChange={on=>setSelected(on ? free.map((_,i)=>String(i)) : [])} />
               <div className="divide-y divide-line">
                 {free.map((x, i) => (
                   <div

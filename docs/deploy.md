@@ -87,3 +87,15 @@ Pacchetto `.deploy/release-formazione-20261117-finale`, 873 file, pubblicato con
 25 verifiche HTTPS: 10 pazienti e 59 appuntamenti precedenti conservati, orari/stati invariati, nuovi gruppi aggiuntivi e procedura di esempio, viewport, menu, protezione del privato e cookie, estrazione PDF via CDN, formazione interrogata con AI reale e modifica del solo paziente dimostrativo confermata nell’interfaccia. Il recapito di prova è stato poi ripristinato. Provato upload effettivo di 50 MiB; rimossi soltanto il documento temporaneo e i suoi due file privati identificati. JS/CSS remoti corrispondono via SHA-256 alla build. [Report](verifica-formazione-2026-11-17.json).
 
 La configurazione `.user.ini` è limitata al progetto, con richieste fino a 80M, upload 50M e memoria 512M. Nessuna configurazione globale del server o altro sito modificata. Le librerie CDN di Formazione sono esterne e versionate; al trasferimento serve accesso HTTPS a cdnjs.cloudflare.com e cdn.jsdelivr.net. Rotte, download e asset mantengono la base centralizzata dell’applicazione.
+
+## Rilascio del 23 novembre 2026
+
+Calendario delle proposte con fasce per paziente e turno, priorità per la continuità del professionista, raccolta dei dati mancanti nella chat e accesso alle fatture da paziente/slot. Nessuna migrazione. Pubblicati nella directory dedicata i due asset della build, l’HTML privato e sei file PHP sotto private/api/src. Controllati i digest dei file trasferiti e la corrispondenza delle versioni PHP precedenti con la base Git prima della sostituzione. Runtime e configurazione del sito restano sul server.
+
+Ripristino di questa revisione dalla copia locale predisposta prima del rilascio:
+
+```sh
+python3 scripts/upload-hosting.py --rollback .deploy/backup/20261123-182628
+```
+
+Collaudo isolato: generazione e scelta alternativa, approvazione con apertura dell’agenda, paziente creato in due turni di chat, appuntamento confermato e riletto, fatture con paziente preselezionato. Sul sito pubblico verificati login, calendario e fasce, scelta alternativa, passaggio alla bozza fattura, chat con anteprime paziente e appuntamento, collegamento dalla chat al percorso. Scartate le anteprime del collaudo pubblico.

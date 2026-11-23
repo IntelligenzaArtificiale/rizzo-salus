@@ -3,11 +3,12 @@ import { ProposalSelection } from "./ProposalSelection";
 import { useState } from "react";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { PageHeader } from "@/components/app/PageHeader";
+import { SelectField } from "@/components/form/SelectField";
 import { TextField } from "@/components/form/TextField";
-import { DetailList, Section } from "@/components/app/Section";
+import { CollapsiblePanel } from "@/components/app/CollapsiblePanel";
 import { Button } from "@/components/atoms/Button";
 import { api, type Data } from "./api";
-import { LoadState, useLoad, useAction, today, addDays, date } from "./common";
+import { LoadState, useLoad, useAction, today, addDays, monday } from "./common";
 export function PlanningPage() {
   const { id } = useParams(),
     [params] = useSearchParams(),
@@ -24,9 +25,10 @@ export function PlanningPage() {
   );
   const [from, setFrom] = useState(today()),
     [to, setTo] = useState(addDays(today(), 56));
+  const [priority, setPriority] = useState("paziente");
   const d = proposal || load.data;
   return (
-    <LoadState load={load}>
+    <LoadState load={load} wide>
       <PageHeader
         title="Pianificazione sedute"
         subtitle="Controlla la proposta prima di inserirla in agenda."
@@ -35,7 +37,8 @@ export function PlanningPage() {
           label: "Percorsi",
         }}
       />
-      <div className="grid gap-3 sm:grid-cols-2">
+      <div className="grid gap-3 sm:grid-cols-3">
+        <SelectField label="Priorità proposta" value={priority} onChange={setPriority} options={[{value:"paziente",label:"Preferenze del paziente"},{value:"continuita",label:"Ravvicina gli impegni del professionista"}]} />
         <TextField
           label="Pianifica dal"
           type="date"
@@ -51,12 +54,6 @@ export function PlanningPage() {
       </div>
       {!d ? (
         <>
-          <DetailList
-            items={[
-              { label: "Dal", value: date(from) },
-              { label: "Al", value: date(to) },
-            ]}
-          />
           <div>
             <Button
               variant="primary"
@@ -67,7 +64,7 @@ export function PlanningPage() {
                     await api("/pianificazione/proponi", {
                       episodi: [episode],
                       da: from,
-                      a: to,
+                      a: to, priorita: priority,
                     }),
                   ),
                 )
@@ -79,7 +76,7 @@ export function PlanningPage() {
         </>
       ) : (
         <>
-          <Section title="Proposta">
+          <CollapsiblePanel title="Dettagli del calcolo" description={d.riepilogo.sedute_nuove+" sedute proposte · "+d.riepilogo.non_pianificate+" da riprogrammare"}>
             <p className="text-[14px] leading-relaxed text-ink">
               {d.spiegazione.testo}
             </p>
@@ -88,12 +85,12 @@ export function PlanningPage() {
                 <li key={i}>{r}</li>
               ))}
             </ul>
-          </Section>
+          </CollapsiblePanel>
           {d.stato === "proposta" && (
             <ProposalSelection
               key={d.id}
               proposal={d}
-              onDone={() => navigate("/agenda")}
+              onDone={day => navigate("/agenda?giorno="+day+"&settimana="+monday(day)+"&vista=Giorno")}
             />
           )}
           <div className="flex flex-wrap justify-end gap-2">
@@ -119,7 +116,7 @@ export function PlanningPage() {
                     await api("/pianificazione/proponi", {
                       episodi: d.episodi,
                       da: from,
-                      a: to,
+                      a: to, priorita: priority,
                     }),
                   ),
                 )

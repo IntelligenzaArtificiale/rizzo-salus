@@ -7,7 +7,7 @@ import { TextAreaField } from "@/components/form/TextAreaField";
 import { api, type Data } from "./api";
 import { useLoad, useAction, addDays, date } from "./common";
 import { useClinic } from "./ClinicContext";
-export function AgendaNotes({ week }: { week: string }) {
+export function AgendaNotes({ week, onChanged }: { week: string; onChanged?:()=>void }) {
   const { can } = useClinic(),
     a = useAction(),
     load = useLoad(
@@ -18,7 +18,7 @@ export function AgendaNotes({ week }: { week: string }) {
   return (
     <Section title="Appunti della segreteria · sabato e giorni della settimana">
       <p className="text-sm text-ink-2">
-        Le note restano visibili qui e non occupano slot di terapia.
+        Gli appunti compaiono in agenda all’orario indicato e lasciano libero lo slot.
       </p>
       {load.error && (
         <p role="alert" className="text-red">
@@ -49,7 +49,7 @@ export function AgendaNotes({ week }: { week: string }) {
                         ...n,
                         completata: true,
                       });
-                      load.reload();
+                      load.reload(); onChanged?.();
                     }, "Nota archiviata")
                   }
                 >
@@ -86,7 +86,7 @@ export function AgendaNotes({ week }: { week: string }) {
             a.act(async () => {
               await api("/agenda/nota-salva", edit);
               setEdit(null);
-              load.reload();
+              load.reload(); onChanged?.();
             }, "Nota salvata");
           }}
         >

@@ -161,3 +161,5 @@ main:has(.agenda-workspace) { overflow:hidden; }
  .agenda-controls-panel { top:160px; max-height:calc(100% - 170px); }
  .clinic-calendar-shell > div:first-child { font-size:10px; }
 }
+.agenda-now{position:absolute;inset-inline:0;z-index:4;border-top:2px solid #367dc5;pointer-events:none}
+.clinic-event.clinic-group:is(:hover,:focus-visible){z-index:8;min-width:min(210px,100%);height:auto!important;min-height:64px;white-space:normal;background:var(--surface);box-shadow:0 3px 12px #0004}.clinic-event.clinic-group:is(:hover,:focus-visible) b{white-space:normal}

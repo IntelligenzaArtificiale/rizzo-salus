@@ -14,6 +14,10 @@ final class OperatorActions
     {
         $type = $action['tipo'];
         $d = OperatorDefinitions::data($this->c, $action);
+        if (in_array($type, ['appuntamento_crea', 'prenotazione_crea'], true) && ($d['tipo'] ?? '') !== 'nota') {
+            $missing = array_filter(['paziente', 'prestazione', 'professionista', 'start'], static fn($field) => trim((string)($d[$field] ?? '')) === '');
+            if ($missing) throw new ApiError('dati_operatore_mancanti', 422, ['campi' => array_values($missing)]);
+        }
         $original = $d; $before = []; $collection = '';
         $find = fn ($col,$hint) => $this->resolver->find($col,(string)$hint);
         $reference = function (string $field,string $col,string $target) use (&$d,$find): void {

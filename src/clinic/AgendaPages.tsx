@@ -57,7 +57,7 @@ export function AppointmentPage() {
       {item && (
         <>
           <PageHeader
-            title={therapy?.nome || "Appuntamento"}
+            title={item.tipo === "nota" ? item.titolo || "Appunto" : therapy?.nome || "Appuntamento"}
             back={{ to: `/agenda?settimana=${monday(day)}`, label: "Agenda" }}
             subtitle={`${date(item.start.slice(0, 10))} · ${item.start.slice(11, 16)}–${item.end.slice(11, 16)}`}
           />
@@ -77,6 +77,7 @@ export function AppointmentPage() {
               { label: "Stato", value: <StatePill value={item.stato} /> },
             ]}
           />
+          {can("fatture.gestisci") && <div className="flex flex-wrap gap-2">{Object.entries(item.pazienti_nomi || {}).map(([pid,label]) => <Link key={pid} className={buttonVariants({variant:"secondary",size:"sm"})} to={"/fatture/nuova?paziente="+pid}>Fattura prestazioni · {String(label)}</Link>)}</div>}
           {(item.segnali || []).length > 0 && (
             <Section title="Percorso di cura">
               <DetailList

@@ -22,7 +22,7 @@ export function CalendarEvent({
   const minutes = (s: string) =>
     Number(s.slice(11, 13)) * 60 + Number(s.slice(14, 16));
   const signals = a.segnali || [],
-    names = Object.values(a.pazienti_nomi || {}).join(", ") || "Appuntamento";
+    names = a.tipo === "nota" ? (a.titolo || a.nota || "Appunto") : Object.values(a.pazienti_nomi || {}).join(", ") || "Appuntamento";
   const t = catalog.terapie.find((t: Data) => t.id === a.therapy_type_id);
   const pro = catalog.professionisti.find(
     (p: Data) => p.id === a.professional_id,
@@ -46,7 +46,7 @@ export function CalendarEvent({
           height: Math.max(22, (minutes(a.end) - minutes(a.start)) * 1.6 - 2),
           left: `calc(${(lane * 100) / of}% + 6px)`,
           width: `calc(${100 / of}% - 12px)`,
-          "--event-color": eventColor(a, catalog, colors),
+          "--event-color": a.tipo === "nota" ? "#d99b28" : eventColor(a, catalog, colors),
         } as CSSProperties
       }
     >

@@ -10,8 +10,8 @@ import { AgendaNotes, CycleAlertsPanel } from "./AgendaNotes";
 import { useClinic } from "./ClinicContext";
 import { name } from "./common";
 import type { Data } from "./api";
-export function AgendaControls({ area, view, grouping, family, therapy, pro, week, showEmpty, set }: {
-  area: string; view: string; grouping: string; family: string; therapy: string; pro: string; week: string; showEmpty: boolean; set: (patch: Record<string, string>) => void;
+export function AgendaControls({ area, view, grouping, family, therapy, pro, week, showEmpty, set, onNotesChanged }: {
+  onNotesChanged:()=>void; area: string; view: string; grouping: string; family: string; therapy: string; pro: string; week: string; showEmpty: boolean; set: (patch: Record<string, string>) => void;
 }) {
   const [open, setOpen] = useState(false), [tab, setTab] = useState("Vista e filtri");
   const root = useRef<HTMLDivElement>(null);
@@ -39,7 +39,7 @@ export function AgendaControls({ area, view, grouping, family, therapy, pro, wee
           <Checkbox label="Mostra anche le categorie senza appuntamenti" checked={showEmpty} onChange={v => set({ colonne_vuote: v ? "1" : "" })} />
           <div className="flex flex-wrap gap-2 border-t border-line pt-4"><Button variant="secondary" size="sm" onClick={() => set({ professionista: "", famiglia: "", terapia: "" })}>Azzera filtri</Button>{can("agenda.modifica") && <PrimaryAction variant="secondary" label="Copia settimana" icon={<Copy size={15} />} to={`/agenda/copia?settimana=${week}`} />}</div>
         </div>
-        <div hidden={tab !== "Appunti"} className="mt-5 flex flex-col gap-5"><AgendaNotes week={week} />{can("agenda.vedi_tutto") && <CycleAlertsPanel week={week} />}</div>
+        <div hidden={tab !== "Appunti"} className="mt-5 flex flex-col gap-5"><AgendaNotes week={week} onChanged={onNotesChanged} />{can("agenda.vedi_tutto") && <CycleAlertsPanel week={week} />}</div>
       </div>
     </section>
   </div>;

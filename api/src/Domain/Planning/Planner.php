@@ -34,6 +34,7 @@ final class Planner
     private float $deadline = 0.0;
     private int $maxDepth = 2;
     private string $now = '';
+    private bool $compact = false;
     private int $seq = 0;
     private bool $timedOut = false;
 
@@ -60,6 +61,7 @@ final class Planner
         $this->deadline = $t0 + max(200, (int) $this->settings->get('ai.tempo_max_ms', 2000)) / 1000;
         $this->maxDepth = max(0, min(3, (int) $this->settings->get('ai.spostamenti_profondita', 2)));
         $this->now = Clock::stamp();
+        $this->compact = ($opt['priorita'] ?? '') === 'continuita';
         $this->moves = [];
         $this->timedOut = false;
         $this->seq = 0;
@@ -89,7 +91,7 @@ final class Planner
         }
         $proposal = $this->store->transaction(fn () => $this->store->put('proposals', [
             'stato' => 'proposta', 'creata_da' => $userId, 'creata_il' => Clock::stamp(), 'dal' => $from, 'al' => $to,
-            'episodi' => array_values($episodeIds), 'nuove' => $news, 'spostamenti' => $this->moves, 'non_pianificate' => $unplanned,
+            'priorita' => $this->compact ? 'continuita' : 'paziente', 'episodi' => array_values($episodeIds), 'nuove' => $news, 'spostamenti' => $this->moves, 'non_pianificate' => $unplanned,
             'riepilogo' => [
                 'sedute_nuove' => count($news), 'spostamenti' => count($this->moves), 'non_pianificate' => array_sum(array_column($unplanned, 'mancanti')),
                 'tempo_ms' => (int) round((microtime(true) - $t0) * 1000),
@@ -292,7 +294,12 @@ final class Planner
             $c['score'] += $inWeek >= (int) $d['line']['frequenza_min'] ? 30 : 0;
             $c['contiguous'] = false;
             if(!empty($d['type']['di_gruppo']))foreach($this->busy[$c['date']]??[] as $g)if($g['tipo']==='gruppo'&&($g['type']??null)===$d['type']['id']&&$g['pro']===$c['pro']&&$g['s']===$c['s']) $c['score']+=($g['n']*20-70);
+            $nearest = null;
             foreach ($this->busy[$c['date']] ?? [] as $b) {
+                if ($this->compact && $b['pro'] === $c['pro'] && $b['tipo'] !== 'nota' && ($b['op_end'] ?? $b['e']) > $b['s']) {
+                    $gap = max(0, $b['s'] - $c['op_end'], $c['s'] - ($b['op_end'] ?? $b['e']));
+                    $nearest = $nearest === null ? $gap : min($nearest, $gap);
+                }
                 if (in_array($d['patient_id'], $b['pat'], true)) {
                     if ($d['rules']['contigue'] && ($b['e'] === $c['s'] || $b['s'] === $c['e'])) {
                         $c['score'] -= 50;
@@ -302,6 +309,7 @@ final class Planner
                     }
                 }
             }
+            if ($this->compact) $c['score'] += min($nearest ?? 240, 240);
         }
         unset($c);
         usort($cands, static fn ($a, $b) => [$a['score'], $a['date'], $a['s'], $a['pro']] <=> [$b['score'], $b['date'], $b['s'], $b['pro']]);

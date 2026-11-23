@@ -38,9 +38,11 @@
         "CollapsiblePanel"
       ],
       "used_by": [
+        "src/clinic/ProposalCalendar.tsx",
         "src/clinic/EpisodeDiary.tsx",
         "src/clinic/CatalogSettings.tsx",
         "src/clinic/ParameterFields.tsx",
+        "src/clinic/PlanningPage.tsx",
         "src/clinic/PatientForm.tsx"
       ]
     },
@@ -355,6 +357,7 @@
       ],
       "used_by": [
         "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/PatientInvoices.tsx",
         "src/clinic/CareCommunicationsPage.tsx",
         "src/clinic/OverviewPage.tsx",
         "src/clinic/PublicPortal.tsx",
@@ -408,7 +411,6 @@
         "src/clinic/SettingsPeople.tsx",
         "src/clinic/InvoiceFiscalActions.tsx",
         "src/clinic/AgendaPages.tsx",
-        "src/clinic/PlanningPage.tsx",
         "src/clinic/InvoiceForms.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/ExpensesPage.tsx",
@@ -504,6 +506,7 @@
       "used_by": [
         "src/layouts/SiteLayout.tsx",
         "src/clinic/MoveSuggestions.tsx",
+        "src/clinic/PatientInvoices.tsx",
         "src/clinic/PatientDetail.tsx",
         "src/clinic/DocumentTemplates.tsx",
         "src/clinic/PatientAvailability.tsx",
@@ -511,6 +514,7 @@
         "src/clinic/OperatorPlanCard.tsx",
         "src/clinic/ProfilePage.tsx",
         "src/clinic/AppointmentForm.tsx",
+        "src/clinic/ProposalCalendar.tsx",
         "src/clinic/PublicPortal.tsx",
         "src/clinic/StaffPage.tsx",
         "src/clinic/StockPage.tsx",
@@ -1050,6 +1054,7 @@
         "src/clinic/PatientAvailability.tsx",
         "src/clinic/CareCommunicationsPage.tsx",
         "src/clinic/AppointmentForm.tsx",
+        "src/clinic/ProposalCalendar.tsx",
         "src/clinic/StaffPage.tsx",
         "src/clinic/StockPage.tsx",
         "src/clinic/GroupParticipants.tsx",
@@ -1061,6 +1066,7 @@
         "src/clinic/PatientDocuments.tsx",
         "src/clinic/BillingPages.tsx",
         "src/clinic/SettingsPeople.tsx",
+        "src/clinic/PlanningPage.tsx",
         "src/clinic/InvoiceForms.tsx",
         "src/clinic/AgendaControls.tsx",
         "src/clinic/PatientForm.tsx",
@@ -1071,7 +1077,6 @@
         "src/clinic/ImportPage.tsx",
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/TherapyConsumption.tsx",
-        "src/clinic/ProposalSelection.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/components/app/PageTabs.tsx",
         "src/pages/requests/RequestFormPage.tsx",
@@ -1143,6 +1148,7 @@
         "src/clinic/PatientAvailability.tsx",
         "src/clinic/ProfilePage.tsx",
         "src/clinic/AppointmentForm.tsx",
+        "src/clinic/ProposalCalendar.tsx",
         "src/clinic/PublicPortal.tsx",
         "src/clinic/StaffPage.tsx",
         "src/clinic/GroupParticipants.tsx",
@@ -1164,7 +1170,6 @@
         "src/clinic/PublicBooking.tsx",
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/TherapyConsumption.tsx",
-        "src/clinic/ProposalSelection.tsx",
         "src/clinic/TrainingPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/AgendaNotes.tsx",
@@ -2041,6 +2046,10 @@
       "file": "src/clinic/InvoiceForms.tsx"
     },
     {
+      "endpoint": "/pazienti/dettaglio",
+      "file": "src/clinic/InvoiceForms.tsx"
+    },
+    {
       "endpoint": "/pubblico/settimana",
       "file": "src/clinic/MaterialsPages.tsx"
     },
@@ -2117,6 +2126,14 @@
       "file": "src/clinic/PatientForm.tsx"
     },
     {
+      "endpoint": "/fatture/elenco",
+      "file": "src/clinic/PatientInvoices.tsx"
+    },
+    {
+      "endpoint": "/fatture/scarica-pdf",
+      "file": "src/clinic/PatientInvoices.tsx"
+    },
+    {
       "endpoint": "/pazienti/cerca",
       "file": "src/clinic/PatientsPage.tsx"
     },
@@ -2151,6 +2168,14 @@
     {
       "endpoint": "/account/salva",
       "file": "src/clinic/ProfilePage.tsx"
+    },
+    {
+      "endpoint": "/agenda/vista",
+      "file": "src/clinic/ProposalCalendar.tsx"
+    },
+    {
+      "endpoint": "/pianificazione/fasce",
+      "file": "src/clinic/ProposalCalendar.tsx"
     },
     {
       "endpoint": "/pianificazione/approva",

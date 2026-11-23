@@ -123,7 +123,7 @@ final class Routes
         $r->add('/assistente/stato', [AssistantController::class, 'stato']);
 
         // Pianificazione intelligente
-        foreach (['proponi', 'proposta', 'approva', 'scarta'] as $m) {
+        foreach (['proponi', 'proposta', 'approva', 'scarta', 'fasce'] as $m) {
             $r->add("/pianificazione/$m", [PlanningController::class, $m], 'ai.pianificazione');
         }
         $r->add('/pianificazione/disponibilita-testo', [PlanningController::class, 'disponibilita'], ['ai.pianificazione', 'pazienti.anagrafica']);

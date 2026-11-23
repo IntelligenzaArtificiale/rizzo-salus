@@ -51,6 +51,7 @@ export function channels(items: Data[], catalog: Data, group: string) {
 }
 export function channelOf(a: Data, catalog: Data, group: string) {
   if (group === "giorno") return "giorno";
+  if (a.tipo === "nota") return "nota";
   return group === "professionista"
     ? a.professional_id
     : group === "prestazione"
