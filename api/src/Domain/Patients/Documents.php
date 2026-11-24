@@ -34,6 +34,24 @@ final class Documents
             'testo'=>V::str($b,'testo',true,50000),'versione'=>V::str($b,'versione',true,40),'attivo'=>V::bool($b,'attivo',true),
         ]), V::int($b,'revision'));
     }
+    public function compilaModello(Context $c, array $patient, string $id): array
+    {
+        $template = $this->svc->store->get('document_templates', $id) ?? throw ApiError::notFound();
+        if (empty($template['attivo'])) throw new ApiError('modello_inattivo', 422);
+        if ($template['tipo'] === 'referto') {
+            $c->need('documenti.referti_crea');
+            $c->need('pazienti.clinica');
+        }
+        $struttura = $this->svc->settings()->get('struttura', []);
+        $template['compilato'] = strtr($template['testo'], [
+            '{{nome}}' => $patient['nome'], '{{cognome}}' => $patient['cognome'],
+            '{{codice_fiscale}}' => $patient['codice_fiscale'] ?? '', '{{indirizzo}}' => $patient['indirizzo'] ?? '',
+            '{{data_nascita}}' => empty($patient['data_nascita']) ? '' : implode('/', array_reverse(explode('-', $patient['data_nascita']))),
+            '{{data}}' => Clock::today(), '{{struttura}}' => $struttura['ragione_sociale'] ?? '',
+        ]);
+        return $template;
+    }
+
     public function save(Context $c,array $b): array
     {
         $p=$this->patient($c,V::id($b,'patient_id','paz',true));
@@ -48,12 +66,9 @@ final class Documents
         $rec=['patient_id'=>$p['id'],'episode_id'=>$ep,'titolo'=>V::str($b,'titolo',true,150),'tipo'=>$type,'clinico'=>$clinical,
             'stato'=>'archiviato','contenuto'=>null,'condiviso'=>V::bool($b,'condiviso'),'file'=>null];
         if (!empty($b['modello_id'])) {
-            $t=$this->svc->store->get('document_templates',$b['modello_id']) ?? throw ApiError::notFound();
-            if (empty($t['attivo'])) throw new ApiError('modello_inattivo',422);
-            if($t['tipo']==='referto') { $c->need('documenti.referti_crea');$c->need('pazienti.clinica');$rec['clinico']=true; }
-            $s=$this->svc->settings()->get('struttura',[]);
-            $text=strtr($t['testo'],['{{nome}}'=>$p['nome'],'{{cognome}}'=>$p['cognome'],'{{codice_fiscale}}'=>$p['codice_fiscale']??'',
-                '{{data}}'=>Clock::today(),'{{struttura}}'=>$s['ragione_sociale']??'','{{indirizzo}}'=>$p['indirizzo']??'']);
+            $t=$this->compilaModello($c, $p, (string)$b['modello_id']);
+            if ($t['tipo'] === 'referto') $rec['clinico'] = true;
+            $text=$t['compilato'];
             $rec=array_replace($rec,['tipo'=>$t['tipo'],'contenuto'=>$text,'versione'=>$t['versione'],'modello_id'=>$t['id'],
                 'sha256'=>hash('sha256',$text),'stato'=>'da_firmare','file'=>$this->pdf($b['titolo'],$text,$p['id'])]);
         } elseif (!empty($b['base64'])) {

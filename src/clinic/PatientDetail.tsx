@@ -14,6 +14,7 @@ import { api, type Data } from "./api";
 import { useClinic } from "./ClinicContext";
 import { LoadState, useLoad, name, date } from "./common";
 import { PatientEpisodes, PatientAppointments } from "./PatientCare";
+import { PatientHistory } from "./PatientHistory";
 import { PatientInvoices } from "./PatientInvoices";
 export function PatientPage() {
   const { id } = useParams(),
@@ -27,6 +28,8 @@ export function PatientPage() {
     can("agenda.vedi_tutto") || can("agenda.vedi_propria")
       ? ["Percorsi", "Anagrafica", "Disponibilità", "Documenti", "Appuntamenti"]
       : ["Percorsi", "Anagrafica"];
+  const showHistory = can("pazienti.clinica") && can("pazienti.anagrafica");
+  if (showHistory) tabs.splice(tabs.indexOf("Anagrafica")+1, 0, "Anamnesi");
   if (can("fatture.gestisci")) tabs.push("Fatture");
   return (
     <LoadState load={load}>
@@ -192,7 +195,7 @@ export function PatientPage() {
                 </Section>
               )}
             </>
-          ) : tab === "Fatture" && can("fatture.gestisci") ? <PatientInvoices id={p.id} /> : tab === "Documenti" ? (
+          ) : tab === "Anamnesi" && showHistory ? <PatientHistory key={p.id + ":" + p.revision} patient={p} onSaved={load.reload} /> : tab === "Fatture" && can("fatture.gestisci") ? <PatientInvoices id={p.id} /> : tab === "Documenti" ? (
             <PatientDocuments patient={p} />
           ) : tab === "Disponibilità" ? (
             <PatientAvailability patient={p} onSaved={load.reload} />

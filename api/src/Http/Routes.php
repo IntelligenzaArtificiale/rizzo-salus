@@ -22,6 +22,7 @@ final class Routes
         $r->add('/primo-avvio/stato', [AuthController::class, 'primoAvvioStato'], null, true);
         $r->add('/primo-avvio/verifica', [AuthController::class, 'primoAvvioVerifica'], null, true);
         $r->add('/primo-avvio/crea', [AuthController::class, 'primoAvvioCrea'], null, true);
+        $r->add('/auth/stato', [AuthController::class, 'sessione'], null, false, 'GET');
         $r->add('/auth/sessione', [AuthController::class, 'sessione']);
         $r->add('/auth/logout', [AuthController::class, 'logout']);
 
@@ -63,6 +64,7 @@ final class Routes
         $r->add('/pazienti/cerca', [PatientsController::class, 'cerca']);
         $r->add('/pazienti/dettaglio', [PatientsController::class, 'dettaglio']);
         $r->add('/pazienti/appuntamenti', [PatientsController::class,'appuntamenti']);
+        $r->add('/pazienti/anamnesi', [PatientsController::class, 'anamnesi']);
         $r->add('/pazienti/salva', [PatientsController::class, 'salva']);
         $r->add('/pazienti/elimina', [PatientsController::class, 'elimina']);
         $r->add('/percorsi/dettaglio', [EpisodesController::class, 'dettaglio']);
@@ -71,7 +73,7 @@ final class Routes
         $r->add('/percorsi/stato', [EpisodesController::class, 'stato']);
         $r->add('/percorsi/eccedenze', [EpisodesController::class, 'eccedenze']);
 
-        foreach (['elenco','salva','modelli','link','scarica','modelloSalva','bozza'] as $m) {
+        foreach (['elenco','salva','modelli','link','scarica','modelloSalva','bozza','anteprimaModello'] as $m) {
             $path = strtolower((string) preg_replace('/(?<!^)[A-Z]/', '-$0', $m));
             $r->add("/documenti/$path", [\App\Http\Controllers\DocumentsController::class, $m]);
         }

@@ -50,6 +50,16 @@ final class Episodes
                 ],
                 'preventivo_id' => $current['preventivo_id'] ?? V::id($d, 'preventivo_id', 'doc'),
             ];
+            if (array_key_exists('distretti', $d)) {
+                $zones = V::arr($d, 'distretti', true);
+                if (!array_is_list($zones) || count($zones) > 60) throw new ApiError('distretti_non_validi', 422);
+                foreach ($zones as $zone) {
+                    if (!is_string($zone) || !preg_match('/^(anteriore|posteriore)_(cervicale|torace|addome|lombare|(?:spalla|gomito|polso|anca|ginocchio|caviglia)_(?:dx|sx))$/D', $zone)) {
+                        throw new ApiError('distretti_non_validi', 422);
+                    }
+                }
+                $rec['distretti'] = array_values(array_unique($zones));
+            }
             $saved = $this->store->put('episodes', array_replace($current ?? [], $rec), $revision);
             $this->patients->attachProfessional($patientId, $prescriber);
             foreach ($lines as $l) {

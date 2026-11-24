@@ -151,14 +151,15 @@ export class ApiError extends Error {
 async function request(path: string, body: Data = {}) {
   let r: Response;
   try {
+    const readSession = path === "/auth/stato";
     r = await fetch(appConfig.apiBaseUrl + path, {
-      method: "POST",
+      method: readSession ? "GET" : "POST",
       credentials: "include",
       headers: {
         "Content-Type": "application/json",
         ...(csrf ? { "X-CSRF-Token": csrf } : {}),
       },
-      body: JSON.stringify(body),
+      body: readSession ? undefined : JSON.stringify(body),
     });
   } catch {
     throw new Error("Connessione non riuscita. Controlla la rete e riprova.");

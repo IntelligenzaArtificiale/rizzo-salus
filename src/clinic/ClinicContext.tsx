@@ -27,7 +27,7 @@ export function ClinicProvider({ children }: { children: ReactNode }) {
     setCatalog(await api("/catalogo/elenco"));
   };
   useEffect(() => {
-    api("/auth/sessione")
+    api("/auth/stato")
       .then(load)
       .catch(() => {
         setUser(null);
@@ -55,7 +55,7 @@ export function ClinicProvider({ children }: { children: ReactNode }) {
           setUser(null);
           setCsrf("");
         },
-        refresh: async () => load(await api("/auth/sessione")),
+        refresh: async () => load(await api("/auth/stato")),
       }}
     >
       {children}

@@ -72,6 +72,31 @@ final class PatientsController
         return $svc->patients()->present($c, $r);
     }
 
+    public function anamnesi(Context $c): array
+    {
+        $c->need('pazienti.clinica');
+        $c->need('pazienti.anagrafica');
+        $b = $c->body();
+        $id = V::id($b, 'id', 'paz', true);
+        $revision = V::int($b, 'revision', true, 1);
+        $voci = V::arr($b, 'voci', true);
+        $allowed = ['allergie', 'cardiologia', 'oncologia', 'interventi', 'esami', 'farmaci'];
+        if (array_diff(array_keys($voci), $allowed)) throw new ApiError('voce_non_valida', 422);
+        $clean = [];
+        foreach ($voci as $key => $value) {
+            if (!is_string($value)) throw new ApiError('voce_non_valida', 422);
+            $clean[$key] = V::str($voci, $key, false, 800) ?? '';
+        }
+        return $c->svc->store->transaction(function () use ($c, $id, $revision, $clean) {
+            $patient = $c->svc->store->get('patients', $id) ?? throw ApiError::notFound();
+            $c->svc->patients()->assertCanSee($c, $patient);
+            $patient['anamnesi_voci'] = $clean;
+            $saved = $c->svc->store->put('patients', $patient, $revision);
+            $c->svc->audit()->log('paziente.anamnesi', 'patients', $id);
+            return ['revision' => $saved['revision']];
+        });
+    }
+
     public function elimina(Context $c): array
     {
         $c->need('pazienti.tutti');

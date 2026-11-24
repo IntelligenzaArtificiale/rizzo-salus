@@ -14,7 +14,7 @@ final class EpisodesController
     public static function present(Context $c, array $e): array
     {
         if (!$c->can('pazienti.clinica')) {
-            unset($e['diagnosi']);
+            unset($e['diagnosi'], $e['distretti']);
         }
         if (!$c->can('pazienti.note_terapeutiche')) {
             unset($e['note_terapeutiche'],$e['diario']);
@@ -33,6 +33,7 @@ final class EpisodesController
     {
         $c->need('pazienti.anagrafica', 'pazienti.clinica');
         $b = $c->body();
+        if (!$c->can('pazienti.clinica')) unset($b['distretti']);
         $svc = $c->svc;
         $id = V::id($b, 'id', 'epi');
         $patient = $svc->store->get('patients', V::id($b, 'patient_id', 'paz', true)) ?? throw ApiError::notFound();

@@ -33,6 +33,7 @@ export function SegmentedControl<T extends string>({
       {options.map((opt) => (
         <button
           key={opt}
+          type="button"
           role="tab"
           aria-selected={opt === value}
           onClick={() => onChange(opt)}

@@ -16,8 +16,8 @@ final class Schema
     public const COLLECTIONS = [
         'users' => ['prefix' => 'usr', 'part' => null, 'enc' => ['totp_secret'], 'version' => 1],
         'professionals' => ['prefix' => 'pro', 'part' => null, 'enc' => [], 'version' => 1],
-        'patients' => ['prefix' => 'paz', 'part' => null, 'enc' => ['anamnesi', 'allergie', 'avvertenze'], 'version' => 1],
-        'episodes' => ['prefix' => 'epi', 'part' => null, 'enc' => ['diagnosi', 'note_terapeutiche', 'diario', 'profilo_gruppo'], 'version' => 1],
+        'patients' => ['prefix' => 'paz', 'part' => null, 'enc' => ['anamnesi', 'allergie', 'avvertenze', 'anamnesi_voci'], 'version' => 1],
+        'episodes' => ['prefix' => 'epi', 'part' => null, 'enc' => ['diagnosi', 'note_terapeutiche', 'diario', 'profilo_gruppo', 'distretti'], 'version' => 1],
         'therapy_types' => ['prefix' => 'ter', 'part' => null, 'enc' => [], 'version' => 1],
         'resources' => ['prefix' => 'ris', 'part' => null, 'enc' => [], 'version' => 1],
         'groups' => ['prefix' => 'grp', 'part' => null, 'enc' => [], 'version' => 1],

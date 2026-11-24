@@ -1,0 +1,10 @@
+.history-print-heading { display:none }
+@media print {
+  body:has(.history-report) :is(#root, .app-shell, main, .page-shell, .history-report) { height:auto!important;overflow:visible!important;max-height:none!important }
+  body:has(.history-report) * { visibility:hidden }
+  body:has(.history-report) .history-report,body:has(.history-report) .history-report * { visibility:visible }
+  body:has(.history-report) .history-report { position:absolute;inset:0 auto auto 0;width:100%;padding:12mm;background:white;color:black }
+  .history-report .history-print-heading { display:block;margin-bottom:8mm }
+  .history-report .history-print-heading h1 { font-size:20pt;font-weight:600 }
+  .history-report dd,.history-report dt { color:black;background:white }
+}

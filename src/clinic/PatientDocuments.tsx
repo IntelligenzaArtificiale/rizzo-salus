@@ -27,6 +27,10 @@ export function PatientDocuments({ patient }: { patient: Data }) {
       firmato_cartaceo: false,
     }),
     [link, setLink] = useState("");
+  const preview = useLoad(async () => {
+    if (!v.modello_id || !can("pazienti.anagrafica")) return null;
+    return api("/documenti/anteprima-modello", { patient_id:patient.id, modello_id:v.modello_id });
+  }, [v.modello_id, patient.id, can("pazienti.anagrafica")]);
   const a = useAction();
   return (
     <>
@@ -178,6 +182,9 @@ export function PatientDocuments({ patient }: { patient: Data }) {
                   .map((t: Data) => ({ value: t.id, label: t.nome })),
               ]}
             />
+            {v.modello_id && can("pazienti.anagrafica") && <Section title="Anteprima del modulo">
+              {preview.loading ? <p role="status">Preparazione del modulo…</p> : preview.error ? <p role="alert">{preview.error}</p> : <p className="whitespace-pre-wrap rounded-card border border-line p-4 text-sm">{preview.data?.contenuto}</p>}
+            </Section>}
             {can("documenti.referti_crea") && (
               <Button
                 type="button"

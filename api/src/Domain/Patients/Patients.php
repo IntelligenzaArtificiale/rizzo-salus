@@ -15,7 +15,7 @@ final class Patients
 {
     public const CONSENTS = ['privacy', 'trattamento', 'marketing', 'whatsapp', 'sts_opposizione'];
     private const ESSENTIAL = ['id', 'nome', 'cognome', 'data_nascita', 'sesso', 'professionisti', 'revision', 'allergie', 'avvertenze'];
-    private const CLINICAL = ['anamnesi'];
+    private const CLINICAL = ['anamnesi', 'anamnesi_voci'];
 
     public function __construct(private readonly Store $store)
     {

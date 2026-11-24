@@ -75,7 +75,7 @@ export function DocumentTemplates() {
           value={v.testo}
           onChange={(testo) => setV({ ...v, testo })}
           rows={14}
-          hint="Campi disponibili: {{nome}}, {{cognome}}, {{codice_fiscale}}, {{indirizzo}}, {{data}}, {{struttura}}."
+          hint="Campi disponibili: {{nome}}, {{cognome}}, {{codice_fiscale}}, {{data_nascita}}, {{indirizzo}}, {{data}}, {{struttura}}."
         />
         <Checkbox
           label="Modello attivo e pronto per l’utilizzo"

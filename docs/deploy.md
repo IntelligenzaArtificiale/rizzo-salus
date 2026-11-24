@@ -99,3 +99,15 @@ python3 scripts/upload-hosting.py --rollback .deploy/backup/20261123-182628
 ```
 
 Collaudo isolato: generazione e scelta alternativa, approvazione con apertura dell’agenda, paziente creato in due turni di chat, appuntamento confermato e riletto, fatture con paziente preselezionato. Sul sito pubblico verificati login, calendario e fasce, scelta alternativa, passaggio alla bozza fattura, chat con anteprime paziente e appuntamento, collegamento dalla chat al percorso. Scartate le anteprime del collaudo pubblico.
+
+## Rilascio del 24 novembre 2026
+
+Dalla scheda paziente si possono compilare le voci di anamnesi e stampare il riepilogo. Il percorso permette di indicare i distretti anatomici sulla figura anteriore e posteriore. I modelli mostrano l’anteprima precompilata e supportano la data di nascita. Un collegamento aperto in un’altra scheda può recuperare la sessione già autenticata. Il sito usa gli stessi dati e archivi. I nuovi campi clinici vengono cifrati al salvataggio.
+
+Pubblicati otto file PHP, due asset frontend e la pagina privata della build. Eseguita la rilettura con verifica SHA-256. La copia precedente permette il ripristino dei file del rilascio.
+
+```sh
+python3 scripts/upload-hosting.py --rollback .deploy/backup/20261124-102226
+```
+
+Verificati in ambiente isolato il salvataggio con controllo di revisione, i permessi clinici, la stampa e il PDF generato con la nascita. Sul sito demo verificati login, seconda scheda, mappa da desktop e mobile, anteprima dei documenti, calendario delle proposte, passaggio alla fattura e anteprime di paziente e appuntamento in chat. Aggiunto il facsimile “Esempio · Scheda di accoglienza”. Il collaudo pubblico ha scartato le proposte di prova.

@@ -1,4 +1,5 @@
 import { buttonVariants } from "@/components/atoms/Button";
+import { regionLabel } from "./anatomical-regions";
 import { EpisodeDiary } from "./EpisodeDiary";
 import { useState } from "react";
 import { PageTabs } from "@/components/app/PageTabs";
@@ -44,6 +45,7 @@ export function PatientEpisodes({
               Modifica percorso
             </Link>
           )}
+          {!!e.distretti?.length && <p className="text-sm text-ink-2">Distretti: {e.distretti.map(regionLabel).join(" · ")}</p>}
           {e.diagnosi && <p className="text-[14px] text-ink-2">{e.diagnosi}</p>}
           <div className="divide-y divide-line overflow-hidden rounded-card bg-surface shadow-card">
             {(e.avanzamento || []).map((line: Data) => {

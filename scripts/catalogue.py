@@ -35,7 +35,9 @@ def generate():
     lines += ['', '## Rotte dichiarate', '', *['- `'+r+'`' for r in routes], '',
               '## Chiamate API', '', 'Percorsi relativi alla base configurata; payload e risultati sono tipizzati nei file indicati.', '',
               '| Endpoint | Sorgente |', '|---|---|']
-    lines += [f"| POST `{c['endpoint']}` | [{c['file']}](../{c['file']}) |" for c in calls]
+    route_definitions = (ROOT / 'api/src/Http/Routes.php').read_text()
+    get_paths = set(re.findall(r"\$r->add\(\s*'([^']+)'[^;]+?'GET'\s*\)", route_definitions))
+    lines += [f"| {'GET' if c['endpoint'] in get_paths else 'POST'} `{c['endpoint']}` | [{c['file']}](../{c['file']}) |" for c in calls]
     (ROOT / 'docs/inventario.md').write_text('\n'.join(lines)+'\n')
     print(f"Catalogo: {len(components)} componenti, {len(routes)} rotte, {len(calls)} chiamate API")
 

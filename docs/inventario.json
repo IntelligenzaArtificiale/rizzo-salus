@@ -303,6 +303,7 @@
         "src/clinic/CommunicationsPages.tsx",
         "src/clinic/AgendaControls.tsx",
         "src/clinic/PatientForm.tsx",
+        "src/clinic/BodyRegions.tsx",
         "src/clinic/PatientCare.tsx",
         "src/pages/profile/ProfilePage.tsx",
         "src/pages/admin/SettingsPage.tsx",
@@ -414,6 +415,7 @@
         "src/clinic/InvoiceForms.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/ExpensesPage.tsx",
+        "src/clinic/BodyRegions.tsx",
         "src/clinic/PurchaseImport.tsx",
         "src/clinic/BookingManagement.tsx",
         "src/clinic/PublicBooking.tsx",
@@ -421,6 +423,7 @@
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/ProposalSelection.tsx",
         "src/clinic/MaterialsPages.tsx",
+        "src/clinic/PatientHistory.tsx",
         "src/clinic/PatientCare.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/AgendaNotes.tsx",
@@ -550,6 +553,7 @@
         "src/clinic/ProposalSelection.tsx",
         "src/clinic/CalendarSettings.tsx",
         "src/clinic/MaterialsPages.tsx",
+        "src/clinic/PatientHistory.tsx",
         "src/clinic/PatientCare.tsx",
         "src/clinic/TrainingPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
@@ -937,12 +941,14 @@
         "src/clinic/AgendaControls.tsx",
         "src/clinic/PatientForm.tsx",
         "src/clinic/ExpensesPage.tsx",
+        "src/clinic/BodyRegions.tsx",
         "src/clinic/BookingManagement.tsx",
         "src/clinic/AuthPages.tsx",
         "src/clinic/PublicBooking.tsx",
         "src/clinic/ImportPage.tsx",
         "src/clinic/ProposalSelection.tsx",
         "src/clinic/CalendarSettings.tsx",
+        "src/clinic/PatientHistory.tsx",
         "src/clinic/TrainingPage.tsx",
         "src/clinic/TherapyResources.tsx",
         "src/components/wizard/ConsentStep.tsx",
@@ -1170,6 +1176,7 @@
         "src/clinic/PublicBooking.tsx",
         "src/clinic/CompensationsPage.tsx",
         "src/clinic/TherapyConsumption.tsx",
+        "src/clinic/PatientHistory.tsx",
         "src/clinic/TrainingPage.tsx",
         "src/clinic/ReviewExportsPage.tsx",
         "src/clinic/AgendaNotes.tsx",
@@ -1878,7 +1885,7 @@
       "file": "src/clinic/ClinicContext.tsx"
     },
     {
-      "endpoint": "/auth/sessione",
+      "endpoint": "/auth/stato",
       "file": "src/clinic/ClinicContext.tsx"
     },
     {
@@ -2094,6 +2101,10 @@
       "file": "src/clinic/PatientDetail.tsx"
     },
     {
+      "endpoint": "/documenti/anteprima-modello",
+      "file": "src/clinic/PatientDocuments.tsx"
+    },
+    {
       "endpoint": "/documenti/bozza",
       "file": "src/clinic/PatientDocuments.tsx"
     },
@@ -2124,6 +2135,10 @@
     {
       "endpoint": "/pazienti/salva",
       "file": "src/clinic/PatientForm.tsx"
+    },
+    {
+      "endpoint": "/pazienti/anamnesi",
+      "file": "src/clinic/PatientHistory.tsx"
     },
     {
       "endpoint": "/fatture/elenco",

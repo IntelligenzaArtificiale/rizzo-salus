@@ -108,4 +108,5 @@ ok(!$fc->can('agenda.modifica')&&!$fc->can('agenda.segna_eseguita'),'fisioterapi
 require __DIR__.'/tests-call/boundaries.php';
 require __DIR__.'/tests-call/finance.php';
 require __DIR__.'/tests-call/communications.php';
+require __DIR__.'/tests-call/cartella.php';
 echo "COMPLETATI $checks controlli\n";

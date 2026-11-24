@@ -9,6 +9,15 @@ final class DocumentsController
 {
     public function bozza(Context $c): array {return \App\Domain\Patients\ClinicalDraft::build($c,$c->body());}
     public function elenco(Context $c): array { $d=new Documents($c->svc);return ['documenti'=>$d->list($c,V::id($c->body(),'patient_id','paz',true)),'rilascio_consentito'=>$d->releaseAllowed($c->body()['patient_id'])]; }
+    public function anteprimaModello(Context $c): array
+    {
+        $c->need('pazienti.anagrafica');
+        $c->need('documenti.moduli');
+        $docs = new Documents($c->svc);
+        $p = $docs->patient($c, V::id($c->body(), 'patient_id', 'paz', true));
+        $template = $docs->compilaModello($c, $p, (string)V::str($c->body(), 'modello_id', true, 80));
+        return ['contenuto' => $template['compilato']];
+    }
     public function salva(Context $c): array { return (new Documents($c->svc))->save($c,$c->body()); }
     public function modelli(Context $c): array { $c->need('documenti.moduli');return ['modelli'=>(new Documents($c->svc))->templates()]; }
     public function modelloSalva(Context $c): array { $c->need('impostazioni.gestisci');$r=(new Documents($c->svc))->saveTemplate($c->body());$c->svc->audit()->log('modello.salva','document_templates',$r['id']);return $r; }

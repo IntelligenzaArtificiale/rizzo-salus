@@ -10,6 +10,7 @@ import { Button } from "@/components/atoms/Button";
 import { api, type Data } from "./api";
 import { useClinic } from "./ClinicContext";
 import { useLoad, useAction, LoadState, today, name } from "./common";
+import { BodyRegions } from "./BodyRegions";
 import { AvailabilityFields } from "./PatientAvailability";
 export function EpisodeFormPage() {
   const { id } = useParams();
@@ -136,6 +137,7 @@ function EpisodeForm({ initial }: { initial: Data }) {
             { value: "neurologico", label: "Neurologico" },
           ]}
         />
+        {can("pazienti.clinica") && <BodyRegions value={v.distretti ?? []} onChange={distretti=>setV({...v, distretti})} />}
         <Section title="Terapie prescritte">
           <p className="text-sm text-ink-2">
             Il ciclo si completa contando le sedute eseguite. Le assenze non
